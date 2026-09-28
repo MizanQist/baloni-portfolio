@@ -452,9 +452,10 @@ body.ready .card-stage{opacity:1;transform:none}
 .piece:hover{border-color:var(--rule-champ);transform:translateY(-4px)}
 .piece.dim{opacity:.22;filter:grayscale(1);pointer-events:none}
 .piece .art{position:relative;aspect-ratio:1/1.12;border-radius:18px;overflow:hidden;background:radial-gradient(70% 60% at 50% 42%,#15151a,#0a0a0c 80%);box-shadow:inset 0 1px 0 rgba(233,231,225,.06);perspective:900px}
-.piece .art svg{position:absolute;inset:0;width:100%;height:100%;transform:rotateX(var(--px,0deg)) rotateY(var(--pyaw,0deg));transition:transform .9s var(--ease-o);will-change:transform}
-.piece.live .art svg{transition:transform .1s linear}
-.piece .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.piece .art svg,.piece .art img{position:absolute;inset:0;width:100%;height:100%;transform:rotateX(var(--px,0deg)) rotateY(var(--pyaw,0deg)) scale(var(--ps,1));transition:transform .9s var(--ease-o);will-change:transform}
+.piece.live .art svg,.piece.live .art img{transition:transform .1s linear}
+.piece .art img{object-fit:cover;--ps:1.04}
+.piece:hover .art img{--ps:1.08}
 .piece .art .ph{position:absolute;left:14px;top:14px;font:600 9px/1 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel);padding:7px 10px;border-radius:999px;border:1px solid var(--rule-2);background:rgba(8,8,10,.5)}
 .piece .art .rn{position:absolute;right:16px;top:12px;font:italic 400 1.5rem/1 var(--fd);color:var(--champ)}
 .piece .meta{padding:18px 16px 16px;display:grid;gap:6px}

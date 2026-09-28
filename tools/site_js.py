@@ -209,7 +209,7 @@ function openCase(id){
   const p=PIECE[id]; if(!p) return;
   caseId=id; const d=JSON.parse(p.dataset.spec);
   csArt.innerHTML=''; const art=$('.art svg, .art img',p); if(art){ const c=art.cloneNode(true); c.removeAttribute('style'); csArt.appendChild(c); }
-  if(d.placeholder) csArt.insertAdjacentHTML('beforeend','<span class="ph">Blueprint · photograph to follow</span>');
+  if(d.placeholder) csArt.insertAdjacentHTML('beforeend','<span class="ph">'+(d.image?'Maker’s photograph · to be sourced':'Blueprint · photograph to follow')+'</span>');
   $('#csk').innerHTML='Piece <b>'+d.n+'</b> · '+d.house;
   const rows=[['Reference',d.ref],['Case',d.case],['Dial',d.dial],['Movement',d.movement],['Power reserve',d.reserve],['Water resistance',d.water],['Strap',d.strap],['Year',d.year],['Condition',d.condition],['Price',d.price,'hi'],['Status',d.status,'hi']];
   csBody.innerHTML='<div class="hs">'+d.house+'</div><h3 class="md">'+d.model+'</h3><div class="rf">'+d.ref+'</div><p class="vw">'+d.view+'</p>'

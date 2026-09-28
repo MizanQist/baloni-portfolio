@@ -344,9 +344,9 @@ def vault():
     houses = '<button type="button" class="on" data-h="*">All ten</button>' + "".join(f'<button type="button" data-h="{esc(h)}">{esc(h)}</button>' for h in HOUSES)
     cards = ""
     for w in WATCHES:
-        spec = {k: w[k] for k in ("n", "house", "model", "ref", "case", "dial", "movement", "reserve", "water", "strap", "year", "condition", "price", "status", "view", "placeholder")}
+        spec = {k: w[k] for k in ("n", "house", "model", "ref", "case", "dial", "movement", "reserve", "water", "strap", "year", "condition", "price", "status", "view", "placeholder", "image")}
         art = img(w["image"], f'{esc(w["house"])} {esc(w["model"])}', "(max-width:900px) 90vw, 30vw", LAZY) if w["image"] else watch_svg(w["art"])
-        ph = '<span class="ph">Blueprint · to be sourced</span>' if w["placeholder"] else ""
+        ph = ('<span class="ph">To be sourced</span>' if w["image"] else '<span class="ph">Blueprint · to be sourced</span>') if w["placeholder"] else ""
         cards += f'''<div class="piece rv" id="{w["id"]}" data-id="{w["id"]}" data-house="{esc(w["house"])}" data-spec="{esc(json.dumps(spec, ensure_ascii=False))}" role="button" tabindex="0" aria-label="Open piece {w["n"]}, {esc(w["house"])} {esc(w["model"])}">
  <div class="art">{art}{ph}<span class="rn">{w["n"]}</span></div>
  <div class="meta"><div class="hs">{esc(w["house"])}</div><div class="md">{esc(w["model"])}</div><div class="rf">{esc(w["ref"])}</div>
@@ -358,7 +358,7 @@ def vault():
   {wing("II", "Wing II", "The vault.", "Ten pieces from five houses, chosen for a wrist that moves between the site, the boardroom and the evening. Each is sourced to your name, with box and papers, once you ask for it.", fill=True)}
   <div class="rv"><div class="eyebrow">By house</div><div class="houses" role="group" aria-label="Filter the vault by house">{houses}</div></div>
   <div class="vgrid">{cards}</div>
-  <div class="v-note rv">{SEAL}<p><b>The drawings stand in for the pieces.</b> Every entry in the vault is a placeholder until the piece is secured: the maker's specification for the reference is shown now, and the photograph, the year, the condition and the price replace it once we have the watch in hand. Open any piece for its full sheet, and reserve it to add it to your requests.</p></div>
+  <div class="v-note rv">{SEAL}<p><b>Shown as the makers show them.</b> The photographs are the houses' own catalogue images of each reference. Every entry stays a placeholder until the piece is secured: the year, the condition, the price and our own photograph of the watch in hand replace the catalogue entry then. Open any piece for its full sheet, and reserve it to add it to your requests.</p></div>
  </div>
 </section>'''
 
@@ -397,8 +397,8 @@ def desk():
   </div>
   <div class="credit-g rv-stag">
    <div><div class="lg">{MARK}<span>Mizan Qist Limited<small>Where ideas become reality</small></span></div><p>Prepared by the Private Office of Mizan Qist Limited, Abuja, {esc(DATE)}. Personal agent: {esc(AGENT)}.</p></div>
-   <div><b>Sources</b><p>Residences: prices, unit counts and statuses as quoted to Mizan Qist by the developers and owners, August and September 2026; site and drone photography by Mizan Qist; visualisations and plans supplied by the developers and their architects. Vault: makers' published specifications for the references named, to be confirmed on each piece.</p></div>
-   <div><b>Confidential</b><p>Prepared for {esc(CLIENT)} and not for onward circulation. Visualisations are artists' impressions; the vault drawings are illustrative. Areas are indicative. Prices are subject to confirmation and to contract; nothing here forms part of an offer or contract.</p></div>
+   <div><b>Sources</b><p>Residences: prices, unit counts and statuses as quoted to Mizan Qist by the developers and owners, August and September 2026; site and drone photography by Mizan Qist; visualisations and plans supplied by the developers and their architects. Vault: makers' published specifications and catalogue photographs for the references named (Patek Philippe, Audemars Piguet, Cartier, Vacheron Constantin, Richard Mille), reproduced for this private presentation only and to be confirmed on each piece.</p></div>
+   <div><b>Confidential</b><p>Prepared for {esc(CLIENT)} and not for onward circulation. Visualisations are artists' impressions; vault photographs are the makers' catalogue images and remain their property. Areas are indicative. Prices are subject to confirmation and to contract; nothing here forms part of an offer or contract.</p></div>
   </div>
   <div class="fin"><span>Prepared for {esc(CLIENT)} · Confidential · {esc(DATE)}</span><span class="seal">Mizan Qist · Private Office</span></div>
  </div>

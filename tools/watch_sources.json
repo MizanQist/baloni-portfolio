@@ -1,0 +1,87 @@
+{
+ "w01": {
+  "slug": "nautilus-5811",
+  "file": "patek-5811-1g-001.png",
+  "url": "https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/4827-51887",
+  "page": "https://www.patek.com/en/collection/nautilus/5811-1G-001",
+  "kind": "alpha",
+  "scale": 0.62
+ },
+ "w02": {
+  "slug": "aquanaut-5168",
+  "file": "patek-5168g-010.png",
+  "url": "https://patek-res.cloudinary.com/dfsmedia/0906caea301d42b3b8bd23bd656d1711/202459-51887",
+  "page": "https://www.patek.com/en/collection/aquanaut/5168G-010",
+  "kind": "alpha",
+  "scale": 0.62
+ },
+ "w03": {
+  "slug": "royal-oak-15510",
+  "file": "ap-15510st.png",
+  "url": "https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/watch-771?fmt=png-alpha&wid=1600",
+  "page": "https://www.audemarspiguet.com/com/en/watch-collection/royal-oak/15510ST.OO.1320ST.01.html",
+  "kind": "alpha",
+  "scale": 0.62
+ },
+ "w04": {
+  "slug": "offshore-26420",
+  "file": "ap-26420so.png",
+  "url": "https://dynamicmedia.audemarspiguet.com/is/image/audemarspiguet/watch-1068?fmt=png-alpha&wid=1600",
+  "page": "https://www.audemarspiguet.com/com/en/watch-collection/royal-oak-offshore/26420SO.OO.A002CA.01.html",
+  "kind": "alpha",
+  "scale": 0.62
+ },
+ "w05": {
+  "slug": "santos-wssa0018",
+  "file": "cartier-wssa0018.jpg",
+  "url": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dwe0571f8e/images/large/dc3bdd3c05f257f5b216fc83a0a73794.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+  "page": "https://www.cartier.com/en-us/watches/collections/santos-de-cartier/santos-de-cartier-watch-CRWSSA0018.html",
+  "kind": "light",
+  "thresh": 40,
+  "scale": 0.6,
+  "erode": 2,
+  "texture": 17
+ },
+ "w06": {
+  "slug": "tank-wgta0011",
+  "file": "cartier-wgta0011.jpg",
+  "url": "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dwd4bb06f8/images/large/e39f7697923d53ec8edcd3d44844a8a5.png?sw=2000&sh=2000&sm=fit&sfrm=png",
+  "page": "https://www.cartier.com/en-us/watches/collections/tank/tank-louis-cartier-watch-CRWGTA0011.html",
+  "kind": "light",
+  "thresh": 40,
+  "scale": 0.42,
+  "shadow": true
+ },
+ "w07": {
+  "slug": "overseas-4520v",
+  "file": "vc-4520v-210a-b128.png",
+  "url": "https://www.vacheron-constantin.com/dam/rcq/vac/os/Cb/fi/ew/uU/ym/am/PZ/Qu/r_/NQ/osCbfiewuUymamPZQur_NQ.png",
+  "page": "https://www.vacheron-constantin.com/us/en/collections/overseas/4520v-210a-b128.html",
+  "kind": "alpha",
+  "scale": 0.62
+ },
+ "w08": {
+  "slug": "222-4200h",
+  "file": "vc-4200h-222j-b935.png",
+  "url": "https://www.vacheron-constantin.com/dam/rcq/vac/23/09/17/0/2309170.png",
+  "page": "https://www.vacheron-constantin.com/us/en/collections/historiques/4200h-222j-b935.html",
+  "kind": "alpha",
+  "scale": 0.62
+ },
+ "w09": {
+  "slug": "rm-011",
+  "file": "rm-011-felipe-massa.jpg",
+  "url": "https://media.richardmille.com/wp-content/uploads/2020/02/20130409/richard-mille-rm-011-automatic-chronograph-felipe-massa-45670.jpg",
+  "page": "https://www.richardmille.com/historical-models/rm-011-automatic-chronograph-felipe-massa",
+  "kind": "light",
+  "thresh": 30,
+  "scale": 0.56
+ },
+ "w10": {
+  "slug": "rm-67-01",
+  "file": "rm-67-01-titanium.jpg",
+  "url": "https://media.richardmille.com/wp-content/uploads/2019/01/04131903/RM6701-Ti_FRONT_UNDER-BB.jpg",
+  "page": "https://www.richardmille.com/collections/rm-67-01-automatic-extra-flat",
+  "kind": "black"
+ }
+}
