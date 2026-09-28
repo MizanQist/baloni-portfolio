@@ -118,6 +118,28 @@ function onScroll(){
 }
 addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
+/* ---------- images: manage lazy loading ourselves; retry anything the browser drops ---------- */
+(function(){
+  const imgs=$$('img[loading="lazy"]'); if(!imgs.length) return;
+  const loaded=im=>im.complete&&im.naturalWidth>0;
+  function retry(im){
+    if(im.dataset.retried||loaded(im)) return; im.dataset.retried='1';
+    const src=im.getAttribute('src'), ss=im.getAttribute('srcset');
+    im.removeAttribute('srcset'); im.removeAttribute('src');
+    requestAnimationFrame(()=>{ if(ss) im.setAttribute('srcset',ss); im.setAttribute('src',src); });
+  }
+  function ensure(im){
+    if(loaded(im)) return;
+    im.loading='eager';
+    const t=setTimeout(()=>retry(im),8000);
+    im.addEventListener('load',()=>clearTimeout(t),{once:true});
+  }
+  imgs.forEach(im=>im.addEventListener('error',()=>setTimeout(()=>retry(im),1500),{once:true}));
+  if(!('IntersectionObserver' in window)){ imgs.forEach(ensure); return; }
+  const io=new IntersectionObserver(es=>{ for(const en of es) if(en.isIntersecting){ io.unobserve(en.target); ensure(en.target); } },{rootMargin:'1200px 900px'});
+  imgs.forEach(im=>io.observe(im));
+})();
+
 /* ---------- reveals + counters ---------- */
 const rvEls=$$('.rv, .rv-stag, .wipe');
 if(rm||!('IntersectionObserver' in window)) rvEls.forEach(el=>el.classList.add('in'));

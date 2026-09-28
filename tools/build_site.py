@@ -34,8 +34,8 @@ def dim(name):
     return _DIM[name]
 
 def img(name, alt, sizes, extra=""):
-    """<img> for an asset; JPEGs get a 1400 px phone edition in srcset (assets/m/), PNG plans do not."""
-    if name.endswith(".jpg") and dim(name):
+    """<img> for an asset; JPEGs wider than 1400 px get their phone edition (assets/m/) in srcset, PNG plans do not."""
+    if name.endswith(".jpg") and dim(name) and dim(name)[0] > 1400:
         w = dim(name)[0]
         return f'<img src="assets/{name}" srcset="assets/m/{name} 1400w, assets/{name} {w}w" sizes="{sizes}" alt="{alt}" decoding="async" {extra}>'
     return f'<img src="assets/{name}" alt="{alt}" decoding="async" {extra}>'
@@ -162,9 +162,9 @@ def residences():
     lo = min(x["pmin"] for x in SITES if x["pmin"]); hi = max(x["pmax"] for x in SITES if x["pmax"])
     fmt = lambda m: f"₦{m/1000:g}bn" if m >= 1000 else f"₦{m:g}m"
     cards = ""
-    for s in SITES:
+    for i, s in enumerate(SITES):
         hero = s["hero"][0]
-        pl = f'<div class="in">{img(hero + ".jpg", esc(s["name"]), "(max-width:900px) 70vw, 24vw", LAZY)}</div>' if hero else '<div class="dg">' + diagram_mini() + '</div>'
+        pl = f'<div class="in">{img(hero + ".jpg", esc(s["name"]), "(max-width:900px) 70vw, 24vw", LAZY if i > 2 else "")}</div>' if hero else '<div class="dg">' + diagram_mini() + '</div>'
         cards += f'''<a class="card" href="#{s["id"]}" data-go="{s["id"]}"><div class="pl">{pl}<span class="k">{s["n"]}</span>{chip(s["status"])}</div>
 <div class="nm">{esc(s["name"])}<small>{esc(s["district"])}{", Lagos" if s["city"]=="Lagos" else ""}</small></div><div class="pr"><span>{esc(s["short"])}</span><b>{esc(s["price"])}</b></div></a>'''
     return f'''
