@@ -57,6 +57,9 @@ def btn(label, href=None, cls="", attrs=""):
     return f'<button type="button" class="btn {cls}" {attrs}>{inner}</button>'
 
 # ---------------------------------------------------------------- chrome
+WORDS = "zero one two three four five six seven eight nine ten eleven twelve".split()
+N_RES = WORDS[len(SITES)]
+
 def chrome():
     dz_rows = "".join(f'<a href="#{s["id"]}" data-go="{s["id"]}" style="--i:{i}"><span class="k">{s["n"]}</span><span>{esc(s["name"])}<small>{esc(s["district"])}{", Lagos" if s["city"]=="Lagos" else ""} · {esc(s["status"])}</small></span><span class="pr">{esc(s["price"])}</span></a>' for i, s in enumerate(SITES))
     w_rows = "".join(f'<a href="#vault" data-go="vault" style="--i:{i}"><span class="k">{w["n"]}</span><span>{esc(w["house"])} {esc(w["model"])}<small>{esc(w["ref"])}</small></span><span class="pr">{esc(w["status"])}</span></a>' for i, w in enumerate(WATCHES))
@@ -82,7 +85,7 @@ def chrome():
 <div id="index" role="dialog" aria-modal="true" aria-label="Index"><div class="in">
   <div class="ih"><div><div class="eyebrow">Index</div><h2 class="t-2">Everything in your office.</h2></div><button type="button" class="close" id="idxclose" aria-label="Close the index">{CLOSE}</button></div>
   <div class="secs">{secs_html}</div>
-  <div class="cols"><div><h3>Wing I · Ten residences</h3><div class="rows">{dz_rows}</div></div><div><h3>Wing II · Ten pieces</h3><div class="rows">{w_rows}</div></div></div>
+  <div class="cols"><div><h3>Wing I · {N_RES.capitalize()} residences</h3><div class="rows">{dz_rows}</div></div><div><h3>Wing II · Ten pieces</h3><div class="rows">{w_rows}</div></div></div>
 </div></div>
 <div id="case" role="dialog" aria-modal="true" aria-label="The piece"><div class="dim"></div><div class="pn">
   <div class="bar"><span class="k" id="csk"></span><div class="x"><button type="button" id="csprev" aria-label="Previous piece">{CHEV_L}</button><button type="button" id="csnext" aria-label="Next piece">{CHEV_R}</button><button type="button" id="csclose" aria-label="Close">{CLOSE}</button></div></div>
@@ -102,10 +105,10 @@ def welcome():
   <div class="w-copy">
    <div class="eyebrow">Mizan Qist Private Office<span class="w-inv"> · By invitation</span></div>
    <h1 class="w-name" id="wname"><span class="l1" id="wgreet">Welcome back,</span><span class="l2 t-1">{name_markup(CLIENT_SHORT + ".")}<span class="sr">{esc(CLIENT_SHORT)}.</span></span></h1>
-   <p class="w-sub lede">Your office is open. Two wings tonight: ten residences in Abuja and Lagos, and ten pieces in the vault, every one of them sourced to your name.</p>
+   <p class="w-sub lede">Your office is open. Two wings tonight: {N_RES} residences in Abuja and Lagos, and ten pieces in the vault, every one of them sourced to your name.</p>
    <div class="w-cta">{btn("The residences", "#residences", "solid", 'data-go="residences"')}{btn("Open the vault", "#vault", "", 'data-go="vault"')}</div>
    <div class="w-meta">
-    <div><b>10</b>Residences</div><div><b>10</b>Pieces in the vault</div><div><b>2</b>Cities</div><div><b>{esc(AGENT_INITIALS)}<small>at any hour</small></b>{esc(AGENT)}</div>
+    <div><b>{len(SITES)}</b>Residences</div><div><b>10</b>Pieces in the vault</div><div><b>2</b>Cities</div><div><b>{esc(AGENT_INITIALS)}<small>at any hour</small></b>{esc(AGENT)}</div>
    </div>
   </div>
   <div class="card-stage" id="stage">
@@ -132,7 +135,7 @@ def brief():
   <div class="brief-g" style="margin-top:clamp(40px,6vh,64px)">
    <div class="letter rv">
     <p class="sal">{esc(CLIENT_SALUTATION)}</p>
-    <p>This office is yours alone. Nothing in it is on the open market in the form you see it here, and nothing in it was assembled for anyone else. Two wings are open: ten residential addresses across Abuja and Victoria Island, each with its price, its drawings and our honest view; and a vault of ten pieces from five houses, which we will source to your name once you tell us which of them you want on your wrist.</p>
+    <p>This office is yours alone. Nothing in it is on the open market in the form you see it here, and nothing in it was assembled for anyone else. Two wings are open: {N_RES} residential addresses across Abuja and Victoria Island, each with its price, its drawings and our honest view; and a vault of ten pieces from five houses, which we will source to your name once you tell us which of them you want on your wrist.</p>
     <p>Mark whatever interests you with the star. Your requests gather on your desk, and one message from there puts me to work: a viewing at the hour you choose, the full drawings, a valuation, or a piece secured with its box and papers. I am on retainer to you, not to any developer or dealer, so the view you read on every page is the one I would give you across a table.</p>
     <p>The office stays open. As new addresses and new pieces reach us, they are added here first.</p>
     <div class="sig"><b>{esc(AGENT_FIRST)}</b><span>{esc(AGENT)} · {esc(AGENT_ROLE)}</span></div>
@@ -170,14 +173,14 @@ def residences():
     return f'''
 <section class="pg" id="residences" data-tab="residences" aria-label="Wing I, the residences">
  <div class="wrap">
-  {wing("I", "Wing I", "The residences.", f"Ten addresses across {districts} districts and two cities, with the price, the drawings and our view on each. In the order we would show them.")}
+  {wing("I", "Wing I", "The residences.", f"{N_RES.capitalize()} addresses across {districts} districts and two cities, with the price, the drawings and our view on each. In the order we would show them.")}
   <div class="stats rv-stag">
-    <div><div class="v num"><span data-count="10">10</span></div><div class="k">Addresses</div></div>
+    <div><div class="v num"><span data-count="{len(SITES)}">{len(SITES)}</span></div><div class="k">Addresses</div></div>
     <div><div class="v num"><span data-count="{districts}">{districts}</span></div><div class="k">Districts</div></div>
     <div><div class="v rng">{fmt(lo)}<small>to</small>{fmt(hi)}</div><div class="k">Price range</div></div>
     <div><div class="v num"><span data-count="{n_sell}">{n_sell}</span><small>·</small><span data-count="{n_off}">{n_off}</span></div><div class="k">Selling · off-plan</div></div>
   </div>
-  <div class="shelf-h rv"><div><div class="eyebrow">The collection</div><h3 class="t-3">Ten dossiers, in order.</h3></div><div class="arrows"><button type="button" data-shelf="-1" aria-label="Scroll the collection left">{CHEV_L}</button><button type="button" data-shelf="1" aria-label="Scroll the collection right">{CHEV_R}</button></div></div>
+  <div class="shelf-h rv"><div><div class="eyebrow">The collection</div><h3 class="t-3">{N_RES.capitalize()} dossiers, in order.</h3></div><div class="arrows"><button type="button" data-shelf="-1" aria-label="Scroll the collection left">{CHEV_L}</button><button type="button" data-shelf="1" aria-label="Scroll the collection right">{CHEV_R}</button></div></div>
   <div class="shelf rv" id="shelf">{cards}</div>
  </div>
 </section>'''
@@ -201,7 +204,7 @@ def glance():
     for x in SITES:
         dict(groups)[x["district"] + (", Lagos" if x["city"] == "Lagos" else "")].append(x)
     panel = ""
-    for g, items in groups:
+    for g, items in (gi for gi in groups if gi[1]):
         rows = ""
         for x in items:
             r = ROUTES.get(x["id"], {})
@@ -215,7 +218,7 @@ def glance():
   <div class="map-h rv" style="margin-top:0"><div><div class="eyebrow">The map</div><h3 class="t-3">Every address, and the drive to the centre, <em class="t-i">on one map.</em></h3></div>
    <div class="map-ctl"><div class="seg" role="group" aria-label="Map layer"><button type="button" data-layer="streets" aria-pressed="true">Streets</button><button type="button" data-layer="aerial" aria-pressed="false">Aerial</button></div><div class="seg" role="group" aria-label="View"><button type="button" data-city="Maitama" aria-pressed="false">Maitama</button><button type="button" data-city="Abuja" aria-pressed="true">Abuja</button><button type="button" data-city="Lagos" aria-pressed="false">Lagos</button></div></div></div>
   <div class="map-g">
-   <div class="lmap-wrap night rv" id="lmapwrap"><div id="lmap" aria-label="Interactive map of the ten addresses"></div><div class="lm-hint" id="lmhint">Click the map, then scroll to zoom</div>
+   <div class="lmap-wrap night rv" id="lmapwrap"><div id="lmap" aria-label="Interactive map of the {N_RES} addresses"></div><div class="lm-hint" id="lmhint">Click the map, then scroll to zoom</div>
     <div class="map-fb" id="mapfb" hidden><div class="eyebrow plain">Map</div><p>The map could not load here. Each address opens in Google Maps:</p><div class="fbrows">{fallback}</div></div></div>
    <div class="lm-panel rv" id="mrows">{panel}<div class="lm-note">Distances are by road to the Central Business District (the Central Bank of Nigeria on Tafawa Balewa Way), routed on OpenStreetMap; Cova Manor is measured to the Eko Hotel. Drive times are approximate and off-peak. Choose a row to fly to the address and draw its route.</div></div>
   </div>
@@ -272,7 +275,7 @@ def types_html(s):
     rows = ""
     for name, spec, size, avail, price in s["types"]:
         off = price in ("Sold out", "Not listed", "On application", "By request")
-        rows += f'<tr><td class="t">{esc(name)}<small>{esc(spec)}</small></td><td>{esc(size) or "—"}</td><td class="n">{esc(avail) or "—"}</td><td class="p{" off" if off else ""}">{esc(price)}</td></tr>'
+        rows += f'<tr><td class="t">{esc(name)}<small>{esc(spec)}</small></td><td class="sz" data-l="Size">{esc(size) or "—"}</td><td class="n" data-l="Available">{esc(avail) or "—"}</td><td class="p{" off" if off else ""}">{esc(price)}</td></tr>'
     return f'<div class="types-w"><table class="types"><thead><tr><th>Type</th><th>Size</th><th class="n">Available</th><th class="p">Price</th></tr></thead><tbody>{rows}</tbody></table></div>'
 
 def credits_html(s):
@@ -331,11 +334,11 @@ def dossier(s, shade, flip):
     return f'''
 <section class="pg dz" id="{s["id"]}" data-shade="{shade}" data-tab="residences" data-n="{n}" data-name="{esc(s["name"])}" aria-label="Dossier {n}, {esc(s["name"])}">
  <div class="wrap">
-  <div class="run rv"><div>Dossier {n} / 10</div><div class="c">{esc(s["district"])} · {esc(s["city"])}</div><div class="r">{chip(s["status"])}{star(s, s["name"])}</div></div>
+  <div class="run rv"><div>Dossier {n} / {len(SITES):02d}</div><div class="c">{esc(s["district"])} · {esc(s["city"])}</div><div class="r">{chip(s["status"])}{star(s, s["name"])}</div></div>
   {head}
   {body}
   {gallery_html(s)}
-  <div class="foot"><span>Prepared for {esc(CLIENT)} · Mizan Qist Private Office</span><span><b>{n}</b> / 10</span></div>
+  <div class="foot"><span>Prepared for {esc(CLIENT)} · Mizan Qist Private Office</span><span><b>{n}</b> / {len(SITES):02d}</span></div>
  </div>
 </section>'''
 
@@ -423,7 +426,7 @@ def build():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(TITLE)}</title>
-<meta name="description" content="The private office of {esc(CLIENT)}: ten residences in Abuja and Lagos and a vault of ten watches, prepared by Mizan Qist Limited.">
+<meta name="description" content="The private office of {esc(CLIENT)}: {N_RES} residences in Abuja and Lagos and a vault of ten watches, prepared by Mizan Qist Limited.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#08080a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">

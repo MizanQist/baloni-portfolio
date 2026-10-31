@@ -12,8 +12,8 @@ DATE = "September 2026"
 SITES = [
  dict(id="d01", n="01", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=9.079976%2C7.467343", ll=(9.079976, 7.467343), addr="Plot 777, Parakou Street, Wuse II", name="Heights 777", scheme="", street="Plot 777, Parakou Street", plot="",
       district="Wuse II", city="Abuja", status="Off-plan", dev="Wrace Group", arch="Arc. Anthony C. N. · drawings, October 2025",
-      price="₦350m – ₦410m", pmin=350, pmax=410, units="32", avail="18", beds="1 – 2",
-      types=[("1-bed apartment", "1 bedroom", "", "6", "₦350m"), ("2-bed apartment", "2 bedrooms", "", "12", "₦410m")],
+      price="₦300m – ₦360m", pmin=300, pmax=360, units="32", avail="18", beds="1 – 2",
+      types=[("1-bed apartment", "1 bedroom", "", "6", "₦300m"), ("2-bed apartment", "2 bedrooms", "", "12", "₦360m")],
       facts=[("Storeys", "7", ""), ("Site", "1,136", "m²"), ("Parking bays", "21", ""), ("Infinity pool", "6th", "floor · indoor")],
       view="A seven-storey building of one- and two-bedroom apartments on Parakou Street, Wuse II, by Wrace, with an indoor infinity pool on the sixth floor and twenty-one parking bays. Eighteen apartments remain of thirty-two. Small tickets, suited to taking whole floors for letting rather than single units.",
       hero=("h777-corner-dusk", "tall", "Visualisation · the corner at dusk"),
@@ -22,19 +22,19 @@ SITES = [
 
  dict(id="d02", n="02", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=6.429104%2C3.417235", ll=(6.429104, 3.417235), addr="1053 Abagbon Close, off Ologun Agbaje Street, Victoria Island, Lagos", name="Cova Manor", scheme="", street="1053 Abagbon Close, off Ologun Agbaje Street", plot="",
       district="Victoria Island", city="Lagos", status="Off-plan", dev="Cova International Company", arch="Q-Form Designs · construction documentation, July 2026",
-      price="₦520m – ₦1.05bn", pmin=520, pmax=1050, units="8", avail="8", beds="2 – 4",
-      types=[("Duplex", "4 bedrooms · guest suite · staff room", "≈ 283 – 317 m²", "6", "₦1.05bn"), ("Apartment", "2 bedrooms", "≈ 130 – 145 m²", "2", "₦520m")],
+      price="₦470m – ₦960m", pmin=470, pmax=960, units="8", avail="8", beds="2 – 4",
+      types=[("Duplex", "4 bedrooms · guest suite · staff room", "≈ 283 – 317 m²", "6", "₦960m"), ("Apartment", "2 bedrooms", "≈ 130 – 145 m²", "2", "₦470m")],
       facts=[("Site", "835", "m²"), ("Levels", "8", "seven floors over an open court"), ("Parking bays", "17", ""), ("Lift", "Otis", "machine-room-less passenger lift")],
-      view="The one address outside Abuja. Eight residences on a quiet close in Victoria Island: six four-bedroom duplexes and two apartments in white decks over an open parking court, with a lift and seventeen bays, one turn from Adeola Odeku. Construction documentation is complete. Apartments at ₦520m and duplexes at ₦1.05bn; we include it for a Lagos base of matching quality.",
+      view="The one address outside Abuja. Eight residences on a quiet close in Victoria Island: six four-bedroom duplexes and two apartments in white decks over an open parking court, with a lift and seventeen bays, one turn from Adeola Odeku. Construction documentation is complete. Apartments at ₦470m and duplexes at ₦960m; we include it for a Lagos base of matching quality.",
       hero=("cova-corner", "split", "Visualisation · the corner from the close"),
       gallery=[("Concept", "cova-corner", "From the close"), ("Concept", "cova-front", "The long elevation"), ("Concept", "cova-approach", "The approach"), ("Plan", "cova-plan-duplex-lower", "Duplex · living floor"), ("Plan", "cova-plan-duplex-upper", "Duplex · bedroom floor"), ("Plan", "cova-plan-first", "First floor · apartments")],
       short="Eight residences, Victoria Island."),
 
  dict(id="d03", n="03", approx="street", gmaps="https://www.google.com/maps/search/?api=1&query=47%20Lake%20Chad%20Crescent%2C%20Maitama%2C%20Abuja", ll=(9.089465, 7.504057), addr="47 Lake Chad Crescent, Maitama", name="Maitama View", scheme="Lake Chad Crescent", street="47 Lake Chad Crescent", plot="Plot 758, Cadastral Zone A05",
       district="Maitama", city="Abuja", status="Off-plan", dev="Wrace", arch="Abdullahi Ndanusa & Arc. Daniel S. Akpama · working drawings, July 2026",
-      price="₦1.5bn – ₦1.85bn", pmin=1500, pmax=1850, units="9", avail="9", beds="4 – 5",
+      price="₦1.45bn – ₦1.85bn", pmin=1450, pmax=1850, units="9", avail="9", beds="4 – 5",
       types=[("Detached duplex", "5 bedrooms, all en suite · 1 BQ", "≈ 345 – 377 m²", "5", "₦1.85bn"),
-             ("Semi-detached", "4 bedrooms, all en suite · 1 BQ", "≈ 252 m²", "4", "₦1.5bn")],
+             ("Semi-detached", "4 bedrooms, all en suite · 1 BQ", "≈ 252 m²", "4", "₦1.45bn")],
       facts=[("Site", "3,274", "m²"), ("Built at ground", "28.2", "%"), ("Storeys", "3", ""), ("Palms, trees & shrubs", "1,149", "")],
       view="Nine homes behind one gate in the diplomatic quarter, with the working drawings complete, so the specification is settled before a block is laid. Two ways to hold it: the five detached duplexes along the eastern boundary as a single purchase, or the whole enclave. The entrance gate was designed in September 2026 and its renders are among the plates. Off-plan pricing applies at this stage.",
       hero=("lc-hero", "wide", "Visualisation · the row of detached duplexes along the private avenue"),
@@ -63,17 +63,7 @@ SITES = [
       gallery=[("Concept", "linda-c1", "The corner at dusk"), ("Concept", "linda-c2", "The approach"), ("Concept", "linda-c3", "The entrance"), ("Concept", "linda-c4", "From above"), ("Current state", "linda-s1", "The site from above"), ("Current state", "linda-s2", "The frame"), ("Current state", "linda-s3", "The frame · side"), ("Current state", "linda-s4", "The structure"), ("Current state", "linda-s5", "Ground floor")],
       short="Six villas, three living rooms each, Asokoro."),
 
- dict(id="d06", n="06", approx="", gmaps="https://maps.app.goo.gl/csD7tFHzx3GYt2x9A", ll=(9.009516, 7.497423), addr="2 Olakunle Gidado Street, Guzape", name="Olakunle Gidado", scheme="", street="2 Olakunle Gidado Street", plot="",
-      district="Guzape", city="Abuja", status="Selling", dev="", arch="",
-      price="₦1.5bn – ₦1.8bn", pmin=1500, pmax=1800, units="2", avail="1", beds="5",
-      types=[("Detached villa", "5 bedrooms · 2 BQ", "", "1", "₦1.5bn – ₦1.8bn")],
-      facts=[("Bedrooms", "5", ""), ("Boys' quarters", "2", ""), ("Available", "1", "of two villas"), ("Status", "Selling", "")],
-      view="A five-bedroom villa with two BQs on Olakunle Gidado Street, Guzape, one of a pair; the other is taken. The exterior is complete and the interior still unfinished, so the fit-out can be to your taste.",
-      hero=("og-s2", "tall", "Site photograph · the entrance"),
-      gallery=[("Current state", "og-s1", "From the street"), ("Current state", "og-s2", "The entrance"), ("Current state", "og-s3", "The pair"), ("Current state", "og-s4", "Interior · unfinished")],
-      short="One of two villas, Guzape."),
-
- dict(id="d07", n="07", approx="", gmaps="https://maps.app.goo.gl/sQGwriPyuBXGDKJU9", ll=(9.100146, 7.452277), addr="Yemi Obasanjo Boulevard, Katampe Extension", name="Katampe", scheme="Opposite Deda", street="Yemi Obasanjo Boulevard", plot="",
+ dict(id="d07", n="06", approx="", gmaps="https://maps.app.goo.gl/sQGwriPyuBXGDKJU9", ll=(9.100146, 7.452277), addr="Yemi Obasanjo Boulevard, Katampe Extension", name="Katampe", scheme="Opposite Deda", street="Yemi Obasanjo Boulevard", plot="",
       district="Katampe Ext.", city="Abuja", status="Off-plan", dev="Wrace & Cova", arch="",
       price="₦600m – ₦800m", pmin=600, pmax=800, units="36", avail="8", beds="2 – 6",
       types=[("Detached villa", "6 bedrooms · 1 BQ", "", "3", "₦800m carcass"), ("Semi-detached", "6 bedrooms · 1 BQ", "", "5", "₦600m carcass"),
@@ -87,7 +77,7 @@ SITES = [
                ("Current state", "kat-s1", "Foundations from above"), ("Current state", "kat-s2", "The footprint"), ("Current state", "kat-s3", "Ground works"), ("Current state", "kat-s4", "The terraces' foundations"), ("Current state", "kat-s5", "Across the site"), ("Current state", "kat-s6", "Close over the works")],
       short="Thirty-six homes, carcass pricing."),
 
- dict(id="d08", n="08", approx="", gmaps="https://maps.app.goo.gl/WTHXSnMhSyHkj4yg9", ll=(9.076586, 7.446958), addr="Utako, Mabushi District", name="Utako", scheme="", street="Utako", plot="",
+ dict(id="d08", n="07", approx="", gmaps="https://maps.app.goo.gl/WTHXSnMhSyHkj4yg9", ll=(9.076586, 7.446958), addr="Utako, Mabushi District", name="Utako", scheme="", street="Utako", plot="",
       district="Mabushi District", city="Abuja", status="Selling", dev="Wrace", arch="",
       price="₦500m – ₦900m", pmin=500, pmax=900, units="7", avail="7", beds="3 – 5",
       units_line='<b>7</b> villas available · apartments by request', homes_cell='7 villas<span class="small"> · apts by request</span>',
@@ -99,7 +89,7 @@ SITES = [
       gallery=[("Site plan", "utako-plan", "Site layout"), ("Concept", "utako-c1", "The avenue"), ("Concept", "utako-c2", "The villas"), ("Current state", "utako-s1", "The estate from above"), ("Current state", "utako-s2", "The villa row"), ("Current state", "utako-s8", "The villas, close"), ("Current state", "utako-s3", "The apartment block"), ("Current state", "utako-s9", "The block, from the road"), ("Current state", "utako-s4", "The block · east"), ("Current state", "utako-s5", "The terraces"), ("Current state", "utako-s6", "Foundations, west"), ("Current state", "utako-s7", "The frame")],
       short="Five-bedroom villas, Mabushi."),
 
- dict(id="d09", n="09", approx="nearest", gmaps="https://maps.app.goo.gl/HWh2uqRaKVHhycCKA", ll=(9.079878, 7.499331), addr="Gana Street, Maitama", name="Gana Street", scheme="", street="Gana Street", plot="",
+ dict(id="d09", n="08", approx="nearest", gmaps="https://maps.app.goo.gl/HWh2uqRaKVHhycCKA", ll=(9.079878, 7.499331), addr="Gana Street, Maitama", name="Gana Street", scheme="", street="Gana Street", plot="",
       district="Maitama", city="Abuja", status="Selling", dev="Cova", arch="",
       price="₦350m – ₦700m", pmin=350, pmax=700, units="30", avail="—", beds="3",
       types=[("Apartment", "3 bedrooms", "", "", "₦350m"), ("Terrace", "3 bedrooms", "", "", "₦700m")],
@@ -107,17 +97,7 @@ SITES = [
       view="Thirty three-bedroom homes on Gana Street, in the heart of Maitama, split between apartments and terraces. At ₦350m an apartment is the lowest entry price in Maitama on this file, and the terraces at ₦700m sit well under the district's detached houses. Construction is under way. A letting or resale hold rather than a residence.",
       hero=("gana-c1", "split", "Concept render · the courtyard between the blocks"),
       gallery=[("Concept", "gana-c1", "The courtyard"), ("Concept", "gana-c2", "The blocks from the drive"), ("Current state", "gana-s1", "The frame, from the street"), ("Current state", "gana-s2", "The frame · east elevation"), ("Current state", "gana-s3", "Along the frame")],
-      short="Thirty homes, the Maitama entry price."),
-
- dict(id="d10", n="10", approx="", gmaps="https://maps.app.goo.gl/u4xdmKHfbYjs8KS36", ll=(9.094980, 7.489984), addr="Mississippi Street, Maitama", name="Mississippi", scheme="", street="Mississippi Street", plot="",
-      district="Maitama", city="Abuja", status="Selling", dev="", arch="",
-      price="₦4.1bn", pmin=4100, pmax=4100, units="1", avail="1", beds="5 + 2",
-      types=[("Existing house", "5 bedrooms · 2-bedroom guest chalet", "", "1", "₦4.1bn")],
-      facts=[("Bedrooms", "5", "plus a two-bedroom guest chalet"), ("Occupied", "Yes", "the landowner is in residence"), ("Photography", "None", "deferred, out of courtesy"), ("Best use", "Rebuild", "")],
-      view="A long-established house on Mississippi Street, one of Maitama's oldest addresses, still occupied by the landowner, who is now selling. Five bedrooms and a two-bedroom guest chalet, at ₦4.1bn. We have not photographed the house out of courtesy to the occupant. The value here is the land and the street, not the building: we recommend acquiring the plot for demolition and new construction rather than renovation, and commissioning a design for the site.",
-      hero=("", "diagram", "Illustrative diagram · not a survey · not to scale"),
-      gallery=[],
-      short="An old house on the land you want."),
+      short="Thirty homes, the Maitama entry price.")
 ]
 
 # ---------------------------------------------------------------- Wing II · The Vault
