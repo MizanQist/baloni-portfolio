@@ -86,7 +86,7 @@ def chrome():
 </div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Plate viewer"><div class="bar"><span><b id="lbsite"></b> · <span id="lbgroup"></span></span><div class="x"><button type="button" id="lbzoom" aria-label="Zoom">{ZOOM}</button><button type="button" id="lbclose" aria-label="Close">{CLOSE}</button></div></div>
  <div class="st" id="lbst"><img id="lbA" alt=""><img id="lbB" alt=""><button type="button" class="nav p" id="lbprev" aria-label="Previous plate">{CHEV_L}</button><button type="button" class="nav n" id="lbnext" aria-label="Next plate">{CHEV_R}</button></div>
- <div class="cap"><span class="c" id="lbcap"></span><span><span class="k" id="lbct"></span> · swipe or use the arrows · esc closes</span></div></div>
+ <div class="cap"><span class="c" id="lbcap"></span><span><span class="k" id="lbct"></span><span class="tc"> · swipe for the next plate</span><span class="kb"> · swipe or use the arrows · esc closes</span></span></div></div>
 <div class="cur" id="cur"></div><div class="cur2" id="cur2" data-l="View"></div>'''
 
 # ---------------------------------------------------------------- welcome
