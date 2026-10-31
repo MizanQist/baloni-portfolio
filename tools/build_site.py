@@ -164,7 +164,7 @@ def residences():
     cards = ""
     for i, s in enumerate(SITES):
         hero = s["hero"][0]
-        pl = f'<div class="in">{img(hero + ".jpg", esc(s["name"]), "(max-width:900px) 70vw, 24vw", LAZY if i > 2 else "")}</div>' if hero else '<div class="dg">' + diagram_mini() + '</div>'
+        pl = f'<div class="in">{img(hero + ".jpg", esc(s["name"]), "(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw", LAZY if i > 2 else "")}</div>' if hero else '<div class="dg">' + diagram_mini() + '</div>'
         cards += f'''<a class="card" href="#{s["id"]}" data-go="{s["id"]}"><div class="pl">{pl}<span class="k">{s["n"]}</span>{chip(s["status"])}</div>
 <div class="nm">{esc(s["name"])}<small>{esc(s["district"])}{", Lagos" if s["city"]=="Lagos" else ""}</small></div><div class="pr"><span>{esc(s["short"])}</span><b>{esc(s["price"])}</b></div></a>'''
     return f'''
