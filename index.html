@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>The Baloni Private Office</title>
-<meta name="description" content="The private office of Mr Ibrahim Baloni: eight residences in Abuja and Lagos and a vault of ten watches, prepared by Mizan Qist Limited.">
+<meta name="description" content="The private office of Mr Ibrahim Baloni: eight residences in Abuja and Lagos, prepared by Mizan Qist Limited.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#08080a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -598,64 +598,6 @@ body.ready .card-stage{opacity:1;transform:none}
   .gal{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 }
 
-/* ------- the vault ------- */
-#vault{background:#050506;position:relative;isolation:isolate}
-#vault::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 40% at 50% 0%,rgba(205,176,122,.08),transparent 70%);pointer-events:none}
-.houses{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.houses button{font:600 10px/1 var(--fs);letter-spacing:.2em;text-transform:uppercase;padding:11px 16px;border-radius:999px;border:1px solid var(--rule);color:var(--steel);transition:.4s var(--ease)}
-.houses button:hover{color:var(--platinum);border-color:var(--rule-champ)}
-.houses button.on{background:var(--platinum);color:var(--void);border-color:var(--platinum)}
-.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:clamp(28px,4vh,44px)}
-.piece{position:relative;border-radius:24px;padding:6px;background:var(--graphite);border:1px solid var(--rule);display:grid;grid-template-rows:auto 1fr;transition:border-color .6s var(--ease),transform .8s var(--ease-o),opacity .6s var(--ease),filter .6s;text-align:left;color:inherit;cursor:pointer}
-.piece:hover{border-color:var(--rule-champ);transform:translateY(-4px)}
-.piece.dim{opacity:.22;filter:grayscale(1);pointer-events:none}
-.piece .art{position:relative;aspect-ratio:1/1.12;border-radius:18px;overflow:hidden;background:radial-gradient(70% 60% at 50% 42%,#15151a,#0a0a0c 80%);box-shadow:inset 0 1px 0 rgba(233,231,225,.06);perspective:900px}
-.piece .art svg,.piece .art img{position:absolute;inset:0;width:100%;height:100%;transform:rotateX(var(--px,0deg)) rotateY(var(--pyaw,0deg)) scale(var(--ps,1));transition:transform .9s var(--ease-o);will-change:transform}
-.piece.live .art svg,.piece.live .art img{transition:transform .1s linear}
-.piece .art img{object-fit:cover;--ps:1.04}
-.piece:hover .art img{--ps:1.08}
-.piece .art .ph{position:absolute;left:14px;top:14px;font:600 9px/1 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel);padding:7px 10px;border-radius:999px;border:1px solid var(--rule-2);background:rgba(8,8,10,.5)}
-.piece .art .rn{position:absolute;right:16px;top:12px;font:italic 400 1.5rem/1 var(--fd);color:var(--champ)}
-.piece .meta{padding:18px 16px 16px;display:grid;gap:6px}
-.piece .hs{font:500 10px/1 var(--fs);letter-spacing:.26em;text-transform:uppercase;color:var(--champ)}
-.piece .md{font:400 1.35rem/1.15 var(--fd);color:var(--platinum)}
-.piece .rf{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;color:var(--steel);text-transform:uppercase}
-.piece .ft{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--rule-2)}
-.piece .ft .pr{font:400 .95rem/1 var(--fd);color:var(--silver)}
-.piece .star{width:34px;height:34px}
-.piece .star svg{width:12px;height:12px}
-.v-note{margin-top:clamp(32px,5vh,52px);display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;padding:22px 26px;border-radius:22px;border:1px solid var(--rule-champ);background:rgba(205,176,122,.05);font-size:13.5px;line-height:1.6;color:var(--silver);max-width:820px}
-.v-note svg{width:22px;height:22px;color:var(--champ);margin-top:2px}
-.v-note b{color:var(--platinum);font-weight:500}
-/* case (piece detail) */
-#case{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;z-index:var(--overlay-z);overscroll-behavior:contain;display:grid;grid-template-columns:1fr minmax(0,min(100%,1080px));opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility 0s .5s}
-#case.open{opacity:1;visibility:visible;transition:opacity .5s var(--ease)}
-#case .dim{background:rgba(5,5,6,.72);cursor:pointer}
-#case .pn{background:var(--carbon);border-left:1px solid var(--rule);overflow:auto;transform:translateX(40px);transition:transform .7s var(--ease-o);display:grid;grid-template-rows:auto 1fr;-webkit-overflow-scrolling:touch}
-#case.open .pn{transform:none}
-#case .bar{display:flex;justify-content:space-between;align-items:center;padding:22px var(--gut) 18px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--carbon);z-index:2}
-#case .bar .k{font:500 10px/1.5 var(--fs);letter-spacing:.24em;text-transform:uppercase;color:var(--steel)}
-#case .bar .k b{color:var(--champ);font-weight:500}
-#case .bar .x{display:flex;gap:8px}
-#case .bar button{width:44px;height:44px;border:1px solid var(--rule);border-radius:50%;display:grid;place-items:center;transition:.3s}
-#case .bar button:hover{border-color:var(--champ);color:var(--champ-hi)}
-#case .bar button svg{width:16px;height:16px}
-#case .cg{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,3vw,48px);padding:clamp(24px,3vw,44px) var(--gut) clamp(40px,5vh,64px);align-items:start}
-#case .cart{position:sticky;top:96px;aspect-ratio:1/1.12;border-radius:22px;overflow:hidden;background:radial-gradient(70% 60% at 50% 42%,#15151a,#0a0a0c 80%);border:1px solid var(--rule)}
-#case .cart svg,#case .cart img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-#case .cart .ph{position:absolute;left:16px;top:16px;font:600 9.5px/1 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel);padding:8px 12px;border-radius:999px;border:1px solid var(--rule-2);background:rgba(8,8,10,.6)}
-#case .hs{font:500 11px/1 var(--fs);letter-spacing:.28em;text-transform:uppercase;color:var(--champ)}
-#case .md{font:400 clamp(2rem,3.4vw,3rem)/1.05 var(--fd);margin-top:14px;font-variation-settings:"opsz" 72}
-#case .rf{font-family:var(--fm);font-size:11px;letter-spacing:.14em;color:var(--steel);text-transform:uppercase;margin-top:12px}
-#case .vw{margin-top:22px;font:italic 400 clamp(1.05rem,1.4vw,1.25rem)/1.6 var(--fd);color:var(--platinum)}
-#case .spec{margin-top:26px;border-top:1px solid var(--rule)}
-#case .spec div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:13px 0;border-bottom:1px solid var(--rule-2);font-size:14px;color:var(--silver)}
-#case .spec dt{font:500 10px/1.6 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
-#case .spec dd.hi{color:var(--champ-hi);font-family:var(--fd);font-size:16px}
-#case .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-#case .fine{margin-top:22px;font-size:12px;line-height:1.55;color:var(--steel)}
-@media (max-width:900px){#case{grid-template-columns:1fr}#case .dim{display:none}#case .cg{grid-template-columns:1fr}#case .cart{position:static}#case .spec div{grid-template-columns:110px 1fr}}
-
 /* ------- desk ------- */
 .desk-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,4vw,72px);margin-top:clamp(40px,6vh,72px)}
 .contacts{display:grid;gap:0;border-top:1px solid var(--rule)}
@@ -751,7 +693,7 @@ body.ready .card-stage{opacity:1;transform:none}
 .cur2{position:fixed;left:0;top:0;z-index:calc(var(--cursor-z) - 1);pointer-events:none;width:34px;height:34px;border-radius:50%;border:1px solid rgba(239,223,184,.6);transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,opacity .3s;display:none;place-items:center;font:600 9px/1 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--void)}
 .cur2.big{width:74px;height:74px;background:rgba(239,223,184,.92);border-color:transparent}
 .cur2.big::after{content:attr(data-l)}
-@media (pointer:fine) and (min-width:900px){.cur,.cur2{display:grid}body{cursor:none}a,button,.gal figure,.plate,.shelf,.mcard,.piece{cursor:none}}
+@media (pointer:fine) and (min-width:900px){.cur,.cur2{display:grid}body{cursor:none}a,button,.gal figure,.plate,.shelf,.mcard{cursor:none}}
 
 /* ------- touch / motion / print ------- */
 @media (hover:none){
@@ -769,7 +711,7 @@ body.ready .card-stage{opacity:1;transform:none}
   .rv,.rv-stag>*,.wipe,.w-name .ch,.w-copy .eyebrow,.w-sub,.w-cta,.w-meta,.card-stage,.isl,.corner{opacity:1!important;transform:none!important;clip-path:none!important;translate:0 0!important}
   #veil{display:none}
 }
-@media print{#veil,.isl,.corner,.progress,.cur,.cur2,#index,#lb,#case{display:none!important}.pg{padding-block:40px}.rv,.rv-stag>*,.wipe,.w-name .ch{opacity:1!important;transform:none!important;clip-path:none!important}}
+@media print{#veil,.isl,.corner,.progress,.cur,.cur2,#index,#lb{display:none!important}.pg{padding-block:40px}.rv,.rv-stag>*,.wipe,.w-name .ch{opacity:1!important;transform:none!important;clip-path:none!important}}
 </style>
 </head>
 <body>
@@ -784,7 +726,6 @@ body.ready .card-stage{opacity:1;transform:none}
   <span class="ind" id="ind" aria-hidden="true"></span>
   <button type="button" class="tab" data-go="brief">Brief</button>
   <button type="button" class="tab" data-go="residences">Residences</button>
-  <button type="button" class="tab" data-go="vault">Vault</button>
   <button type="button" class="tab" data-go="desk">Desk<span class="n" id="reqcount"></span></button>
   <span class="sep"></span>
   <span class="clock" id="clock"></span>
@@ -792,12 +733,8 @@ body.ready .card-stage{opacity:1;transform:none}
 </nav>
 <div id="index" role="dialog" aria-modal="true" aria-label="Index"><div class="in">
   <div class="ih"><div><div class="eyebrow">Index</div><h2 class="t-2">Everything in your office.</h2></div><button type="button" class="close" id="idxclose" aria-label="Close the index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
-  <div class="secs"><a href="#welcome" data-go="welcome" style="--i:0">Welcome</a><a href="#brief" data-go="brief" style="--i:1">Your brief</a><a href="#residences" data-go="residences" style="--i:2">Wing I · Residences</a><a href="#glance" data-go="glance" style="--i:3">Map &amp; ledger</a><a href="#vault" data-go="vault" style="--i:4">Wing II · The vault</a><a href="#desk" data-go="desk" style="--i:5">Your desk</a></div>
-  <div class="cols"><div><h3>Wing I · Eight residences</h3><div class="rows"><a href="#d01" data-go="d01" style="--i:0"><span class="k">01</span><span>Heights 777<small>Wuse II · Off-plan</small></span><span class="pr">₦300m – ₦360m</span></a><a href="#d02" data-go="d02" style="--i:1"><span class="k">02</span><span>Cova Manor<small>Victoria Island, Lagos · Off-plan</small></span><span class="pr">₦470m – ₦960m</span></a><a href="#d03" data-go="d03" style="--i:2"><span class="k">03</span><span>Maitama View<small>Maitama · Off-plan</small></span><span class="pr">₦1.45bn – ₦1.85bn</span></a><a href="#d04" data-go="d04" style="--i:3"><span class="k">04</span><span>Agulu Lake<small>Maitama · Selling</small></span><span class="pr">₦6.6bn</span></a><a href="#d05" data-go="d05" style="--i:4"><span class="k">05</span><span>Linda Chalker<small>Asokoro · Off-plan</small></span><span class="pr">₦900m</span></a><a href="#d07" data-go="d07" style="--i:5"><span class="k">06</span><span>Katampe<small>Katampe Ext. · Off-plan</small></span><span class="pr">₦600m – ₦800m</span></a><a href="#d08" data-go="d08" style="--i:6"><span class="k">07</span><span>Utako<small>Mabushi District · Selling</small></span><span class="pr">₦500m – ₦900m</span></a><a href="#d09" data-go="d09" style="--i:7"><span class="k">08</span><span>Gana Street<small>Maitama · Selling</small></span><span class="pr">₦350m – ₦700m</span></a></div></div><div><h3>Wing II · Ten pieces</h3><div class="rows"><a href="#vault" data-go="vault" style="--i:0"><span class="k">I</span><span>Patek Philippe Nautilus<small>5811/1G-001</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:1"><span class="k">II</span><span>Patek Philippe Aquanaut<small>5168G-010</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:2"><span class="k">III</span><span>Audemars Piguet Royal Oak Selfwinding<small>15510ST.OO.1320ST.01</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:3"><span class="k">IV</span><span>Audemars Piguet Royal Oak Offshore Chronograph<small>26420SO</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:4"><span class="k">V</span><span>Cartier Santos de Cartier<small>WSSA0018 · Large</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:5"><span class="k">VI</span><span>Cartier Tank Louis Cartier<small>WGTA0011 · Large</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:6"><span class="k">VII</span><span>Vacheron Constantin Overseas<small>4520V/210A-B128</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:7"><span class="k">VIII</span><span>Vacheron Constantin Historiques 222<small>4200H/222J-B935</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:8"><span class="k">IX</span><span>Richard Mille RM 011 Flyback Chronograph<small>RM 011 · Felipe Massa</small></span><span class="pr">To be sourced</span></a><a href="#vault" data-go="vault" style="--i:9"><span class="k">X</span><span>Richard Mille RM 67-01 Automatic Extra Flat<small>RM 67-01</small></span><span class="pr">To be sourced</span></a></div></div></div>
-</div></div>
-<div id="case" role="dialog" aria-modal="true" aria-label="The piece"><div class="dim"></div><div class="pn">
-  <div class="bar"><span class="k" id="csk"></span><div class="x"><button type="button" id="csprev" aria-label="Previous piece"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" id="csnext" aria-label="Next piece"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button><button type="button" id="csclose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div></div>
-  <div class="cg"><div class="cart" id="csart"></div><div id="csbody"></div></div>
+  <div class="secs"><a href="#welcome" data-go="welcome" style="--i:0">Welcome</a><a href="#brief" data-go="brief" style="--i:1">Your brief</a><a href="#residences" data-go="residences" style="--i:2">Wing I · Residences</a><a href="#glance" data-go="glance" style="--i:3">Map &amp; ledger</a><a href="#desk" data-go="desk" style="--i:4">Your desk</a></div>
+  <div class="cols"><div><h3>Wing I · Eight residences</h3><div class="rows"><a href="#d01" data-go="d01" style="--i:0"><span class="k">01</span><span>Heights 777<small>Wuse II · Off-plan</small></span><span class="pr">₦300m – ₦360m</span></a><a href="#d02" data-go="d02" style="--i:1"><span class="k">02</span><span>Cova Manor<small>Victoria Island, Lagos · Off-plan</small></span><span class="pr">₦470m – ₦960m</span></a><a href="#d03" data-go="d03" style="--i:2"><span class="k">03</span><span>Maitama View<small>Maitama · Off-plan</small></span><span class="pr">₦1.45bn – ₦1.85bn</span></a><a href="#d04" data-go="d04" style="--i:3"><span class="k">04</span><span>Agulu Lake<small>Maitama · Selling</small></span><span class="pr">₦6.6bn</span></a><a href="#d05" data-go="d05" style="--i:4"><span class="k">05</span><span>Linda Chalker<small>Asokoro · Off-plan</small></span><span class="pr">₦900m</span></a><a href="#d07" data-go="d07" style="--i:5"><span class="k">06</span><span>Katampe<small>Katampe Ext. · Off-plan</small></span><span class="pr">₦600m – ₦800m</span></a><a href="#d08" data-go="d08" style="--i:6"><span class="k">07</span><span>Utako<small>Mabushi District · Selling</small></span><span class="pr">₦500m – ₦900m</span></a><a href="#d09" data-go="d09" style="--i:7"><span class="k">08</span><span>Gana Street<small>Maitama · Selling</small></span><span class="pr">₦350m – ₦700m</span></a></div></div></div>
 </div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Plate viewer"><div class="bar"><span><b id="lbsite"></b> · <span id="lbgroup"></span></span><div class="x"><button type="button" id="lbzoom" aria-label="Zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5M11 8v6M8 11h6"/></svg></button><button type="button" id="lbclose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div></div>
  <div class="st" id="lbst"><img id="lbA" alt=""><img id="lbB" alt=""><button type="button" class="nav p" id="lbprev" aria-label="Previous plate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="nav n" id="lbnext" aria-label="Next plate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
@@ -810,10 +747,10 @@ body.ready .card-stage{opacity:1;transform:none}
   <div class="w-copy">
    <div class="eyebrow">Mizan Qist Private Office<span class="w-inv"> · By invitation</span></div>
    <h1 class="w-name" id="wname"><span class="l1" id="wgreet">Welcome back,</span><span class="l2 t-1"><span class="w" aria-hidden="true"><span class="ch" style="--i:0">M</span><span class="ch" style="--i:1">r</span></span><span class="w" aria-hidden="true"><span class="ch" style="--i:3">B</span><span class="ch" style="--i:4">a</span><span class="ch" style="--i:5">l</span><span class="ch" style="--i:6">o</span><span class="ch" style="--i:7">n</span><span class="ch" style="--i:8">i</span><span class="ch" style="--i:9">.</span></span><span class="sr">Mr Baloni.</span></span></h1>
-   <p class="w-sub lede">Your office is open. Two wings tonight: eight residences in Abuja and Lagos, and ten pieces in the vault, every one of them sourced to your name.</p>
-   <div class="w-cta"><a class="btn solid" href="#residences" data-go="residences">The residences<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></i></a><a class="btn " href="#vault" data-go="vault">Open the vault<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></i></a></div>
+   <p class="w-sub lede">Your office is open. Tonight it holds eight residences in Abuja and Lagos, each with its price, its drawings and our honest view.</p>
+   <div class="w-cta"><a class="btn solid" href="#residences" data-go="residences">The residences<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></i></a><a class="btn " href="#glance" data-go="glance">The map<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></i></a></div>
    <div class="w-meta">
-    <div><b>8</b>Residences</div><div><b>10</b>Pieces in the vault</div><div><b>2</b>Cities</div><div><b>MA<small>at any hour</small></b>Engr. Mamman Ali</div>
+    <div><b>8</b>Residences</div><div><b>6</b>Districts</div><div><b>2</b>Cities</div><div><b>MA<small>at any hour</small></b>Engr. Mamman Ali</div>
    </div>
   </div>
   <div class="card-stage" id="stage">
@@ -837,19 +774,19 @@ body.ready .card-stage{opacity:1;transform:none}
   <div class="brief-g" style="margin-top:clamp(40px,6vh,64px)">
    <div class="letter rv">
     <p class="sal">Dear Mr Baloni,</p>
-    <p>This office is yours alone. Nothing in it is on the open market in the form you see it here, and nothing in it was assembled for anyone else. Two wings are open: eight residential addresses across Abuja and Victoria Island, each with its price, its drawings and our honest view; and a vault of ten pieces from five houses, which we will source to your name once you tell us which of them you want on your wrist.</p>
-    <p>Mark whatever interests you with the star. Your requests gather on your desk, and one message from there puts me to work: a viewing at the hour you choose, the full drawings, a valuation, or a piece secured with its box and papers. I am on retainer to you, not to any developer or dealer, so the view you read on every page is the one I would give you across a table.</p>
-    <p>The office stays open. As new addresses and new pieces reach us, they are added here first.</p>
+    <p>This office is yours alone. Nothing in it is on the open market in the form you see it here, and nothing in it was assembled for anyone else. The first wing is open: eight residential addresses across Abuja and Victoria Island, each with its price, its drawings and our honest view.</p>
+    <p>Mark whatever interests you with the star. Your requests gather on your desk, and one message from there puts me to work: a viewing at the hour you choose, the full drawings or a valuation. I am on retainer to you, not to any developer or dealer, so the view you read on every page is the one I would give you across a table.</p>
+    <p>The office stays open. As new addresses reach us, they are added here first.</p>
     <div class="sig"><b>Mamman</b><span>Engr. Mamman Ali · Your personal agent · Mizan Qist Limited</span></div>
    </div>
    <div class="rv">
     <div class="how">
-     <div><b>I</b><div><h3>You mark</h3><p>Star an address or a piece anywhere in the office. The list is kept on this device and no one else sees it.</p></div></div>
-     <div><b>II</b><div><h3>We source</h3><p>Viewings, drawings, valuations and title searches for the residences; provenance, papers and a price for each piece.</p></div></div>
+     <div><b>I</b><div><h3>You mark</h3><p>Star an address anywhere in the office. The list is kept on this device and no one else sees it.</p></div></div>
+     <div><b>II</b><div><h3>We source</h3><p>Viewings, drawings, valuations and title searches, arranged around your diary.</p></div></div>
      <div><b>III</b><div><h3>We complete</h3><p>Offers, contracts and handover; and where you choose a carcass or a new build, the design and finishing to follow.</p></div></div>
     </div>
     <div class="terms">
-     <span><b>Selling</b> built or nearly so, available now</span><span><b>Off-plan</b> bought from the drawings, before completion</span><span><b>Carcass</b> structure and shell, finishing to your taste</span><span><b>BQ</b> boys' quarters, the staff annexe</span><span><b>On application</b> priced once the piece is secured</span><span><b>Box and papers</b> full set, no exceptions</span>
+     <span><b>Selling</b> built or nearly so, available now</span><span><b>Off-plan</b> bought from the drawings, before completion</span><span><b>Carcass</b> structure and shell, finishing to your taste</span><span><b>BQ</b> boys' quarters, the staff annexe</span>
     </div>
    </div>
   </div>
@@ -1014,55 +951,6 @@ body.ready .card-stage{opacity:1;transform:none}
  </div>
 </section>
 
-<section class="pg" id="vault" data-tab="vault" aria-label="Wing II, the vault">
- <div class="wrap">
-  <div class="wing rv-stag"><div class="rn fill">II</div><div><div class="eyebrow">Wing II</div><h2 class="t-2">The vault.</h2></div><p class="desc">Ten pieces from five houses, chosen for a wrist that moves between the site, the boardroom and the evening. Each is sourced to your name, with box and papers, once you ask for it.</p></div>
-  <div class="rv"><div class="eyebrow">By house</div><div class="houses" role="group" aria-label="Filter the vault by house"><button type="button" class="on" data-h="*">All ten</button><button type="button" data-h="Patek Philippe">Patek Philippe</button><button type="button" data-h="Audemars Piguet">Audemars Piguet</button><button type="button" data-h="Cartier">Cartier</button><button type="button" data-h="Vacheron Constantin">Vacheron Constantin</button><button type="button" data-h="Richard Mille">Richard Mille</button></div></div>
-  <div class="vgrid"><div class="piece rv" id="w01" data-id="w01" data-house="Patek Philippe" data-spec="{&quot;n&quot;: &quot;I&quot;, &quot;house&quot;: &quot;Patek Philippe&quot;, &quot;model&quot;: &quot;Nautilus&quot;, &quot;ref&quot;: &quot;5811/1G-001&quot;, &quot;case&quot;: &quot;41 mm · white gold&quot;, &quot;dial&quot;: &quot;Blue, horizontally embossed&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 26-330 S C&quot;, &quot;reserve&quot;: &quot;45 h&quot;, &quot;water&quot;: &quot;120 m&quot;, &quot;strap&quot;: &quot;Integrated white gold bracelet&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The porthole. The reference that replaced the 5711 and is harder to obtain than its predecessor ever was; it is worn under a cuff and needs no introduction.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w01-nautilus-5811.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece I, Patek Philippe Nautilus">
- <div class="art"><img src="assets/w01-nautilus-5811.jpg" alt="Patek Philippe Nautilus" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">I</span></div>
- <div class="meta"><div class="hs">Patek Philippe</div><div class="md">Nautilus</div><div class="rf">5811/1G-001</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w01" aria-pressed="false" aria-label="Add Patek Philippe Nautilus to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w02" data-id="w02" data-house="Patek Philippe" data-spec="{&quot;n&quot;: &quot;II&quot;, &quot;house&quot;: &quot;Patek Philippe&quot;, &quot;model&quot;: &quot;Aquanaut&quot;, &quot;ref&quot;: &quot;5168G-010&quot;, &quot;case&quot;: &quot;42.2 mm · white gold&quot;, &quot;dial&quot;: &quot;Khaki green, embossed pattern&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 26-330 S C&quot;, &quot;reserve&quot;: &quot;45 h&quot;, &quot;water&quot;: &quot;120 m&quot;, &quot;strap&quot;: &quot;Composite strap, fold-over clasp&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The younger Patek. Green dial, composite strap, water-resistant to 120 m: the one to wear to the site, the boat and the airport.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w02-aquanaut-5168.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece II, Patek Philippe Aquanaut">
- <div class="art"><img src="assets/w02-aquanaut-5168.jpg" alt="Patek Philippe Aquanaut" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">II</span></div>
- <div class="meta"><div class="hs">Patek Philippe</div><div class="md">Aquanaut</div><div class="rf">5168G-010</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w02" aria-pressed="false" aria-label="Add Patek Philippe Aquanaut to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w03" data-id="w03" data-house="Audemars Piguet" data-spec="{&quot;n&quot;: &quot;III&quot;, &quot;house&quot;: &quot;Audemars Piguet&quot;, &quot;model&quot;: &quot;Royal Oak Selfwinding&quot;, &quot;ref&quot;: &quot;15510ST.OO.1320ST.01&quot;, &quot;case&quot;: &quot;41 mm · stainless steel&quot;, &quot;dial&quot;: &quot;Blue, Grande Tapisserie&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 4302&quot;, &quot;reserve&quot;: &quot;70 h&quot;, &quot;water&quot;: &quot;50 m&quot;, &quot;strap&quot;: &quot;Integrated steel bracelet&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;Genta&#x27;s octagon, eight screws, the dial cut on a rose engine. Fifty years on it is still the piece the others are measured against.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w03-royal-oak-15510.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece III, Audemars Piguet Royal Oak Selfwinding">
- <div class="art"><img src="assets/w03-royal-oak-15510.jpg" alt="Audemars Piguet Royal Oak Selfwinding" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">III</span></div>
- <div class="meta"><div class="hs">Audemars Piguet</div><div class="md">Royal Oak Selfwinding</div><div class="rf">15510ST.OO.1320ST.01</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w03" aria-pressed="false" aria-label="Add Audemars Piguet Royal Oak Selfwinding to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w04" data-id="w04" data-house="Audemars Piguet" data-spec="{&quot;n&quot;: &quot;IV&quot;, &quot;house&quot;: &quot;Audemars Piguet&quot;, &quot;model&quot;: &quot;Royal Oak Offshore Chronograph&quot;, &quot;ref&quot;: &quot;26420SO&quot;, &quot;case&quot;: &quot;43 mm · steel and ceramic&quot;, &quot;dial&quot;: &quot;Méga Tapisserie, chronograph counters&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 4401 flyback&quot;, &quot;reserve&quot;: &quot;70 h&quot;, &quot;water&quot;: &quot;100 m&quot;, &quot;strap&quot;: &quot;Rubber strap, interchangeable&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The Royal Oak with its sleeves rolled up. Forty-three millimetres, a flyback chronograph and a rubber strap for a Saturday.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w04-offshore-26420.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece IV, Audemars Piguet Royal Oak Offshore Chronograph">
- <div class="art"><img src="assets/w04-offshore-26420.jpg" alt="Audemars Piguet Royal Oak Offshore Chronograph" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">IV</span></div>
- <div class="meta"><div class="hs">Audemars Piguet</div><div class="md">Royal Oak Offshore Chronograph</div><div class="rf">26420SO</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w04" aria-pressed="false" aria-label="Add Audemars Piguet Royal Oak Offshore Chronograph to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w05" data-id="w05" data-house="Cartier" data-spec="{&quot;n&quot;: &quot;V&quot;, &quot;house&quot;: &quot;Cartier&quot;, &quot;model&quot;: &quot;Santos de Cartier&quot;, &quot;ref&quot;: &quot;WSSA0018 · Large&quot;, &quot;case&quot;: &quot;39.8 mm · stainless steel&quot;, &quot;dial&quot;: &quot;Silvered opaline, Roman numerals&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 1847 MC&quot;, &quot;reserve&quot;: &quot;≈ 42 h&quot;, &quot;water&quot;: &quot;100 m&quot;, &quot;strap&quot;: &quot;Steel bracelet and calfskin strap, QuickSwitch&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The first wristwatch made for a man, 1904, made for a pilot. The exposed screws are the original idea, not a quotation of it.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w05-santos-wssa0018.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece V, Cartier Santos de Cartier">
- <div class="art"><img src="assets/w05-santos-wssa0018.jpg" alt="Cartier Santos de Cartier" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">V</span></div>
- <div class="meta"><div class="hs">Cartier</div><div class="md">Santos de Cartier</div><div class="rf">WSSA0018 · Large</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w05" aria-pressed="false" aria-label="Add Cartier Santos de Cartier to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w06" data-id="w06" data-house="Cartier" data-spec="{&quot;n&quot;: &quot;VI&quot;, &quot;house&quot;: &quot;Cartier&quot;, &quot;model&quot;: &quot;Tank Louis Cartier&quot;, &quot;ref&quot;: &quot;WGTA0011 · Large&quot;, &quot;case&quot;: &quot;33.7 × 25.5 mm · rose gold&quot;, &quot;dial&quot;: &quot;Silvered, Roman numerals, rail track&quot;, &quot;movement&quot;: &quot;Hand-wound · calibre 8971 MC&quot;, &quot;reserve&quot;: &quot;≈ 38 h&quot;, &quot;water&quot;: &quot;30 m&quot;, &quot;strap&quot;: &quot;Alligator strap, rose gold buckle&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The dress watch. Rose gold, hand-wound, a rectangle drawn in 1917. For the evenings when a steel sports watch would be too loud.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w06-tank-wgta0011.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece VI, Cartier Tank Louis Cartier">
- <div class="art"><img src="assets/w06-tank-wgta0011.jpg" alt="Cartier Tank Louis Cartier" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">VI</span></div>
- <div class="meta"><div class="hs">Cartier</div><div class="md">Tank Louis Cartier</div><div class="rf">WGTA0011 · Large</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w06" aria-pressed="false" aria-label="Add Cartier Tank Louis Cartier to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w07" data-id="w07" data-house="Vacheron Constantin" data-spec="{&quot;n&quot;: &quot;VII&quot;, &quot;house&quot;: &quot;Vacheron Constantin&quot;, &quot;model&quot;: &quot;Overseas&quot;, &quot;ref&quot;: &quot;4520V/210A-B128&quot;, &quot;case&quot;: &quot;41 mm · stainless steel&quot;, &quot;dial&quot;: &quot;Blue lacquered, sunburst&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 5100 · Hallmark of Geneva&quot;, &quot;reserve&quot;: &quot;60 h&quot;, &quot;water&quot;: &quot;150 m (15 bar)&quot;, &quot;strap&quot;: &quot;Steel bracelet plus leather and rubber straps, all interchangeable&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The travel watch from the oldest house still working. It comes with three straps and changes them without a tool; the Geneva Seal is on the movement.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w07-overseas-4520v.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece VII, Vacheron Constantin Overseas">
- <div class="art"><img src="assets/w07-overseas-4520v.jpg" alt="Vacheron Constantin Overseas" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">VII</span></div>
- <div class="meta"><div class="hs">Vacheron Constantin</div><div class="md">Overseas</div><div class="rf">4520V/210A-B128</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w07" aria-pressed="false" aria-label="Add Vacheron Constantin Overseas to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w08" data-id="w08" data-house="Vacheron Constantin" data-spec="{&quot;n&quot;: &quot;VIII&quot;, &quot;house&quot;: &quot;Vacheron Constantin&quot;, &quot;model&quot;: &quot;Historiques 222&quot;, &quot;ref&quot;: &quot;4200H/222J-B935&quot;, &quot;case&quot;: &quot;37 mm · yellow gold&quot;, &quot;dial&quot;: &quot;Gold-toned, sunburst&quot;, &quot;movement&quot;: &quot;Self-winding · calibre 2455/2&quot;, &quot;reserve&quot;: &quot;40 h&quot;, &quot;water&quot;: &quot;50 m&quot;, &quot;strap&quot;: &quot;Integrated yellow gold bracelet&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The 1977 anniversary piece brought back in solid gold, with the Maltese cross let into the case at five o&#x27;clock. The most sought-after Vacheron of the decade.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w08-222-4200h.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece VIII, Vacheron Constantin Historiques 222">
- <div class="art"><img src="assets/w08-222-4200h.jpg" alt="Vacheron Constantin Historiques 222" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">VIII</span></div>
- <div class="meta"><div class="hs">Vacheron Constantin</div><div class="md">Historiques 222</div><div class="rf">4200H/222J-B935</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w08" aria-pressed="false" aria-label="Add Vacheron Constantin Historiques 222 to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w09" data-id="w09" data-house="Richard Mille" data-spec="{&quot;n&quot;: &quot;IX&quot;, &quot;house&quot;: &quot;Richard Mille&quot;, &quot;model&quot;: &quot;RM 011 Flyback Chronograph&quot;, &quot;ref&quot;: &quot;RM 011 · Felipe Massa&quot;, &quot;case&quot;: &quot;50 × 40 mm · titanium, or Carbon TPT as photographed&quot;, &quot;dial&quot;: &quot;Skeletonised, chronograph counters&quot;, &quot;movement&quot;: &quot;Self-winding · calibre RMAC1 flyback&quot;, &quot;reserve&quot;: &quot;≈ 55 h&quot;, &quot;water&quot;: &quot;50 m&quot;, &quot;strap&quot;: &quot;Rubber strap, titanium clasp&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The tonneau that made the house. A flyback chronograph in a three-part titanium case, machined to tolerances borrowed from Formula One.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w09-rm-011.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece IX, Richard Mille RM 011 Flyback Chronograph">
- <div class="art"><img src="assets/w09-rm-011.jpg" alt="Richard Mille RM 011 Flyback Chronograph" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">IX</span></div>
- <div class="meta"><div class="hs">Richard Mille</div><div class="md">RM 011 Flyback Chronograph</div><div class="rf">RM 011 · Felipe Massa</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w09" aria-pressed="false" aria-label="Add Richard Mille RM 011 Flyback Chronograph to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div><div class="piece rv" id="w10" data-id="w10" data-house="Richard Mille" data-spec="{&quot;n&quot;: &quot;X&quot;, &quot;house&quot;: &quot;Richard Mille&quot;, &quot;model&quot;: &quot;RM 67-01 Automatic Extra Flat&quot;, &quot;ref&quot;: &quot;RM 67-01&quot;, &quot;case&quot;: &quot;47.5 × 38.7 mm · titanium&quot;, &quot;dial&quot;: &quot;Skeletonised, extra flat&quot;, &quot;movement&quot;: &quot;Self-winding · calibre CRMA6&quot;, &quot;reserve&quot;: &quot;≈ 50 h&quot;, &quot;water&quot;: &quot;50 m&quot;, &quot;strap&quot;: &quot;Rubber strap, or the elastic strap&quot;, &quot;year&quot;: &quot;To be confirmed&quot;, &quot;condition&quot;: &quot;Box and papers required&quot;, &quot;price&quot;: &quot;On application&quot;, &quot;status&quot;: &quot;To be sourced&quot;, &quot;view&quot;: &quot;The quiet Richard Mille, under eight millimetres thick. Same architecture, same finishing, and it slides under a shirt cuff.&quot;, &quot;placeholder&quot;: true, &quot;image&quot;: &quot;w10-rm-67-01.jpg&quot;}" role="button" tabindex="0" aria-label="Open piece X, Richard Mille RM 67-01 Automatic Extra Flat">
- <div class="art"><img src="assets/w10-rm-67-01.jpg" alt="Richard Mille RM 67-01 Automatic Extra Flat" decoding="async" loading="lazy"><span class="ph">To be sourced</span><span class="rn">X</span></div>
- <div class="meta"><div class="hs">Richard Mille</div><div class="md">RM 67-01 Automatic Extra Flat</div><div class="rf">RM 67-01</div>
-  <div class="ft"><span class="pr">On application</span><button class="star" type="button" data-id="w10" aria-pressed="false" aria-label="Add Richard Mille RM 67-01 Automatic Extra Flat to your requests" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button></div></div>
-</div></div>
-  <div class="v-note rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p><b>Shown as the makers show them.</b> The photographs are the houses' own catalogue images of each reference. Every entry stays a placeholder until the piece is secured: the year, the condition, the price and our own photograph of the watch in hand replace the catalogue entry then. Open any piece for its full sheet, and reserve it to add it to your requests.</p></div>
- </div>
-</section>
-
 <section class="pg" id="desk" data-shade="carbon" data-tab="desk" aria-label="Your desk">
  <div class="wrap">
   <div class="rv"><div class="eyebrow">Your desk</div><h2 class="t-2" style="margin-top:18px">Open at any hour.</h2><p class="lede" style="margin-top:22px">Everything in this office can be set in motion with one message. Engr. Mamman Ali holds your file and answers it personally.</p></div>
@@ -1070,8 +958,8 @@ body.ready .card-stage{opacity:1;transform:none}
    <div class="rv">
     <div class="req"><div class="in">
      <div class="eyebrow">Your requests</div><h3 class="t-3">What you have marked.</h3>
-     <ul id="reqlist"></ul><p class="empty" id="reqempty">Nothing marked yet. Star an address or reserve a piece and it appears here.</p>
-     <div class="intent" role="group" aria-label="What would you like arranged"><button type="button" data-i="a private viewing" aria-pressed="true">A viewing</button><button type="button" data-i="the full drawings" aria-pressed="false">The drawings</button><button type="button" data-i="a valuation" aria-pressed="false">A valuation</button><button type="button" data-i="the pieces to be sourced" aria-pressed="false">Source the pieces</button><button type="button" data-i="a call at your convenience" aria-pressed="false">A call</button></div>
+     <ul id="reqlist"></ul><p class="empty" id="reqempty">Nothing marked yet. Star an address and it appears here.</p>
+     <div class="intent" role="group" aria-label="What would you like arranged"><button type="button" data-i="a private viewing" aria-pressed="true">A viewing</button><button type="button" data-i="the full drawings" aria-pressed="false">The drawings</button><button type="button" data-i="a valuation" aria-pressed="false">A valuation</button><button type="button" data-i="a call at your convenience" aria-pressed="false">A call</button></div>
      <div class="prev" id="reqprev" aria-live="polite"></div>
      <div class="send"><a class="btn solid" href="https://wa.me/447931814601" id="reqsend" target="_blank" rel="noopener">Send to Mamman<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></i></a><span class="hint">Opens WhatsApp with the message above, ready to send.</span></div>
     </div></div>
@@ -1085,16 +973,16 @@ body.ready .card-stage{opacity:1;transform:none}
     </div>
     <div class="agent"><div class="av">MA</div><div><b>Engr. Mamman Ali</b><span>Your personal agent · Mizan Qist Limited</span></div><div class="st"><i></i>On retainer · any hour</div></div>
     <div class="next">
-     <div><b>I</b><div><h3>You mark</h3><p>The star on any dossier, ledger row or piece. Kept on this device; listed on the left.</p></div></div>
-     <div><b>II</b><div><h3>We arrange</h3><p>Viewings, drawings and valuations for the residences; provenance, papers and pricing for the pieces, in the order you prefer.</p></div></div>
-     <div><b>III</b><div><h3>We complete</h3><p>Offers, title checks and contracts; a piece delivered to your hand; and where you build, the design and finishing to follow.</p></div></div>
+     <div><b>I</b><div><h3>You mark</h3><p>The star on any dossier or ledger row. Kept on this device; listed on the left.</p></div></div>
+     <div><b>II</b><div><h3>We arrange</h3><p>Viewings, drawings and valuations for the residences, in the order you prefer.</p></div></div>
+     <div><b>III</b><div><h3>We complete</h3><p>Offers, title checks and contracts; and where you build, the design and finishing to follow.</p></div></div>
     </div>
    </div>
   </div>
   <div class="credit-g rv-stag">
    <div><div class="lg"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="48" cy="46" r="44" fill="currentColor"/><g fill="var(--void)"><rect x="18" y="22" width="11" height="48"/><rect x="67" y="22" width="11" height="48"/><path d="M29 22h11l8 18-6 12z"/><path d="M67 22H56l-8 18 6 12z"/></g><rect x="66" y="72" width="32" height="12" fill="currentColor" transform="rotate(45 82 78)"/></svg><span>Mizan Qist Limited<small>Where ideas become reality</small></span></div><p>Prepared by the Private Office of Mizan Qist Limited, Abuja, September 2026. Personal agent: Engr. Mamman Ali.</p></div>
-   <div><b>Sources</b><p>Residences: prices, unit counts and statuses as quoted to Mizan Qist by the developers and owners, August and September 2026; site and drone photography by Mizan Qist; visualisations and plans supplied by the developers and their architects. Vault: makers' published specifications and catalogue photographs for the references named (Patek Philippe, Audemars Piguet, Cartier, Vacheron Constantin, Richard Mille), reproduced for this private presentation only and to be confirmed on each piece.</p></div>
-   <div><b>Confidential</b><p>Prepared for Mr Ibrahim Baloni and not for onward circulation. Visualisations are artists' impressions; vault photographs are the makers' catalogue images and remain their property. Areas are indicative. Prices are subject to confirmation and to contract; nothing here forms part of an offer or contract.</p></div>
+   <div><b>Sources</b><p>Residences: prices, unit counts and statuses as quoted to Mizan Qist by the developers and owners, August and September 2026; site and drone photography by Mizan Qist; visualisations and plans supplied by the developers and their architects.</p></div>
+   <div><b>Confidential</b><p>Prepared for Mr Ibrahim Baloni and not for onward circulation. Visualisations are artists' impressions. Areas are indicative. Prices are subject to confirmation and to contract; nothing here forms part of an offer or contract.</p></div>
   </div>
   <div class="fin"><span>Prepared for Mr Ibrahim Baloni · Confidential · September 2026</span><span class="seal">Mizan Qist · Private Office</span></div>
  </div>
@@ -1156,7 +1044,7 @@ else{
 /* ---------- navigation ---------- */
 function go(id,instant){
   const el=document.getElementById(id); if(!el) return;
-  closeIndex(); closeCase();
+  closeIndex();
   if(id==='welcome') window.scrollTo({top:0,behavior:(instant||rm)?'auto':'smooth'});
   else el.scrollIntoView({behavior:(instant||rm)?'auto':'smooth',block:'start'});
   if(history.replaceState) history.replaceState(null,'','#'+id);
@@ -1170,9 +1058,9 @@ document.addEventListener('click',e=>{
   e.preventDefault(); go(t.dataset.go);
 });
 document.addEventListener('keydown',e=>{
-  if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-go][tabindex], .gi, .plate, .piece')){
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-go][tabindex], .gi, .plate')){
     e.preventDefault();
-    if(e.target.matches('.gi, .plate')) openLb(e.target); else if(e.target.matches('.piece')) openCase(e.target.dataset.id); else go(e.target.dataset.go);
+    if(e.target.matches('.gi, .plate')) openLb(e.target); else go(e.target.dataset.go);
   }
 });
 
@@ -1314,52 +1202,10 @@ $$('.gal-h .groups').forEach(g=>{
   }));
 });
 
-/* ---------- the vault: filter, tilt, the case ---------- */
-const pieces=$$('.piece'), PIECE={};
-pieces.forEach(p=>{ PIECE[p.dataset.id]=p; });
-$$('.houses button').forEach(b=>b.addEventListener('click',()=>{
-  $$('.houses button').forEach(x=>x.classList.toggle('on',x===b));
-  const h=b.dataset.h; pieces.forEach(p=>p.classList.toggle('dim',h!=='*'&&p.dataset.house!==h));
-}));
-if(fine&&!rm) pieces.forEach(p=>{
-  const art=$('.art',p);
-  p.addEventListener('pointermove',e=>{ const r=art.getBoundingClientRect(); const dx=(e.clientX-(r.left+r.width/2))/(r.width/2), dy=(e.clientY-(r.top+r.height/2))/(r.height/2); p.classList.add('live'); p.style.setProperty('--px',(clamp(-dy,-1,1)*7).toFixed(2)+'deg'); p.style.setProperty('--pyaw',(clamp(dx,-1,1)*9).toFixed(2)+'deg'); });
-  p.addEventListener('pointerleave',()=>{ p.classList.remove('live'); p.style.setProperty('--px','0deg'); p.style.setProperty('--pyaw','0deg'); });
-});
-const cs=$('#case'), csArt=$('#csart'), csBody=$('#csbody'); let caseOpen=false, caseId=null, caseFocus=null;
-const order=pieces.map(p=>p.dataset.id);
-function openCase(id){
-  const p=PIECE[id]; if(!p) return;
-  caseId=id; const d=JSON.parse(p.dataset.spec);
-  csArt.innerHTML=''; const art=$('.art svg, .art img',p); if(art){ const c=art.cloneNode(true); c.removeAttribute('style'); csArt.appendChild(c); }
-  if(d.placeholder) csArt.insertAdjacentHTML('beforeend','<span class="ph">'+(d.image?'Maker’s photograph · to be sourced':'Blueprint · photograph to follow')+'</span>');
-  $('#csk').innerHTML='Piece <b>'+d.n+'</b> · '+d.house;
-  const rows=[['Reference',d.ref],['Case',d.case],['Dial',d.dial],['Movement',d.movement],['Power reserve',d.reserve],['Water resistance',d.water],['Strap',d.strap],['Year',d.year],['Condition',d.condition],['Price',d.price,'hi'],['Status',d.status,'hi']];
-  csBody.innerHTML='<div class="hs">'+d.house+'</div><h3 class="md">'+d.model+'</h3><div class="rf">'+d.ref+'</div><p class="vw">'+d.view+'</p>'
-    +'<dl class="spec">'+rows.map(r=>'<div><dt>'+r[0]+'</dt><dd'+(r[2]?' class="hi"':'')+'>'+r[1]+'</dd></div>').join('')+'</dl>'
-    +'<div class="acts"><button type="button" class="btn solid" id="csres" data-res="'+id+'"></button><a class="btn" target="_blank" rel="noopener" id="csask">Ask '+"Mamman"+' about this piece <i>'+ARROW+'</i></a></div>'
-    +'<p class="fine">'+(d.placeholder?'A placeholder until the piece is secured: the specification is the maker’s for this reference and is confirmed on the piece itself, with box, papers and service history, before any price is quoted.':'Specification as confirmed on the piece.')+'</p>';
-  $('#csask').href='https://wa.me/447931814601?text='+encodeURIComponent('Good day '+"Mamman"+'. Please tell me more about piece '+d.n+' in my vault: '+d.house+' '+d.model+' ('+d.ref+').\n— '+"I. Baloni");
-  renderCaseRes();
-  if(!caseOpen){ caseFocus=document.activeElement; caseOpen=true; cs.classList.add('open'); lockScroll(); }
-  $('.pn',cs).scrollTop=0; setTimeout(()=>$('#csclose').focus(),60);
-}
-function renderCaseRes(){ const b=$('#csres'); if(!b||!caseId) return; const on=req.includes(caseId); b.innerHTML=(on?'Reserved · remove from requests':'Reserve this piece')+'<i>'+(on?CHECK:STAR)+'</i>'; }
-function closeCase(){ if(!caseOpen) return; caseOpen=false; caseId=null; cs.classList.remove('open'); unlockScroll(); if(caseFocus&&caseFocus.focus){ try{ caseFocus.focus({preventScroll:true}); }catch(e){} } }
-document.addEventListener('click',e=>{
-  const r=e.target.closest('[data-res]'); if(r){ toggleReq(r.dataset.res); renderCaseRes(); return; }
-  const p=e.target.closest('.piece'); if(p&&!e.target.closest('.star')){ e.preventDefault(); openCase(p.dataset.id); }
-});
-$('#csclose').addEventListener('click',closeCase); $('.dim',cs).addEventListener('click',closeCase);
-$('#csprev').addEventListener('click',()=>{ const i=order.indexOf(caseId); openCase(order[(i-1+order.length)%order.length]); });
-$('#csnext').addEventListener('click',()=>{ const i=order.indexOf(caseId); openCase(order[(i+1)%order.length]); });
-cs.addEventListener('touchmove',e=>{ if(caseOpen&&!e.target.closest('.pn')) e.preventDefault(); },{passive:false});
-
-/* ---------- requests (residences and pieces, kept on this device) ---------- */
+/* ---------- requests (kept on this device) ---------- */
 const KEY="baloni"+'.requests';
 const META={};
 $$('section.dz').forEach(s=>{ META[s.id]={kind:'d',n:s.dataset.n,name:s.dataset.name,sub:$('.run .c',s).textContent.trim()}; });
-pieces.forEach(p=>{ const d=JSON.parse(p.dataset.spec); META[p.dataset.id]={kind:'w',n:d.n,name:d.house+' '+d.model,sub:d.ref}; });
 let req=[]; try{ req=JSON.parse(localStorage.getItem(KEY)||'[]').filter(id=>META[id]); }catch(e){ req=[]; }
 let intent='a private viewing';
 function saveReq(){ try{ localStorage.setItem(KEY,JSON.stringify(req)); }catch(e){} }
@@ -1369,22 +1215,17 @@ function toggleReq(id,btn){
   if(btn){ btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
   const n=$('#reqcount'); n.classList.remove('pop'); void n.offsetWidth; n.classList.add('pop');
 }
-const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M13 5l7 7-7 7"/></svg>';
-const STAR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg>';
-const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12l5 5L19 7"/></svg>';
 function message(){
   const h=new Date().getHours(), g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
-  const ds=req.filter(id=>META[id].kind==='d'), ws=req.filter(id=>META[id].kind==='w');
   let t=g+' '+"Mamman"+'. I have been through my office.';
-  if(ds.length) t+='\n\nResidences:\n'+ds.map(id=>META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
-  if(ws.length) t+='\n\nThe vault:\n'+ws.map(id=>'Piece '+META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
+  if(req.length) t+='\n\nResidences:\n'+req.map(id=>META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
   t+=(req.length?'\n\nPlease arrange ':'\n\nPlease call me about ')+intent+'.\n— '+"I. Baloni";
   return t;
 }
 function renderReq(){
   $$('.star[data-id]').forEach(b=>{ const on=req.includes(b.dataset.id); b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false'); });
   $('#reqcount').textContent=req.length?String(req.length):'';
-  const list=$('#reqlist'); list.innerHTML=req.map(id=>{ const m=META[id]; return '<li><span class="k">'+(m.kind==='w'?'P·':'')+m.n+'</span><span>'+m.name+'<small>'+m.sub+'</small></span><button type="button" class="rm" data-rm="'+id+'">Remove</button></li>'; }).join('');
+  const list=$('#reqlist'); list.innerHTML=req.map(id=>{ const m=META[id]; return '<li><span class="k">'+m.n+'</span><span>'+m.name+'<small>'+m.sub+'</small></span><button type="button" class="rm" data-rm="'+id+'">Remove</button></li>'; }).join('');
   $('#reqempty').hidden=req.length>0;
   const txt=message(); $('#reqprev').textContent=txt;
   $('#reqsend').href='https://wa.me/447931814601?text='+encodeURIComponent(txt);
@@ -1428,7 +1269,7 @@ document.addEventListener('click',e=>{ const t=e.target.closest('.gi, .plate'); 
 $('#lbclose').addEventListener('click',closeLb); $('#lbprev').addEventListener('click',()=>show(lbI-1)); $('#lbnext').addEventListener('click',()=>show(lbI+1));
 $('#lbzoom').addEventListener('click',()=>{ if(z.s>1) resetZoom(); else { z.s=2.2; applyZoom(); } });
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(lbOpen) closeLb(); else if(caseOpen) closeCase(); else closeIndex(); }
+  if(e.key==='Escape'){ if(lbOpen) closeLb(); else closeIndex(); }
   if(!lbOpen) return;
   if(e.key==='ArrowRight') show(lbI+1); if(e.key==='ArrowLeft') show(lbI-1);
 });
@@ -1532,9 +1373,9 @@ if(fine && !rm){
   let mx=-100,my=-100,cx=-100,cy=-100,raf=null;
   const loop=()=>{ cx+=(mx-cx)*.18; cy+=(my-cy)*.18; cur2.style.left=cx+'px'; cur2.style.top=cy+'px'; raf=(Math.abs(mx-cx)+Math.abs(my-cy)>.2)?requestAnimationFrame(loop):null; };
   addEventListener('pointermove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; if(!raf) raf=requestAnimationFrame(loop);
-    const t=e.target.closest('.gi, .plate, .card .pl, .piece, .mcard, .shelf');
-    let l=''; if(t){ l=t.matches('.piece')?'Open':t.matches('.mcard')?'Tilt':t.matches('.shelf')?'Drag':'View'; }
-    const big=!lbOpen&&!caseOpen&&!!t; cur2.classList.toggle('big',big); cur.classList.toggle('hide',big); if(l) cur2.dataset.l=l; },{passive:true});
+    const t=e.target.closest('.gi, .plate, .card .pl, .mcard, .shelf');
+    let l=''; if(t){ l=t.matches('.mcard')?'Tilt':t.matches('.shelf')?'Drag':'View'; }
+    const big=!lbOpen&&!!t; cur2.classList.toggle('big',big); cur.classList.toggle('hide',big); if(l) cur2.dataset.l=l; },{passive:true});
   document.addEventListener('mouseleave',()=>{ cur.style.opacity='0'; cur2.style.opacity='0'; }); document.addEventListener('mouseenter',()=>{ cur.style.opacity='1'; cur2.style.opacity='1'; });
 }
 })();

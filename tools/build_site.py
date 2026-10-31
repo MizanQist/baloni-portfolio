@@ -1,11 +1,10 @@
 # Generates index.html for the Baloni Private Office from data.py and client.py. Run: python3 tools/build_site.py
-# Design: site_css.py · behaviour: site_js.py · vault drawings: watch_art.py
+# Design: site_css.py · behaviour: site_js.py
 import os, sys, json, html as H, urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from data import SITES, WATCHES, HOUSES, AGENT, AGENT_FIRST, AGENT_INITIALS, AGENT_ROLE, DATE, CLIENT, CLIENT_SHORT, CLIENT_FIRST, CLIENT_SURNAME, CLIENT_CARD, CLIENT_SALUTATION, CLIENT_SIGNOFF, MEMBER_SINCE, SLUG
+from data import SITES, AGENT, AGENT_FIRST, AGENT_INITIALS, AGENT_ROLE, DATE, CLIENT, CLIENT_SHORT, CLIENT_FIRST, CLIENT_SURNAME, CLIENT_CARD, CLIENT_SALUTATION, CLIENT_SIGNOFF, MEMBER_SINCE, SLUG
 from site_css import CSS
 from site_js import JS
-from watch_art import watch_svg
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TITLE = f"The {CLIENT_SURNAME} Private Office"
 FONTS = "https://api.fontshare.com/v2/css?f[]=gambetta@300,400,500,600,300i,400i,500i&f[]=switzer@300,400,500,600&display=swap"
@@ -62,8 +61,7 @@ N_RES = WORDS[len(SITES)]
 
 def chrome():
     dz_rows = "".join(f'<a href="#{s["id"]}" data-go="{s["id"]}" style="--i:{i}"><span class="k">{s["n"]}</span><span>{esc(s["name"])}<small>{esc(s["district"])}{", Lagos" if s["city"]=="Lagos" else ""} · {esc(s["status"])}</small></span><span class="pr">{esc(s["price"])}</span></a>' for i, s in enumerate(SITES))
-    w_rows = "".join(f'<a href="#vault" data-go="vault" style="--i:{i}"><span class="k">{w["n"]}</span><span>{esc(w["house"])} {esc(w["model"])}<small>{esc(w["ref"])}</small></span><span class="pr">{esc(w["status"])}</span></a>' for i, w in enumerate(WATCHES))
-    secs = [("welcome", "Welcome"), ("brief", "Your brief"), ("residences", "Wing I · Residences"), ("glance", "Map &amp; ledger"), ("vault", "Wing II · The vault"), ("desk", "Your desk")]
+    secs = [("welcome", "Welcome"), ("brief", "Your brief"), ("residences", "Wing I · Residences"), ("glance", "Map &amp; ledger"), ("desk", "Your desk")]
     secs_html = "".join(f'<a href="#{i}" data-go="{i}" style="--i:{k}">{l}</a>' for k, (i, l) in enumerate(secs))
     return f'''
 <div id="veil" aria-hidden="true"><div class="in"><div class="mark">{MARK_LINE}</div><div class="ro" id="vro">Mizan Qist · Private Office</div><div class="line"><i id="vline"></i></div><div class="ct" id="vct">000</div></div></div>
@@ -76,7 +74,6 @@ def chrome():
   <span class="ind" id="ind" aria-hidden="true"></span>
   <button type="button" class="tab" data-go="brief">Brief</button>
   <button type="button" class="tab" data-go="residences">Residences</button>
-  <button type="button" class="tab" data-go="vault">Vault</button>
   <button type="button" class="tab" data-go="desk">Desk<span class="n" id="reqcount"></span></button>
   <span class="sep"></span>
   <span class="clock" id="clock"></span>
@@ -85,11 +82,7 @@ def chrome():
 <div id="index" role="dialog" aria-modal="true" aria-label="Index"><div class="in">
   <div class="ih"><div><div class="eyebrow">Index</div><h2 class="t-2">Everything in your office.</h2></div><button type="button" class="close" id="idxclose" aria-label="Close the index">{CLOSE}</button></div>
   <div class="secs">{secs_html}</div>
-  <div class="cols"><div><h3>Wing I · {N_RES.capitalize()} residences</h3><div class="rows">{dz_rows}</div></div><div><h3>Wing II · Ten pieces</h3><div class="rows">{w_rows}</div></div></div>
-</div></div>
-<div id="case" role="dialog" aria-modal="true" aria-label="The piece"><div class="dim"></div><div class="pn">
-  <div class="bar"><span class="k" id="csk"></span><div class="x"><button type="button" id="csprev" aria-label="Previous piece">{CHEV_L}</button><button type="button" id="csnext" aria-label="Next piece">{CHEV_R}</button><button type="button" id="csclose" aria-label="Close">{CLOSE}</button></div></div>
-  <div class="cg"><div class="cart" id="csart"></div><div id="csbody"></div></div>
+  <div class="cols"><div><h3>Wing I · {N_RES.capitalize()} residences</h3><div class="rows">{dz_rows}</div></div></div>
 </div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Plate viewer"><div class="bar"><span><b id="lbsite"></b> · <span id="lbgroup"></span></span><div class="x"><button type="button" id="lbzoom" aria-label="Zoom">{ZOOM}</button><button type="button" id="lbclose" aria-label="Close">{CLOSE}</button></div></div>
  <div class="st" id="lbst"><img id="lbA" alt=""><img id="lbB" alt=""><button type="button" class="nav p" id="lbprev" aria-label="Previous plate">{CHEV_L}</button><button type="button" class="nav n" id="lbnext" aria-label="Next plate">{CHEV_R}</button></div>
@@ -105,10 +98,10 @@ def welcome():
   <div class="w-copy">
    <div class="eyebrow">Mizan Qist Private Office<span class="w-inv"> · By invitation</span></div>
    <h1 class="w-name" id="wname"><span class="l1" id="wgreet">Welcome back,</span><span class="l2 t-1">{name_markup(CLIENT_SHORT + ".")}<span class="sr">{esc(CLIENT_SHORT)}.</span></span></h1>
-   <p class="w-sub lede">Your office is open. Two wings tonight: {N_RES} residences in Abuja and Lagos, and ten pieces in the vault, every one of them sourced to your name.</p>
-   <div class="w-cta">{btn("The residences", "#residences", "solid", 'data-go="residences"')}{btn("Open the vault", "#vault", "", 'data-go="vault"')}</div>
+   <p class="w-sub lede">Your office is open. Tonight it holds {N_RES} residences in Abuja and Lagos, each with its price, its drawings and our honest view.</p>
+   <div class="w-cta">{btn("The residences", "#residences", "solid", 'data-go="residences"')}{btn("The map", "#glance", "", 'data-go="glance"')}</div>
    <div class="w-meta">
-    <div><b>{len(SITES)}</b>Residences</div><div><b>10</b>Pieces in the vault</div><div><b>2</b>Cities</div><div><b>{esc(AGENT_INITIALS)}<small>at any hour</small></b>{esc(AGENT)}</div>
+    <div><b>{len(SITES)}</b>Residences</div><div><b>{len({(x["district"], x["city"]) for x in SITES})}</b>Districts</div><div><b>2</b>Cities</div><div><b>{esc(AGENT_INITIALS)}<small>at any hour</small></b>{esc(AGENT)}</div>
    </div>
   </div>
   <div class="card-stage" id="stage">
@@ -135,19 +128,19 @@ def brief():
   <div class="brief-g" style="margin-top:clamp(40px,6vh,64px)">
    <div class="letter rv">
     <p class="sal">{esc(CLIENT_SALUTATION)}</p>
-    <p>This office is yours alone. Nothing in it is on the open market in the form you see it here, and nothing in it was assembled for anyone else. Two wings are open: {N_RES} residential addresses across Abuja and Victoria Island, each with its price, its drawings and our honest view; and a vault of ten pieces from five houses, which we will source to your name once you tell us which of them you want on your wrist.</p>
-    <p>Mark whatever interests you with the star. Your requests gather on your desk, and one message from there puts me to work: a viewing at the hour you choose, the full drawings, a valuation, or a piece secured with its box and papers. I am on retainer to you, not to any developer or dealer, so the view you read on every page is the one I would give you across a table.</p>
-    <p>The office stays open. As new addresses and new pieces reach us, they are added here first.</p>
+    <p>This office is yours alone. Nothing in it is on the open market in the form you see it here, and nothing in it was assembled for anyone else. The first wing is open: {N_RES} residential addresses across Abuja and Victoria Island, each with its price, its drawings and our honest view.</p>
+    <p>Mark whatever interests you with the star. Your requests gather on your desk, and one message from there puts me to work: a viewing at the hour you choose, the full drawings or a valuation. I am on retainer to you, not to any developer or dealer, so the view you read on every page is the one I would give you across a table.</p>
+    <p>The office stays open. As new addresses reach us, they are added here first.</p>
     <div class="sig"><b>{esc(AGENT_FIRST)}</b><span>{esc(AGENT)} · {esc(AGENT_ROLE)}</span></div>
    </div>
    <div class="rv">
     <div class="how">
-     <div><b>I</b><div><h3>You mark</h3><p>Star an address or a piece anywhere in the office. The list is kept on this device and no one else sees it.</p></div></div>
-     <div><b>II</b><div><h3>We source</h3><p>Viewings, drawings, valuations and title searches for the residences; provenance, papers and a price for each piece.</p></div></div>
+     <div><b>I</b><div><h3>You mark</h3><p>Star an address anywhere in the office. The list is kept on this device and no one else sees it.</p></div></div>
+     <div><b>II</b><div><h3>We source</h3><p>Viewings, drawings, valuations and title searches, arranged around your diary.</p></div></div>
      <div><b>III</b><div><h3>We complete</h3><p>Offers, contracts and handover; and where you choose a carcass or a new build, the design and finishing to follow.</p></div></div>
     </div>
     <div class="terms">
-     <span><b>Selling</b> built or nearly so, available now</span><span><b>Off-plan</b> bought from the drawings, before completion</span><span><b>Carcass</b> structure and shell, finishing to your taste</span><span><b>BQ</b> boys' quarters, the staff annexe</span><span><b>On application</b> priced once the piece is secured</span><span><b>Box and papers</b> full set, no exceptions</span>
+     <span><b>Selling</b> built or nearly so, available now</span><span><b>Off-plan</b> bought from the drawings, before completion</span><span><b>Carcass</b> structure and shell, finishing to your taste</span><span><b>BQ</b> boys' quarters, the staff annexe</span>
     </div>
    </div>
   </div>
@@ -342,32 +335,9 @@ def dossier(s, shade, flip):
  </div>
 </section>'''
 
-# ---------------------------------------------------------------- wing II · the vault
-def vault():
-    houses = '<button type="button" class="on" data-h="*">All ten</button>' + "".join(f'<button type="button" data-h="{esc(h)}">{esc(h)}</button>' for h in HOUSES)
-    cards = ""
-    for w in WATCHES:
-        spec = {k: w[k] for k in ("n", "house", "model", "ref", "case", "dial", "movement", "reserve", "water", "strap", "year", "condition", "price", "status", "view", "placeholder", "image")}
-        art = img(w["image"], f'{esc(w["house"])} {esc(w["model"])}', "(max-width:900px) 90vw, 30vw", LAZY) if w["image"] else watch_svg(w["art"])
-        ph = ('<span class="ph">To be sourced</span>' if w["image"] else '<span class="ph">Blueprint · to be sourced</span>') if w["placeholder"] else ""
-        cards += f'''<div class="piece rv" id="{w["id"]}" data-id="{w["id"]}" data-house="{esc(w["house"])}" data-spec="{esc(json.dumps(spec, ensure_ascii=False))}" role="button" tabindex="0" aria-label="Open piece {w["n"]}, {esc(w["house"])} {esc(w["model"])}">
- <div class="art">{art}{ph}<span class="rn">{w["n"]}</span></div>
- <div class="meta"><div class="hs">{esc(w["house"])}</div><div class="md">{esc(w["model"])}</div><div class="rf">{esc(w["ref"])}</div>
-  <div class="ft"><span class="pr">{esc(w["price"])}</span>{star(w, w["house"] + " " + w["model"])}</div></div>
-</div>'''
-    return f'''
-<section class="pg" id="vault" data-tab="vault" aria-label="Wing II, the vault">
- <div class="wrap">
-  {wing("II", "Wing II", "The vault.", "Ten pieces from five houses, chosen for a wrist that moves between the site, the boardroom and the evening. Each is sourced to your name, with box and papers, once you ask for it.", fill=True)}
-  <div class="rv"><div class="eyebrow">By house</div><div class="houses" role="group" aria-label="Filter the vault by house">{houses}</div></div>
-  <div class="vgrid">{cards}</div>
-  <div class="v-note rv">{SEAL}<p><b>Shown as the makers show them.</b> The photographs are the houses' own catalogue images of each reference. Every entry stays a placeholder until the piece is secured: the year, the condition, the price and our own photograph of the watch in hand replace the catalogue entry then. Open any piece for its full sheet, and reserve it to add it to your requests.</p></div>
- </div>
-</section>'''
-
 # ---------------------------------------------------------------- desk
 def desk():
-    intents = [("a private viewing", "A viewing"), ("the full drawings", "The drawings"), ("a valuation", "A valuation"), ("the pieces to be sourced", "Source the pieces"), ("a call at your convenience", "A call")]
+    intents = [("a private viewing", "A viewing"), ("the full drawings", "The drawings"), ("a valuation", "A valuation"), ("a call at your convenience", "A call")]
     ib = "".join(f'<button type="button" data-i="{esc(v)}" aria-pressed="{"true" if i==0 else "false"}">{esc(l)}</button>' for i, (v, l) in enumerate(intents))
     return f'''
 <section class="pg" id="desk" data-shade="carbon" data-tab="desk" aria-label="Your desk">
@@ -377,7 +347,7 @@ def desk():
    <div class="rv">
     <div class="req"><div class="in">
      <div class="eyebrow">Your requests</div><h3 class="t-3">What you have marked.</h3>
-     <ul id="reqlist"></ul><p class="empty" id="reqempty">Nothing marked yet. Star an address or reserve a piece and it appears here.</p>
+     <ul id="reqlist"></ul><p class="empty" id="reqempty">Nothing marked yet. Star an address and it appears here.</p>
      <div class="intent" role="group" aria-label="What would you like arranged">{ib}</div>
      <div class="prev" id="reqprev" aria-live="polite"></div>
      <div class="send">{btn("Send to " + AGENT_FIRST, "https://wa.me/447931814601", "solid", 'id="reqsend" target="_blank" rel="noopener"')}<span class="hint">Opens WhatsApp with the message above, ready to send.</span></div>
@@ -392,16 +362,16 @@ def desk():
     </div>
     <div class="agent"><div class="av">{esc(AGENT_INITIALS)}</div><div><b>{esc(AGENT)}</b><span>{esc(AGENT_ROLE)}</span></div><div class="st"><i></i>On retainer · any hour</div></div>
     <div class="next">
-     <div><b>I</b><div><h3>You mark</h3><p>The star on any dossier, ledger row or piece. Kept on this device; listed on the left.</p></div></div>
-     <div><b>II</b><div><h3>We arrange</h3><p>Viewings, drawings and valuations for the residences; provenance, papers and pricing for the pieces, in the order you prefer.</p></div></div>
-     <div><b>III</b><div><h3>We complete</h3><p>Offers, title checks and contracts; a piece delivered to your hand; and where you build, the design and finishing to follow.</p></div></div>
+     <div><b>I</b><div><h3>You mark</h3><p>The star on any dossier or ledger row. Kept on this device; listed on the left.</p></div></div>
+     <div><b>II</b><div><h3>We arrange</h3><p>Viewings, drawings and valuations for the residences, in the order you prefer.</p></div></div>
+     <div><b>III</b><div><h3>We complete</h3><p>Offers, title checks and contracts; and where you build, the design and finishing to follow.</p></div></div>
     </div>
    </div>
   </div>
   <div class="credit-g rv-stag">
    <div><div class="lg">{MARK}<span>Mizan Qist Limited<small>Where ideas become reality</small></span></div><p>Prepared by the Private Office of Mizan Qist Limited, Abuja, {esc(DATE)}. Personal agent: {esc(AGENT)}.</p></div>
-   <div><b>Sources</b><p>Residences: prices, unit counts and statuses as quoted to Mizan Qist by the developers and owners, August and September 2026; site and drone photography by Mizan Qist; visualisations and plans supplied by the developers and their architects. Vault: makers' published specifications and catalogue photographs for the references named (Patek Philippe, Audemars Piguet, Cartier, Vacheron Constantin, Richard Mille), reproduced for this private presentation only and to be confirmed on each piece.</p></div>
-   <div><b>Confidential</b><p>Prepared for {esc(CLIENT)} and not for onward circulation. Visualisations are artists' impressions; vault photographs are the makers' catalogue images and remain their property. Areas are indicative. Prices are subject to confirmation and to contract; nothing here forms part of an offer or contract.</p></div>
+   <div><b>Sources</b><p>Residences: prices, unit counts and statuses as quoted to Mizan Qist by the developers and owners, August and September 2026; site and drone photography by Mizan Qist; visualisations and plans supplied by the developers and their architects.</p></div>
+   <div><b>Confidential</b><p>Prepared for {esc(CLIENT)} and not for onward circulation. Visualisations are artists' impressions. Areas are indicative. Prices are subject to confirmation and to contract; nothing here forms part of an offer or contract.</p></div>
   </div>
   <div class="fin"><span>Prepared for {esc(CLIENT)} · Confidential · {esc(DATE)}</span><span class="seal">Mizan Qist · Private Office</span></div>
  </div>
@@ -415,7 +385,7 @@ def build():
         parts.append(dossier(s, shade, flip))
         shade = "carbon" if shade == "dark" else "dark"
         if s["hero"][1] != "wide": flip = not flip
-    parts += [vault(), desk()]
+    parts.append(desk())
     content = "\n".join(parts)
     js = (JS.replace('__SLUG__', json.dumps(SLUG)).replace('__SIGNOFF__', json.dumps(CLIENT_SIGNOFF))
             .replace('__AGENT_FIRST__', json.dumps(AGENT_FIRST)).replace('__CLIENT_CARD__', json.dumps(CLIENT_CARD)))
@@ -426,7 +396,7 @@ def build():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{esc(TITLE)}</title>
-<meta name="description" content="The private office of {esc(CLIENT)}: {N_RES} residences in Abuja and Lagos and a vault of ten watches, prepared by Mizan Qist Limited.">
+<meta name="description" content="The private office of {esc(CLIENT)}: {N_RES} residences in Abuja and Lagos, prepared by Mizan Qist Limited.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#08080a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">

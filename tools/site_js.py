@@ -55,7 +55,7 @@ else{
 /* ---------- navigation ---------- */
 function go(id,instant){
   const el=document.getElementById(id); if(!el) return;
-  closeIndex(); closeCase();
+  closeIndex();
   if(id==='welcome') window.scrollTo({top:0,behavior:(instant||rm)?'auto':'smooth'});
   else el.scrollIntoView({behavior:(instant||rm)?'auto':'smooth',block:'start'});
   if(history.replaceState) history.replaceState(null,'','#'+id);
@@ -69,9 +69,9 @@ document.addEventListener('click',e=>{
   e.preventDefault(); go(t.dataset.go);
 });
 document.addEventListener('keydown',e=>{
-  if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-go][tabindex], .gi, .plate, .piece')){
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-go][tabindex], .gi, .plate')){
     e.preventDefault();
-    if(e.target.matches('.gi, .plate')) openLb(e.target); else if(e.target.matches('.piece')) openCase(e.target.dataset.id); else go(e.target.dataset.go);
+    if(e.target.matches('.gi, .plate')) openLb(e.target); else go(e.target.dataset.go);
   }
 });
 
@@ -213,52 +213,10 @@ $$('.gal-h .groups').forEach(g=>{
   }));
 });
 
-/* ---------- the vault: filter, tilt, the case ---------- */
-const pieces=$$('.piece'), PIECE={};
-pieces.forEach(p=>{ PIECE[p.dataset.id]=p; });
-$$('.houses button').forEach(b=>b.addEventListener('click',()=>{
-  $$('.houses button').forEach(x=>x.classList.toggle('on',x===b));
-  const h=b.dataset.h; pieces.forEach(p=>p.classList.toggle('dim',h!=='*'&&p.dataset.house!==h));
-}));
-if(fine&&!rm) pieces.forEach(p=>{
-  const art=$('.art',p);
-  p.addEventListener('pointermove',e=>{ const r=art.getBoundingClientRect(); const dx=(e.clientX-(r.left+r.width/2))/(r.width/2), dy=(e.clientY-(r.top+r.height/2))/(r.height/2); p.classList.add('live'); p.style.setProperty('--px',(clamp(-dy,-1,1)*7).toFixed(2)+'deg'); p.style.setProperty('--pyaw',(clamp(dx,-1,1)*9).toFixed(2)+'deg'); });
-  p.addEventListener('pointerleave',()=>{ p.classList.remove('live'); p.style.setProperty('--px','0deg'); p.style.setProperty('--pyaw','0deg'); });
-});
-const cs=$('#case'), csArt=$('#csart'), csBody=$('#csbody'); let caseOpen=false, caseId=null, caseFocus=null;
-const order=pieces.map(p=>p.dataset.id);
-function openCase(id){
-  const p=PIECE[id]; if(!p) return;
-  caseId=id; const d=JSON.parse(p.dataset.spec);
-  csArt.innerHTML=''; const art=$('.art svg, .art img',p); if(art){ const c=art.cloneNode(true); c.removeAttribute('style'); csArt.appendChild(c); }
-  if(d.placeholder) csArt.insertAdjacentHTML('beforeend','<span class="ph">'+(d.image?'Maker’s photograph · to be sourced':'Blueprint · photograph to follow')+'</span>');
-  $('#csk').innerHTML='Piece <b>'+d.n+'</b> · '+d.house;
-  const rows=[['Reference',d.ref],['Case',d.case],['Dial',d.dial],['Movement',d.movement],['Power reserve',d.reserve],['Water resistance',d.water],['Strap',d.strap],['Year',d.year],['Condition',d.condition],['Price',d.price,'hi'],['Status',d.status,'hi']];
-  csBody.innerHTML='<div class="hs">'+d.house+'</div><h3 class="md">'+d.model+'</h3><div class="rf">'+d.ref+'</div><p class="vw">'+d.view+'</p>'
-    +'<dl class="spec">'+rows.map(r=>'<div><dt>'+r[0]+'</dt><dd'+(r[2]?' class="hi"':'')+'>'+r[1]+'</dd></div>').join('')+'</dl>'
-    +'<div class="acts"><button type="button" class="btn solid" id="csres" data-res="'+id+'"></button><a class="btn" target="_blank" rel="noopener" id="csask">Ask '+__AGENT_FIRST__+' about this piece <i>'+ARROW+'</i></a></div>'
-    +'<p class="fine">'+(d.placeholder?'A placeholder until the piece is secured: the specification is the maker’s for this reference and is confirmed on the piece itself, with box, papers and service history, before any price is quoted.':'Specification as confirmed on the piece.')+'</p>';
-  $('#csask').href='https://wa.me/447931814601?text='+encodeURIComponent('Good day '+__AGENT_FIRST__+'. Please tell me more about piece '+d.n+' in my vault: '+d.house+' '+d.model+' ('+d.ref+').\n— '+__SIGNOFF__);
-  renderCaseRes();
-  if(!caseOpen){ caseFocus=document.activeElement; caseOpen=true; cs.classList.add('open'); lockScroll(); }
-  $('.pn',cs).scrollTop=0; setTimeout(()=>$('#csclose').focus(),60);
-}
-function renderCaseRes(){ const b=$('#csres'); if(!b||!caseId) return; const on=req.includes(caseId); b.innerHTML=(on?'Reserved · remove from requests':'Reserve this piece')+'<i>'+(on?CHECK:STAR)+'</i>'; }
-function closeCase(){ if(!caseOpen) return; caseOpen=false; caseId=null; cs.classList.remove('open'); unlockScroll(); if(caseFocus&&caseFocus.focus){ try{ caseFocus.focus({preventScroll:true}); }catch(e){} } }
-document.addEventListener('click',e=>{
-  const r=e.target.closest('[data-res]'); if(r){ toggleReq(r.dataset.res); renderCaseRes(); return; }
-  const p=e.target.closest('.piece'); if(p&&!e.target.closest('.star')){ e.preventDefault(); openCase(p.dataset.id); }
-});
-$('#csclose').addEventListener('click',closeCase); $('.dim',cs).addEventListener('click',closeCase);
-$('#csprev').addEventListener('click',()=>{ const i=order.indexOf(caseId); openCase(order[(i-1+order.length)%order.length]); });
-$('#csnext').addEventListener('click',()=>{ const i=order.indexOf(caseId); openCase(order[(i+1)%order.length]); });
-cs.addEventListener('touchmove',e=>{ if(caseOpen&&!e.target.closest('.pn')) e.preventDefault(); },{passive:false});
-
-/* ---------- requests (residences and pieces, kept on this device) ---------- */
+/* ---------- requests (kept on this device) ---------- */
 const KEY=__SLUG__+'.requests';
 const META={};
 $$('section.dz').forEach(s=>{ META[s.id]={kind:'d',n:s.dataset.n,name:s.dataset.name,sub:$('.run .c',s).textContent.trim()}; });
-pieces.forEach(p=>{ const d=JSON.parse(p.dataset.spec); META[p.dataset.id]={kind:'w',n:d.n,name:d.house+' '+d.model,sub:d.ref}; });
 let req=[]; try{ req=JSON.parse(localStorage.getItem(KEY)||'[]').filter(id=>META[id]); }catch(e){ req=[]; }
 let intent='a private viewing';
 function saveReq(){ try{ localStorage.setItem(KEY,JSON.stringify(req)); }catch(e){} }
@@ -268,22 +226,17 @@ function toggleReq(id,btn){
   if(btn){ btn.classList.remove('pop'); void btn.offsetWidth; btn.classList.add('pop'); }
   const n=$('#reqcount'); n.classList.remove('pop'); void n.offsetWidth; n.classList.add('pop');
 }
-const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 12h16M13 5l7 7-7 7"/></svg>';
-const STAR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg>';
-const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12l5 5L19 7"/></svg>';
 function message(){
   const h=new Date().getHours(), g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
-  const ds=req.filter(id=>META[id].kind==='d'), ws=req.filter(id=>META[id].kind==='w');
   let t=g+' '+__AGENT_FIRST__+'. I have been through my office.';
-  if(ds.length) t+='\n\nResidences:\n'+ds.map(id=>META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
-  if(ws.length) t+='\n\nThe vault:\n'+ws.map(id=>'Piece '+META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
+  if(req.length) t+='\n\nResidences:\n'+req.map(id=>META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
   t+=(req.length?'\n\nPlease arrange ':'\n\nPlease call me about ')+intent+'.\n— '+__SIGNOFF__;
   return t;
 }
 function renderReq(){
   $$('.star[data-id]').forEach(b=>{ const on=req.includes(b.dataset.id); b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false'); });
   $('#reqcount').textContent=req.length?String(req.length):'';
-  const list=$('#reqlist'); list.innerHTML=req.map(id=>{ const m=META[id]; return '<li><span class="k">'+(m.kind==='w'?'P·':'')+m.n+'</span><span>'+m.name+'<small>'+m.sub+'</small></span><button type="button" class="rm" data-rm="'+id+'">Remove</button></li>'; }).join('');
+  const list=$('#reqlist'); list.innerHTML=req.map(id=>{ const m=META[id]; return '<li><span class="k">'+m.n+'</span><span>'+m.name+'<small>'+m.sub+'</small></span><button type="button" class="rm" data-rm="'+id+'">Remove</button></li>'; }).join('');
   $('#reqempty').hidden=req.length>0;
   const txt=message(); $('#reqprev').textContent=txt;
   $('#reqsend').href='https://wa.me/447931814601?text='+encodeURIComponent(txt);
@@ -327,7 +280,7 @@ document.addEventListener('click',e=>{ const t=e.target.closest('.gi, .plate'); 
 $('#lbclose').addEventListener('click',closeLb); $('#lbprev').addEventListener('click',()=>show(lbI-1)); $('#lbnext').addEventListener('click',()=>show(lbI+1));
 $('#lbzoom').addEventListener('click',()=>{ if(z.s>1) resetZoom(); else { z.s=2.2; applyZoom(); } });
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(lbOpen) closeLb(); else if(caseOpen) closeCase(); else closeIndex(); }
+  if(e.key==='Escape'){ if(lbOpen) closeLb(); else closeIndex(); }
   if(!lbOpen) return;
   if(e.key==='ArrowRight') show(lbI+1); if(e.key==='ArrowLeft') show(lbI-1);
 });
@@ -431,9 +384,9 @@ if(fine && !rm){
   let mx=-100,my=-100,cx=-100,cy=-100,raf=null;
   const loop=()=>{ cx+=(mx-cx)*.18; cy+=(my-cy)*.18; cur2.style.left=cx+'px'; cur2.style.top=cy+'px'; raf=(Math.abs(mx-cx)+Math.abs(my-cy)>.2)?requestAnimationFrame(loop):null; };
   addEventListener('pointermove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; if(!raf) raf=requestAnimationFrame(loop);
-    const t=e.target.closest('.gi, .plate, .card .pl, .piece, .mcard, .shelf');
-    let l=''; if(t){ l=t.matches('.piece')?'Open':t.matches('.mcard')?'Tilt':t.matches('.shelf')?'Drag':'View'; }
-    const big=!lbOpen&&!caseOpen&&!!t; cur2.classList.toggle('big',big); cur.classList.toggle('hide',big); if(l) cur2.dataset.l=l; },{passive:true});
+    const t=e.target.closest('.gi, .plate, .card .pl, .mcard, .shelf');
+    let l=''; if(t){ l=t.matches('.mcard')?'Tilt':t.matches('.shelf')?'Drag':'View'; }
+    const big=!lbOpen&&!!t; cur2.classList.toggle('big',big); cur.classList.toggle('hide',big); if(l) cur2.dataset.l=l; },{passive:true});
   document.addEventListener('mouseleave',()=>{ cur.style.opacity='0'; cur2.style.opacity='0'; }); document.addEventListener('mouseenter',()=>{ cur.style.opacity='1'; cur2.style.opacity='1'; });
 }
 })();
