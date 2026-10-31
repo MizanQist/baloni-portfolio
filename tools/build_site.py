@@ -362,7 +362,7 @@ def desk():
     </div>
     <div class="agent"><div class="av">{esc(AGENT_INITIALS)}</div><div><b>{esc(AGENT)}</b><span>{esc(AGENT_ROLE)}</span></div><div class="st"><i></i>On retainer · any hour</div></div>
     <div class="next">
-     <div><b>I</b><div><h3>You mark</h3><p>The star on any dossier or ledger row. Kept on this device; listed on the left.</p></div></div>
+     <div><b>I</b><div><h3>You mark</h3><p>The star on any dossier or ledger row. Kept on this device and listed under your requests.</p></div></div>
      <div><b>II</b><div><h3>We arrange</h3><p>Viewings, drawings and valuations for the residences, in the order you prefer.</p></div></div>
      <div><b>III</b><div><h3>We complete</h3><p>Offers, title checks and contracts; and where you build, the design and finishing to follow.</p></div></div>
     </div>
