@@ -357,7 +357,7 @@ def desk():
     <div class="contacts">
      <a href="https://wa.me/message/CL4UJVGMQEHBK1?src=qr" target="_blank" rel="noopener"><span class="v">+44 7931 814601<small>Mizan Qist · United Kingdom</small></span><span class="chip">WhatsApp</span></a>
      <a href="tel:+2348086666206"><span class="v">+234 808 6666 206<small>Mizan Qist · Abuja</small></span><span class="chip">Call now</span></a>
-     <a href="mailto:mizanqistltd@gmail.com?subject={urllib.parse.quote("Private office · " + CLIENT)}"><span class="v">mizanqistltd@gmail.com<small>Email</small></span><span class="chip">Write</span></a>
+     <a href="mailto:info@mizanqist.com?subject={urllib.parse.quote("Private office · " + CLIENT)}"><span class="v">info@mizanqist.com<small>Email</small></span><span class="chip">Write</span></a>
      <a href="https://www.instagram.com/mizanqistltd?stkn=MTNvcmwzc2F5MjVvMQ%3D%3D&amp;utm_source=qr" target="_blank" rel="noopener"><span class="v">@mizanqistltd<small>Instagram</small></span><span class="chip">Follow</span></a>
     </div>
     <div class="agent"><div class="av">{esc(AGENT_INITIALS)}</div><div><b>{esc(AGENT)}</b><span>{esc(AGENT_ROLE)}</span></div><div class="st"><i></i>On retainer · any hour</div></div>
