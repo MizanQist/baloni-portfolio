@@ -222,24 +222,32 @@ body.ready .card-stage{opacity:1;transform:none}
 .card-note{margin-top:18px;text-align:center;font-family:var(--fm);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--steel)}
 @media (min-width:64rem){.card-stage{padding:clamp(10px,3vw,40px) 0}.mcard{width:min(100%,520px)}.card-note{margin-top:22px}}
 
-/* ------- brief (paper) ------- */
-.brief-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(36px,6vw,100px);align-items:start}
+/* ------- brief (paper): letter, then steps and a glossary on phones; side by side from 64rem ------- */
+.brief-g{display:grid;gap:48px;align-items:start}
 .letter{font:400 clamp(1.15rem,1.6vw,1.45rem)/1.62 var(--fd);color:var(--ink);max-width:62ch}
 .letter p+p{margin-top:1.1em}
 .letter .sal{font-style:italic;color:var(--ink-2)}
 .letter .sig{margin-top:2.2em;display:grid;gap:4px}
 .letter .sig b{font:italic 400 1.9rem/1 var(--fd);color:var(--ink)}
 .letter .sig span{font:500 10px/1.6 var(--fs);letter-spacing:.22em;text-transform:uppercase;color:var(--ink-2)}
-.how{display:grid;gap:14px}
-.how>div{display:grid;grid-template-columns:44px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--rule)}
+.how{display:grid}
+.how>div{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:22px 0;border-top:1px solid var(--rule)}
 .how>div:last-child{border-bottom:1px solid var(--rule)}
 .how b{font:400 1.7rem/1 var(--fd);color:var(--champ-lo);font-style:italic}
 .how h3{font:600 12px/1.4 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
-.how p{margin-top:8px;font-size:14.5px;line-height:1.6;color:var(--ink-2)}
-.terms{margin-top:clamp(40px,6vh,64px);display:flex;flex-wrap:wrap;gap:10px}
-.terms span{font:500 11px/1.4 var(--fs);letter-spacing:.06em;color:var(--ink-2);padding:9px 14px;border:1px solid var(--rule);border-radius:999px;background:rgba(255,255,255,.35)}
-.terms span b{color:var(--ink);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:10px;margin-right:8px}
-@media (max-width:900px){.brief-g{grid-template-columns:1fr}}
+.how p{margin-top:8px;font-size:15px;line-height:1.6;color:var(--ink-2)}
+.terms{margin-top:40px;display:grid}
+.terms span{display:grid;grid-template-columns:7rem 1fr;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--rule);font:400 14px/1.45 var(--fs);color:var(--ink-2)}
+.terms span b{color:var(--ink);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:10px}
+@media (min-width:48rem){
+  .how{gap:14px}
+  .how>div{grid-template-columns:44px 1fr;gap:18px}
+  .how p{font-size:14.5px}
+  .terms{margin-top:clamp(40px,6vh,64px);display:flex;flex-wrap:wrap;gap:10px}
+  .terms span{display:inline;padding:9px 14px;border:1px solid var(--rule);border-radius:999px;background:rgba(255,255,255,.35);font:500 11px/1.4 var(--fs);letter-spacing:.06em}
+  .terms span b{margin-right:8px}
+}
+@media (min-width:64rem){.brief-g{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(36px,6vw,100px)}}
 
 /* ------- wing heads ------- */
 .wing{display:grid;grid-template-columns:auto 1fr auto;gap:clamp(20px,3vw,44px);align-items:end;padding-bottom:30px;border-bottom:1px solid var(--rule);margin-bottom:clamp(40px,6vh,72px)}
