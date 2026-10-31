@@ -12,10 +12,10 @@ DATE = "September 2026"
 SITES = [
  dict(id="d01", n="01", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=9.079976%2C7.467343", ll=(9.079976, 7.467343), addr="Plot 777, Parakou Street, Wuse II", name="Heights 777", scheme="", street="Plot 777, Parakou Street", plot="",
       district="Wuse II", city="Abuja", status="Off-plan", dev="Wrace Group", arch="Arc. Anthony C. N. · drawings, October 2025",
-      price="₦300m – ₦360m", pmin=300, pmax=360, units="32", avail="18", beds="1 – 2",
-      types=[("1-bed apartment", "1 bedroom", "", "6", "₦300m"), ("2-bed apartment", "2 bedrooms", "", "12", "₦360m")],
+      price="₦300m – ₦360m", pmin=300, pmax=360, units="18", avail="15", beds="1 – 2",
+      types=[("1-bed apartment", "1 bedroom", "", "6", "₦300m"), ("2-bed apartment", "2 bedrooms", "", "9", "₦360m")],
       facts=[("Storeys", "7", ""), ("Site", "1,136", "m²"), ("Parking bays", "21", ""), ("Infinity pool", "6th", "floor · indoor")],
-      view="A seven-storey building of one- and two-bedroom apartments on Parakou Street, Wuse II, by Wrace, with an indoor infinity pool on the sixth floor and twenty-one parking bays. Eighteen apartments remain of thirty-two. Small tickets, suited to taking whole floors for letting rather than single units.",
+      view="A seven-storey building of one- and two-bedroom apartments on Parakou Street, Wuse II, by Wrace, with an indoor infinity pool on the sixth floor and twenty-one parking bays. Fifteen apartments remain of eighteen. Small tickets, suited to taking whole floors for letting rather than single units.",
       hero=("h777-corner-dusk", "tall", "Visualisation · the corner at dusk"),
       gallery=[("Concept", "h777-corner-dusk", "The corner at dusk"), ("Concept", "h777-entrance-dusk", "The entrance at dusk"), ("Concept", "h777-front-clear", "The front, clear sky"), ("Concept", "h777-street-day", "From the street"), ("Concept", "h777-balconies", "The balconies from above"), ("Concept", "h777-entrance-day", "The entrance by day"), ("Concept", "h777-front-overcast", "The front, overcast")],
       short="Seven storeys of apartments, Wuse II."),
