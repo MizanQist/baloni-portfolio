@@ -55,9 +55,12 @@ else{
 /* ---------- navigation ---------- */
 function go(id,instant){
   const el=document.getElementById(id); if(!el) return;
-  closeIndex();
-  if(id==='welcome') window.scrollTo({top:0,behavior:(instant||rm)?'auto':'smooth'});
-  else el.scrollIntoView({behavior:(instant||rm)?'auto':'smooth',block:'start'});
+  const fromIndex=document.getElementById('index').classList.contains('open'); closeIndex();
+  // unlockScroll() puts the page back over the next frames (last jump at ~60ms); scroll once it has settled
+  setTimeout(()=>{
+    if(id==='welcome') window.scrollTo({top:0,behavior:(instant||rm)?'auto':'smooth'});
+    else el.scrollIntoView({behavior:(instant||rm)?'auto':'smooth',block:'start'});
+  },fromIndex?100:0);
   if(history.replaceState) history.replaceState(null,'','#'+id);
 }
 let shelfDragged=false;
