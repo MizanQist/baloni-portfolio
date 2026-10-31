@@ -100,7 +100,7 @@ def welcome():
  <div class="glow"></div><div class="spot"></div>
  <div class="wrap w-g">
   <div class="w-copy">
-   <div class="eyebrow">Mizan Qist Private Office · By invitation</div>
+   <div class="eyebrow">Mizan Qist Private Office<span class="w-inv"> · By invitation</span></div>
    <h1 class="w-name" id="wname"><span class="l1" id="wgreet">Welcome back,</span><span class="l2 t-1">{name_markup(CLIENT_SHORT + ".")}<span class="sr">{esc(CLIENT_SHORT)}.</span></span></h1>
    <p class="w-sub lede">Your office is open. Two wings tonight: ten residences in Abuja and Lagos, and ten pieces in the vault, every one of them sourced to your name.</p>
    <div class="w-cta">{btn("The residences", "#residences", "solid", 'data-go="residences"')}{btn("Open the vault", "#vault", "", 'data-go="vault"')}</div>
