@@ -6,9 +6,9 @@ CSS = r"""
   --champ:#cdb07a; --champ-hi:#efdfb8; --champ-lo:#8f7745;
   --paper:#ecebe6; --paper-2:#dfddd6; --ink:#141416; --ink-2:#55565c;
   --rule:rgba(233,231,225,.12); --rule-2:rgba(233,231,225,.07); --rule-champ:rgba(205,176,122,.35);
-  --fd:"Bodoni Moda",Didot,"Bodoni 72",Georgia,serif;
-  --fs:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --fm:"DM Mono","SF Mono",Menlo,Consolas,monospace;
+  --fd:"Gambetta",Georgia,"Times New Roman",serif;
+  --fs:"Switzer",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fm:"Switzer",system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.32,.72,0,1); --ease-o:cubic-bezier(.16,1,.3,1); --ease-io:cubic-bezier(.77,0,.18,1);
   --gut:clamp(20px,5vw,80px); --wrap:1440px;
   --nav-z:120; --overlay-z:170; --veil-z:300; --cursor-z:400;
@@ -17,7 +17,7 @@ CSS = r"""
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 html,body{overflow-x:clip}
-body{margin:0;background:var(--void);color:var(--platinum);font:400 16px/1.6 var(--fs);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
+body{margin:0;background:var(--void);color:var(--platinum);font:400 16px/1.6 var(--fs);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;min-height:100vh}
 body.locked{position:fixed;left:0;right:0;width:100%;overflow:hidden}
 body::before{content:"";position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.055;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");background-size:160px 160px}
 img{max-width:100%;display:block}
@@ -42,7 +42,7 @@ table{border-collapse:collapse}
 .t-2{font:400 clamp(2rem,3.9vw,3.7rem)/1.06 var(--fd);letter-spacing:-.01em;font-variation-settings:"opsz" 72}
 .t-3{font:400 clamp(1.5rem,2.4vw,2.2rem)/1.18 var(--fd);font-variation-settings:"opsz" 48}
 .t-i{font-style:italic;font-weight:400}
-.lede{font:300 clamp(1.05rem,1.45vw,1.3rem)/1.6 var(--fs);color:var(--silver);max-width:60ch}
+.lede{font:400 clamp(1.05rem,1.45vw,1.3rem)/1.6 var(--fs);color:var(--silver);max-width:60ch}
 .small{font-size:.8em;color:var(--steel)}
 .pg{position:relative;padding-block:clamp(88px,12vh,160px)}
 .pg[data-shade="carbon"]{background:var(--carbon)}

@@ -46,7 +46,7 @@ def _subdial(cx, cy, r):
 def _dims(label, x1, x2, y, sub=""):
     """a dimension line with end ticks and a label, blueprint fashion"""
     out = f'<line x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" stroke="{DIM}" stroke-width=".6"/><line x1="{x1}" y1="{y-4}" x2="{x1}" y2="{y+4}" stroke="{DIM}" stroke-width=".6"/><line x1="{x2}" y1="{y-4}" x2="{x2}" y2="{y+4}" stroke="{DIM}" stroke-width=".6"/>'
-    out += f'<text x="{(x1+x2)/2:.1f}" y="{y+13}" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" letter-spacing="1.5" fill="{DIM}">{label}</text>'
+    out += f'<text x="{(x1+x2)/2:.1f}" y="{y+13}" text-anchor="middle" font-family="Switzer,sans-serif" font-size="8.5" letter-spacing="1.5" fill="{DIM}">{label}</text>'
     return out
 
 def _frame():
@@ -80,7 +80,7 @@ def _bracelet(cx, top, bottom, w, links=5, taper=.85, kind="H"):
 def _wrap(inner, title, dims):
     return (f'<svg viewBox="0 0 {W} {H}" role="img" aria-label="Line drawing of a {title}" xmlns="http://www.w3.org/2000/svg">' + _frame()
             + f'<g mask="url(#fm)">{inner}</g>' + dims
-            + f'<text x="{W-16}" y="{H-24}" text-anchor="end" font-family="DM Mono,monospace" font-size="7.5" letter-spacing="2" fill="{DIM}">BLUEPRINT · PLACEHOLDER</text></svg>')
+            + f'<text x="{W-16}" y="{H-24}" text-anchor="end" font-family="Switzer,sans-serif" font-size="7.5" letter-spacing="2" fill="{DIM}">BLUEPRINT · PLACEHOLDER</text></svg>')
 
 # ---------------------------------------------------------------- families
 def nautilus():

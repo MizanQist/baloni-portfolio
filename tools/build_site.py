@@ -8,7 +8,7 @@ from site_js import JS
 from watch_art import watch_svg
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TITLE = f"The {CLIENT_SURNAME} Private Office"
-FONTS = "https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+FONTS = "https://api.fontshare.com/v2/css?f[]=gambetta@300,400,500,600,300i,400i,500i&f[]=switzer@300,400,500,600&display=swap"
 
 # ---------------------------------------------------------------- markup helpers
 MARK = '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="48" cy="46" r="44" fill="currentColor"/><g fill="var(--void)"><rect x="18" y="22" width="11" height="48"/><rect x="67" y="22" width="11" height="48"/><path d="M29 22h11l8 18-6 12z"/><path d="M67 22H56l-8 18 6 12z"/></g><rect x="66" y="72" width="32" height="12" fill="currentColor" transform="rotate(45 82 78)"/></svg>'
@@ -427,8 +427,8 @@ def build():
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#08080a">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
 <style>{CSS}</style>
 </head>
