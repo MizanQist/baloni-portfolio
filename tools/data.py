@@ -7,7 +7,7 @@ AGENT = "Engr. Mamman Ali"
 AGENT_FIRST = "Mamman"
 AGENT_INITIALS = "MA"
 AGENT_ROLE = "Your personal agent · Mizan Qist Limited"
-DATE = "September 2026"
+DATE = "October 2026"
 
 SITES = [
  dict(id="d01", n="01", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=9.079976%2C7.467343", ll=(9.079976, 7.467343), addr="Plot 777, Parakou Street, Wuse II", name="Heights 777", scheme="", street="Plot 777, Parakou Street", plot="",
