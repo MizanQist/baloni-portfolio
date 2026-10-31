@@ -1242,7 +1242,9 @@ function message(){
   const h=new Date().getHours(), g=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
   let t=g+' '+"Mamman"+'. I have been through my office.';
   if(req.length) t+='\n\nResidences:\n'+req.map(id=>META[id].n+' · '+META[id].name+' ('+META[id].sub+')').join('\n');
-  t+=(req.length?'\n\nPlease arrange ':'\n\nPlease call me about ')+intent+'.\n— '+"I. Baloni";
+  if(intent==='a call at your convenience') t+='\n\nPlease call me at your convenience.';
+  else t+=(req.length?'\n\nPlease arrange ':'\n\nPlease call me about ')+intent+'.';
+  t+='\n— '+"I. Baloni";
   return t;
 }
 function renderReq(){
