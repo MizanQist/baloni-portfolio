@@ -55,10 +55,10 @@ SITES = [
 
  dict(id="d05", n="05", approx="", gmaps="https://maps.google.com/?q=9.017319,7.518999", ll=(9.017319, 7.518999), addr="Linda Chalker Street, Asokoro", name="Linda Chalker", scheme="", street="Linda Chalker Street", plot="",
       district="Asokoro", city="Abuja", status="Off-plan", dev="", arch="",
-      price="₦900m", pmin=900, pmax=900, units="6", avail="6", beds="5",
-      types=[("Detached villa", "5 bedrooms · 3 living rooms · 1 BQ", "", "6", "₦900m")],
+      price="₦900m", pmin=900, pmax=900, units="6", avail="4", beds="5",
+      types=[("Detached villa", "5 bedrooms · 3 living rooms · 1 BQ", "", "4", "₦900m")],
       facts=[("Bedrooms", "5", ""), ("Living rooms", "3", ""), ("Boys' quarters", "1", ""), ("Status", "Off-plan", "frame up")],
-      view="A five-bedroom detached villa with three living rooms and a BQ on Linda Chalker Street, Asokoro, off-plan at ₦900m. The structure is up, and the concept renders show a white cantilevered form with a screened balcony and light beneath every edge. Six homes in the scheme, all of them available.",
+      view="A five-bedroom detached villa with three living rooms and a BQ on Linda Chalker Street, Asokoro, off-plan at ₦900m. The structure is up, and the concept renders show a white cantilevered form with a screened balcony and light beneath every edge. Six homes in the scheme, four of them still available.",
       hero=("linda-c1", "tall", "Visualisation · the corner at dusk"),
       gallery=[("Concept", "linda-c1", "The corner at dusk"), ("Concept", "linda-c2", "The approach"), ("Concept", "linda-c3", "The entrance"), ("Concept", "linda-c4", "From above"), ("Current state", "linda-s1", "The site from above"), ("Current state", "linda-s2", "The frame"), ("Current state", "linda-s3", "The frame · side"), ("Current state", "linda-s4", "The structure"), ("Current state", "linda-s5", "Ground floor")],
       short="Six villas, three living rooms each, Asokoro."),
