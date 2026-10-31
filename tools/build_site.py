@@ -231,7 +231,7 @@ def ledger():
         availcell = "" if s["avail"] == "—" else '<span class="small"> · ' + esc(s["avail"]) + ' avail.</span>'
         rows += f'''<tr data-go="{s["id"]}" data-n="{s["n"]}" data-price="{s["pmin"] or 99999}" data-status="{STATUS_ORDER[s["status"]]}">
 <td class="k">{s["n"]}</td><td class="nm">{esc(s["name"])}<small>{esc(s["addr"])}</small></td>
-<td>{esc(types)}</td><td class="num">{esc(s["beds"])}</td><td class="num">{s.get("homes_cell") or (esc(s["units"]) + availcell)}</td><td class="pr">{esc(s["price"])}</td><td>{chip(s["status"])}</td><td class="vw">{esc(s["short"])}</td><td class="st">{star(s, s["name"])}</td></tr>'''
+<td class="ty" data-l="House types">{esc(types)}</td><td class="num bd" data-l="Beds">{esc(s["beds"])}</td><td class="num hm" data-l="Homes">{s.get("homes_cell") or (esc(s["units"]) + availcell)}</td><td class="pr">{esc(s["price"])}</td><td class="ss">{chip(s["status"])}</td><td class="vw">{esc(s["short"])}</td><td class="st">{star(s, s["name"])}</td></tr>'''
     return f'''
   <div class="ledger-h rv"><div><div class="eyebrow">The ledger</div><h2 class="t-2">Every address on one page.</h2></div>
    <div class="sorts" role="group" aria-label="Sort the ledger"><button type="button" class="on" data-sort="n">In order</button><button type="button" data-sort="price">By price</button><button type="button" data-sort="status">By status</button></div></div>

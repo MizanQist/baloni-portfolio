@@ -356,7 +356,8 @@ lbst.addEventListener('wheel',e=>{ if(!lbOpen) return; e.preventDefault(); const
     loadScript('assets/leaflet/leaflet.js',done);
   }
   const lio=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ boot(); lio.disconnect(); } },{rootMargin:'900px 0px'}); lio.observe(wrap);
-  const coarse=matchMedia('(pointer:coarse)').matches;
+  const coarse=matchMedia('(pointer:coarse)').matches, wide=matchMedia('(min-width:64rem)');
+  if(coarse) $('#lmhint').textContent='Tap the map to move it';
   function init(){
     const maxZ=PACK?16:19;
     map=L.map('lmap',{zoomControl:false,scrollWheelZoom:false,dragging:!coarse,zoomSnap:PACK?1:.5,minZoom:PACK?6:5,maxZoom:maxZ,attributionControl:true});
@@ -376,7 +377,9 @@ lbst.addEventListener('wheel',e=>{ if(!lbOpen) return; e.preventDefault(); const
     streets.addTo(map);
     let tilesOk=false; streets.on('tileload',()=>{ tilesOk=true; wrap.classList.add('ready'); }); streets.on('tileerror',()=>{ if(!tilesOk&&!PACK) fail(); });
     setTimeout(()=>{ if(!tilesOk){ if(PACK) wrap.classList.add('ready'); else fail(); } },9000);
-    map.on('click',()=>{ map.scrollWheelZoom.enable(); wrap.classList.add('wheel'); });
+    // one finger scrolls the page until the map is tapped; it locks again once it leaves the screen
+    map.on('click',()=>{ map.scrollWheelZoom.enable(); if(coarse) map.dragging.enable(); wrap.classList.add('wheel'); });
+    new IntersectionObserver(es=>{ if(!es[0].isIntersecting){ map.scrollWheelZoom.disable(); if(coarse) map.dragging.disable(); wrap.classList.remove('wheel'); } }).observe(wrap);
     map.on('zoomend',()=>wrap.classList.toggle('far',map.getZoom()<13.5)); wrap.classList.add('far');
     LM.forEach(l=>{
       L.marker(l.ll,{icon:L.divIcon({className:'lm-ref'+(l.dest?' dest':''),html:'<i></i><b>'+l.n+'</b>',iconSize:[0,0]}),interactive:true,keyboard:false,zIndexOffset:-100}).addTo(map).bindTooltip(l.n+' · '+l.s,{direction:'top',offset:[0,-8]});
@@ -415,9 +418,9 @@ lbst.addEventListener('wheel',e=>{ if(!lbOpen) return; e.preventDefault(); const
     const after=()=>markers[id].openPopup();
     if(fly&&!rm){ if(x.route&&x.route.line){ map.flyToBounds(L.latLngBounds(x.route.line),{padding:[60,60],maxZoom:PACK?15:16,duration:1.5}); } else map.flyTo(x.ll,x.approx==='district'?14:15,{duration:1.4}); map.once('moveend',after); }
     else { after(); }
-    rows[id].scrollIntoView({block:'nearest',behavior:'smooth'});
+    if(wide.matches) rows[id].scrollIntoView({block:'nearest',behavior:'smooth'});
   }
-  rowsEl.addEventListener('click',e=>{ const r=e.target.closest('.mrow'); if(!r) return; if(!map){ go(r.dataset.m); return; } select(r.dataset.m,true); });
+  rowsEl.addEventListener('click',e=>{ const r=e.target.closest('.mrow'); if(!r) return; if(!map){ go(r.dataset.m); return; } if(!wide.matches) wrap.scrollIntoView({block:'center',behavior:rm?'auto':'smooth'}); select(r.dataset.m,true); });
   $$('[data-layer]').forEach(b=>b.addEventListener('click',()=>{ if(!map||!aerial) return; const layer=b.dataset.layer; $$('[data-layer]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false')); wrap.classList.toggle('aerial',layer==='aerial'); if(layer==='aerial'){ map.removeLayer(streets); aerial.addTo(map); } else { map.removeLayer(aerial); streets.addTo(map); } }));
   $$('[data-city]').forEach(b=>b.addEventListener('click',()=>{ if(!map) return; drawRoute(null); map.closePopup(); for(const k in rows){ rows[k].setAttribute('aria-pressed','false'); rows[k].classList.remove('on'); const e=markers[k]&&markers[k].getElement(); if(e) e.classList.remove('on'); } fitCity(b.dataset.city,false); }));
 })();
