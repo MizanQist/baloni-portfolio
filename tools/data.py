@@ -22,8 +22,8 @@ SITES = [
 
  dict(id="d02", n="02", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=6.429104%2C3.417235", ll=(6.429104, 3.417235), addr="1053 Abagbon Close, off Ologun Agbaje Street, Victoria Island, Lagos", name="Cova Manor", scheme="", street="1053 Abagbon Close, off Ologun Agbaje Street", plot="",
       district="Victoria Island", city="Lagos", status="Off-plan", dev="Cova International Company", arch="Q-Form Designs · construction documentation, July 2026",
-      price="₦470m – ₦960m", pmin=470, pmax=960, units="8", avail="8", beds="2 – 4",
-      types=[("Duplex", "4 bedrooms · guest suite · staff room", "≈ 283 – 317 m²", "6", "₦960m"), ("Apartment", "2 bedrooms", "≈ 130 – 145 m²", "2", "₦470m")],
+      price="₦470m – ₦960m", pmin=470, pmax=960, units="8", avail="7", beds="2 – 4",
+      types=[("Duplex", "4 bedrooms · guest suite · staff room", "≈ 283 – 317 m²", "6", "₦960m"), ("Apartment", "2 bedrooms", "≈ 130 – 145 m²", "1", "₦470m")],
       facts=[("Site", "835", "m²"), ("Levels", "8", "seven floors over an open court"), ("Parking bays", "17", ""), ("Lift", "Otis", "machine-room-less passenger lift")],
       view="The one address outside Abuja. Eight residences on a quiet close in Victoria Island: six four-bedroom duplexes and two apartments in white decks over an open parking court, with a lift and seventeen bays, one turn from Adeola Odeku. Construction documentation is complete. Apartments at ₦470m and duplexes at ₦960m; we include it for a Lagos base of matching quality.",
       hero=("cova-corner", "split", "Visualisation · the corner from the close"),
