@@ -1,6 +1,6 @@
 # Generates index.html for the Baloni Private Office from data.py and client.py. Run: python3 tools/build_site.py
 # Design: site_css.py · behaviour: site_js.py
-import os, sys, json, html as H, urllib.parse
+import os, re, sys, json, html as H, urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SITES, AGENT, AGENT_FIRST, AGENT_INITIALS, AGENT_ROLE, DATE, CLIENT, CLIENT_SHORT, CLIENT_FIRST, CLIENT_SURNAME, CLIENT_CARD, CLIENT_SALUTATION, CLIENT_SIGNOFF, MEMBER_SINCE, SLUG
 from site_css import CSS
@@ -84,6 +84,13 @@ def chrome():
   <div class="secs">{secs_html}</div>
   <div class="cols"><div><h3>Wing I · {N_RES.capitalize()} residences</h3><div class="rows">{dz_rows}</div></div></div>
 </div></div>
+<div id="ql" role="dialog" aria-modal="true" aria-labelledby="qlnm" aria-hidden="true"><div class="dim" data-qlx></div><div class="sh">
+  <div class="hd"><span class="grip" aria-hidden="true"></span><button type="button" class="x" data-qlx aria-label="Close">{CLOSE}</button></div>
+  <div class="ph" id="qlph"></div>
+  <div class="k"><span id="qln"></span><span id="qlst"></span></div><h3 id="qlnm"></h3><p class="ds" id="qlds"></p>
+  <div class="pr" id="qlpr"></div><p class="un" id="qlun"></p><p class="ln" id="qlln"></p>
+  <div class="acts"><button class="star" type="button" id="qlstar" data-id="" aria-pressed="false" title="Add to your requests">{STAR}</button>{btn("Open the dossier", "#", "solid", 'id="qlgo"')}</div>
+</div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Plate viewer"><div class="bar"><span><b id="lbsite"></b> · <span id="lbgroup"></span></span><div class="x"><button type="button" id="lbzoom" aria-label="Zoom">{ZOOM}</button><button type="button" id="lbclose" aria-label="Close">{CLOSE}</button></div></div>
  <div class="st" id="lbst"><img id="lbA" alt=""><img id="lbB" alt=""><button type="button" class="nav p" id="lbprev" aria-label="Previous plate">{CHEV_L}</button><button type="button" class="nav n" id="lbnext" aria-label="Next plate">{CHEV_R}</button></div>
  <div class="cap"><span class="c" id="lbcap"></span><span><span class="k" id="lbct"></span><span class="tc"> · swipe for the next plate</span><span class="kb"> · swipe or use the arrows · esc closes</span></span></div></div>
@@ -151,6 +158,12 @@ def brief():
 def wing(rn, eyebrow, title, desc, fill=False):
     return f'<div class="wing rv-stag"><div class="rn{" fill" if fill else ""}">{rn}</div><div><div class="eyebrow">{eyebrow}</div><h2 class="t-2">{title}</h2></div><p class="desc">{desc}</p></div>'
 
+def units_text(s):
+    """The quick-look line: homes, availability, bedrooms."""
+    if s.get("units_line"): head = re.sub(r"<[^>]+>", "", s["units_line"])
+    else: head = f'{s["units"]} {"home" if s["units"] == "1" else "homes"} · ' + ("availability on request" if s["avail"] == "—" else f'{s["avail"]} available')
+    return f'{head} · {s["beds"]} {"bedroom" if s["beds"] == "1" else "bedrooms"}'
+
 def residences():
     n_sell = sum(1 for x in SITES if x["status"] == "Selling"); n_off = sum(1 for x in SITES if x["status"] == "Off-plan")
     assert n_sell + n_off == len(SITES), "a status other than Selling / Off-plan needs its own tile"
@@ -161,7 +174,7 @@ def residences():
     for i, s in enumerate(SITES):
         hero = s["hero"][0]
         pl = f'<div class="in">{img(hero + ".jpg", esc(s["name"]), "(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw", LAZY if i > 2 else "")}</div>' if hero else '<div class="dg">' + diagram_mini() + '</div>'
-        cards += f'''<a class="card" href="#{s["id"]}" data-go="{s["id"]}"><div class="pl">{pl}<span class="k">{s["n"]}</span>{chip(s["status"])}</div>
+        cards += f'''<a class="card" href="#{s["id"]}" data-ql="{s["id"]}" data-units="{esc(units_text(s))}"><div class="pl">{pl}<span class="k">{s["n"]}</span>{chip(s["status"])}</div>
 <div class="nm">{esc(s["name"])}<small>{esc(s["district"])}{", Lagos" if s["city"]=="Lagos" else ""}</small></div><div class="pr"><span>{esc(s["short"])}</span><b>{esc(s["price"])}</b></div></a>'''
     return f'''
 <section class="pg" id="residences" data-tab="residences" aria-label="Wing I, the residences">

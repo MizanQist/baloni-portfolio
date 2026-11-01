@@ -670,6 +670,41 @@ body.ready .card-stage{opacity:1;transform:none}
 @media (min-width:64rem) and (hover:hover){#index{background:rgba(5,5,6,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}}
 @media (min-width:48rem){#index .in{padding-top:clamp(80px,10vh,120px);padding-bottom:120px}#index .secs a{letter-spacing:.2em}}
 
+/* ------- quick look: a bottom sheet on phones, a side panel from 48rem ------- */
+#ql{position:fixed;inset:0;z-index:var(--overlay-z);visibility:hidden;transition:visibility 0s .6s}
+#ql.open{visibility:visible;transition:none}
+#ql .dim{position:absolute;inset:0;background:rgba(5,5,6,.72);opacity:0;transition:opacity .5s var(--ease)}
+#ql.open .dim{opacity:1}
+#ql .sh{position:absolute;left:0;right:0;bottom:0;max-height:min(90svh,780px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:var(--carbon);border:1px solid var(--rule);border-bottom:0;border-radius:24px 24px 0 0;padding:0 var(--gut);transform:translateY(100%);transition:transform .6s var(--ease-o)}
+#ql.open .sh{transform:none}
+#ql .hd{position:sticky;top:0;z-index:2;display:flex;justify-content:center;align-items:center;height:60px;margin-inline:calc(-1 * var(--gut));background:var(--carbon)}
+#ql .grip{width:40px;height:4px;border-radius:2px;background:var(--steel-2)}
+#ql .x{position:absolute;right:12px;top:8px;width:44px;height:44px;border-radius:50%;border:1px solid var(--rule);display:grid;place-items:center;transition:.3s}
+#ql .x svg{width:16px;height:16px}
+#ql .ph{aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--graphite);border:1px solid var(--rule-2)}
+#ql .ph img{width:100%;height:100%;object-fit:cover}
+#ql .ph .dg{height:100%;display:grid;place-items:center;padding:14%}
+#ql .ph .dg svg{width:100%;height:auto}
+#ql .k{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;font:400 13px/1 var(--fd);letter-spacing:.2em;color:var(--champ-hi)}
+#ql h3{font:400 clamp(1.9rem,6vw,2.5rem)/1.05 var(--fd);margin-top:14px}
+#ql .ds{font:500 10px/1.5 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-top:8px}
+#ql .pr{font:400 1.55rem/1.1 var(--fd);color:var(--champ-hi);margin-top:18px}
+#ql .un{font-size:14px;line-height:1.5;color:var(--silver);margin-top:8px}
+#ql .ln{margin-top:16px;padding-top:16px;border-top:1px solid var(--rule-2);font:italic 400 1.15rem/1.5 var(--fd);color:var(--platinum)}
+/* the two actions stay pinned to the bottom of the sheet, however long it is */
+#ql .acts{position:sticky;bottom:0;z-index:2;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;margin:20px calc(-1 * var(--gut)) 0;padding:14px var(--gut) calc(14px + env(safe-area-inset-bottom));background:var(--carbon);border-top:1px solid var(--rule-2)}
+#ql .acts .star{width:52px;height:52px}
+#ql .acts .btn{justify-content:space-between;min-height:52px}
+@media (hover:hover){#ql .x:hover{border-color:var(--champ);color:var(--champ-hi)}}
+@media (min-width:48rem){
+  #ql .sh{left:auto;top:0;width:min(460px,92vw);max-height:none;border:0;border-left:1px solid var(--rule);border-radius:0;transform:translateX(100%)}
+  #ql .ph{aspect-ratio:4/3}
+  #ql .acts{position:static;margin-top:24px;padding-top:0;padding-bottom:32px;border-top:0}
+  #ql .hd{height:72px}
+  #ql .grip{display:none}
+  #ql .x{top:14px;right:var(--gut)}
+}
+
 /* ------- lightbox ------- */
 #lb{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;overscroll-behavior:contain;touch-action:none;z-index:var(--overlay-z);background:rgba(5,5,6,.96);color:var(--platinum);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s;display:grid;grid-template-rows:auto 1fr auto}
 #lb.open{opacity:1;visibility:visible;transition:opacity .5s ease}
@@ -719,5 +754,5 @@ body.ready .card-stage{opacity:1;transform:none}
   .rv,.rv-stag>*,.wipe,.w-name .ch,.w-copy .eyebrow,.w-sub,.w-cta,.w-meta,.card-stage,.isl,.corner{opacity:1!important;transform:none!important;clip-path:none!important;translate:0 0!important}
   #veil{display:none}
 }
-@media print{#veil,.isl,.corner,.progress,.cur,.cur2,#index,#lb{display:none!important}.pg{padding-block:40px}.rv,.rv-stag>*,.wipe,.w-name .ch{opacity:1!important;transform:none!important;clip-path:none!important}}
+@media print{#veil,.isl,.corner,.progress,.cur,.cur2,#index,#lb,#ql{display:none!important}.pg{padding-block:40px}.rv,.rv-stag>*,.wipe,.w-name .ch{opacity:1!important;transform:none!important;clip-path:none!important}}
 """

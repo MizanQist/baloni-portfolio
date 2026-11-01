@@ -682,6 +682,41 @@ body.ready .card-stage{opacity:1;transform:none}
 @media (min-width:64rem) and (hover:hover){#index{background:rgba(5,5,6,.9);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}}
 @media (min-width:48rem){#index .in{padding-top:clamp(80px,10vh,120px);padding-bottom:120px}#index .secs a{letter-spacing:.2em}}
 
+/* ------- quick look: a bottom sheet on phones, a side panel from 48rem ------- */
+#ql{position:fixed;inset:0;z-index:var(--overlay-z);visibility:hidden;transition:visibility 0s .6s}
+#ql.open{visibility:visible;transition:none}
+#ql .dim{position:absolute;inset:0;background:rgba(5,5,6,.72);opacity:0;transition:opacity .5s var(--ease)}
+#ql.open .dim{opacity:1}
+#ql .sh{position:absolute;left:0;right:0;bottom:0;max-height:min(90svh,780px);overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:var(--carbon);border:1px solid var(--rule);border-bottom:0;border-radius:24px 24px 0 0;padding:0 var(--gut);transform:translateY(100%);transition:transform .6s var(--ease-o)}
+#ql.open .sh{transform:none}
+#ql .hd{position:sticky;top:0;z-index:2;display:flex;justify-content:center;align-items:center;height:60px;margin-inline:calc(-1 * var(--gut));background:var(--carbon)}
+#ql .grip{width:40px;height:4px;border-radius:2px;background:var(--steel-2)}
+#ql .x{position:absolute;right:12px;top:8px;width:44px;height:44px;border-radius:50%;border:1px solid var(--rule);display:grid;place-items:center;transition:.3s}
+#ql .x svg{width:16px;height:16px}
+#ql .ph{aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--graphite);border:1px solid var(--rule-2)}
+#ql .ph img{width:100%;height:100%;object-fit:cover}
+#ql .ph .dg{height:100%;display:grid;place-items:center;padding:14%}
+#ql .ph .dg svg{width:100%;height:auto}
+#ql .k{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:20px;font:400 13px/1 var(--fd);letter-spacing:.2em;color:var(--champ-hi)}
+#ql h3{font:400 clamp(1.9rem,6vw,2.5rem)/1.05 var(--fd);margin-top:14px}
+#ql .ds{font:500 10px/1.5 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-top:8px}
+#ql .pr{font:400 1.55rem/1.1 var(--fd);color:var(--champ-hi);margin-top:18px}
+#ql .un{font-size:14px;line-height:1.5;color:var(--silver);margin-top:8px}
+#ql .ln{margin-top:16px;padding-top:16px;border-top:1px solid var(--rule-2);font:italic 400 1.15rem/1.5 var(--fd);color:var(--platinum)}
+/* the two actions stay pinned to the bottom of the sheet, however long it is */
+#ql .acts{position:sticky;bottom:0;z-index:2;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;margin:20px calc(-1 * var(--gut)) 0;padding:14px var(--gut) calc(14px + env(safe-area-inset-bottom));background:var(--carbon);border-top:1px solid var(--rule-2)}
+#ql .acts .star{width:52px;height:52px}
+#ql .acts .btn{justify-content:space-between;min-height:52px}
+@media (hover:hover){#ql .x:hover{border-color:var(--champ);color:var(--champ-hi)}}
+@media (min-width:48rem){
+  #ql .sh{left:auto;top:0;width:min(460px,92vw);max-height:none;border:0;border-left:1px solid var(--rule);border-radius:0;transform:translateX(100%)}
+  #ql .ph{aspect-ratio:4/3}
+  #ql .acts{position:static;margin-top:24px;padding-top:0;padding-bottom:32px;border-top:0}
+  #ql .hd{height:72px}
+  #ql .grip{display:none}
+  #ql .x{top:14px;right:var(--gut)}
+}
+
 /* ------- lightbox ------- */
 #lb{position:fixed;inset:0;top:0;right:0;bottom:0;left:0;overscroll-behavior:contain;touch-action:none;z-index:var(--overlay-z);background:rgba(5,5,6,.96);color:var(--platinum);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s;display:grid;grid-template-rows:auto 1fr auto}
 #lb.open{opacity:1;visibility:visible;transition:opacity .5s ease}
@@ -731,7 +766,7 @@ body.ready .card-stage{opacity:1;transform:none}
   .rv,.rv-stag>*,.wipe,.w-name .ch,.w-copy .eyebrow,.w-sub,.w-cta,.w-meta,.card-stage,.isl,.corner{opacity:1!important;transform:none!important;clip-path:none!important;translate:0 0!important}
   #veil{display:none}
 }
-@media print{#veil,.isl,.corner,.progress,.cur,.cur2,#index,#lb{display:none!important}.pg{padding-block:40px}.rv,.rv-stag>*,.wipe,.w-name .ch{opacity:1!important;transform:none!important;clip-path:none!important}}
+@media print{#veil,.isl,.corner,.progress,.cur,.cur2,#index,#lb,#ql{display:none!important}.pg{padding-block:40px}.rv,.rv-stag>*,.wipe,.w-name .ch{opacity:1!important;transform:none!important;clip-path:none!important}}
 </style>
 </head>
 <body>
@@ -755,6 +790,13 @@ body.ready .card-stage{opacity:1;transform:none}
   <div class="ih"><div><div class="eyebrow">Index</div><h2 class="t-2">Everything in your office.</h2></div><button type="button" class="close" id="idxclose" aria-label="Close the index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
   <div class="secs"><a href="#welcome" data-go="welcome" style="--i:0">Welcome</a><a href="#brief" data-go="brief" style="--i:1">Your brief</a><a href="#residences" data-go="residences" style="--i:2">Wing I · Residences</a><a href="#glance" data-go="glance" style="--i:3">Map &amp; ledger</a><a href="#desk" data-go="desk" style="--i:4">Your desk</a></div>
   <div class="cols"><div><h3>Wing I · Eight residences</h3><div class="rows"><a href="#d01" data-go="d01" style="--i:0"><span class="k">01</span><span>Heights 777<small>Wuse II · Off-plan</small></span><span class="pr">₦300m – ₦360m</span></a><a href="#d02" data-go="d02" style="--i:1"><span class="k">02</span><span>Cova Manor<small>Victoria Island, Lagos · Off-plan</small></span><span class="pr">₦470m – ₦960m</span></a><a href="#d03" data-go="d03" style="--i:2"><span class="k">03</span><span>Maitama View<small>Maitama · Off-plan</small></span><span class="pr">₦1.45bn – ₦1.85bn</span></a><a href="#d04" data-go="d04" style="--i:3"><span class="k">04</span><span>Agulu Lake<small>Maitama · Selling</small></span><span class="pr">₦6.6bn</span></a><a href="#d05" data-go="d05" style="--i:4"><span class="k">05</span><span>Linda Chalker<small>Asokoro · Off-plan</small></span><span class="pr">₦900m</span></a><a href="#d07" data-go="d07" style="--i:5"><span class="k">06</span><span>Katampe<small>Katampe Ext. · Off-plan</small></span><span class="pr">₦600m – ₦800m</span></a><a href="#d08" data-go="d08" style="--i:6"><span class="k">07</span><span>Utako<small>Mabushi District · Selling</small></span><span class="pr">₦650m – ₦875m</span></a><a href="#d09" data-go="d09" style="--i:7"><span class="k">08</span><span>Gana Street<small>Maitama · Selling</small></span><span class="pr">₦350m – ₦700m</span></a></div></div></div>
+</div></div>
+<div id="ql" role="dialog" aria-modal="true" aria-labelledby="qlnm" aria-hidden="true"><div class="dim" data-qlx></div><div class="sh">
+  <div class="hd"><span class="grip" aria-hidden="true"></span><button type="button" class="x" data-qlx aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  <div class="ph" id="qlph"></div>
+  <div class="k"><span id="qln"></span><span id="qlst"></span></div><h3 id="qlnm"></h3><p class="ds" id="qlds"></p>
+  <div class="pr" id="qlpr"></div><p class="un" id="qlun"></p><p class="ln" id="qlln"></p>
+  <div class="acts"><button class="star" type="button" id="qlstar" data-id="" aria-pressed="false" title="Add to your requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.9 5.6 3.9 8.6 9.5 9.5-5.6.9-8.6 3.9-9.5 9.5-.9-5.6-3.9-8.6-9.5-9.5 5.6-.9 8.6-3.9 9.5-9.5z"/></svg></button><a class="btn solid" href="#" id="qlgo">Open the dossier<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></i></a></div>
 </div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Plate viewer"><div class="bar"><span><b id="lbsite"></b> · <span id="lbgroup"></span></span><div class="x"><button type="button" id="lbzoom" aria-label="Zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5M11 8v6M8 11h6"/></svg></button><button type="button" id="lbclose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div></div>
  <div class="st" id="lbst"><img id="lbA" alt=""><img id="lbB" alt=""><button type="button" class="nav p" id="lbprev" aria-label="Previous plate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="nav n" id="lbnext" aria-label="Next plate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
@@ -823,14 +865,14 @@ body.ready .card-stage{opacity:1;transform:none}
     <div><div class="v num"><span data-count="3">3</span><small>·</small><span data-count="5">5</span></div><div class="k">Selling · off-plan</div></div>
   </div>
   <div class="shelf-h rv"><div><div class="eyebrow">The collection</div><h3 class="t-3">Eight dossiers, in order.</h3></div><div class="arrows"><button type="button" data-shelf="-1" aria-label="Scroll the collection left"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-shelf="1" aria-label="Scroll the collection right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div></div>
-  <div class="shelf rv" id="shelf"><a class="card" href="#d01" data-go="d01"><div class="pl"><div class="in"><img src="assets/h777-corner-dusk.jpg" srcset="assets/m/h777-corner-dusk.jpg 1400w, assets/h777-corner-dusk.jpg 1800w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Heights 777" decoding="async" ></div><span class="k">01</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
-<div class="nm">Heights 777<small>Wuse II</small></div><div class="pr"><span>Seven storeys of apartments, Wuse II.</span><b>₦300m – ₦360m</b></div></a><a class="card" href="#d02" data-go="d02"><div class="pl"><div class="in"><img src="assets/cova-corner.jpg" srcset="assets/m/cova-corner.jpg 1400w, assets/cova-corner.jpg 2000w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Cova Manor" decoding="async" ></div><span class="k">02</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
-<div class="nm">Cova Manor<small>Victoria Island, Lagos</small></div><div class="pr"><span>Eight residences, Victoria Island.</span><b>₦470m – ₦960m</b></div></a><a class="card" href="#d03" data-go="d03"><div class="pl"><div class="in"><img src="assets/lc-hero.jpg" srcset="assets/m/lc-hero.jpg 1400w, assets/lc-hero.jpg 2400w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Maitama View" decoding="async" ></div><span class="k">03</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
-<div class="nm">Maitama View<small>Maitama</small></div><div class="pr"><span>Nine homes, one gate, Maitama.</span><b>₦1.45bn – ₦1.85bn</b></div></a><a class="card" href="#d04" data-go="d04"><div class="pl"><div class="in"><img src="assets/agulu-render.jpg" srcset="assets/m/agulu-render.jpg 1400w, assets/agulu-render.jpg 2400w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Agulu Lake" decoding="async" loading="lazy"></div><span class="k">04</span><span class="chip" data-s="Selling"><i></i>Selling</span></div>
-<div class="nm">Agulu Lake<small>Maitama</small></div><div class="pr"><span>A standalone five-bedroom mansion, the largest ticket.</span><b>₦6.6bn</b></div></a><a class="card" href="#d05" data-go="d05"><div class="pl"><div class="in"><img src="assets/linda-c1.jpg" srcset="assets/m/linda-c1.jpg 1400w, assets/linda-c1.jpg 2264w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Linda Chalker" decoding="async" loading="lazy"></div><span class="k">05</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
-<div class="nm">Linda Chalker<small>Asokoro</small></div><div class="pr"><span>Six villas, three living rooms each, Asokoro.</span><b>₦900m</b></div></a><a class="card" href="#d07" data-go="d07"><div class="pl"><div class="in"><img src="assets/kat-c1.jpg" srcset="assets/m/kat-c1.jpg 1400w, assets/kat-c1.jpg 2340w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Katampe" decoding="async" loading="lazy"></div><span class="k">06</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
-<div class="nm">Katampe<small>Katampe Ext.</small></div><div class="pr"><span>Thirty-six homes, carcass pricing.</span><b>₦600m – ₦800m</b></div></a><a class="card" href="#d08" data-go="d08"><div class="pl"><div class="in"><img src="assets/utako-s9.jpg" srcset="assets/m/utako-s9.jpg 1400w, assets/utako-s9.jpg 2400w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Utako" decoding="async" loading="lazy"></div><span class="k">07</span><span class="chip" data-s="Selling"><i></i>Selling</span></div>
-<div class="nm">Utako<small>Mabushi District</small></div><div class="pr"><span>Five-bedroom villas, Mabushi.</span><b>₦650m – ₦875m</b></div></a><a class="card" href="#d09" data-go="d09"><div class="pl"><div class="in"><img src="assets/gana-c1.jpg" srcset="assets/m/gana-c1.jpg 1400w, assets/gana-c1.jpg 2340w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Gana Street" decoding="async" loading="lazy"></div><span class="k">08</span><span class="chip" data-s="Selling"><i></i>Selling</span></div>
+  <div class="shelf rv" id="shelf"><a class="card" href="#d01" data-ql="d01" data-units="18 homes · 15 available · 1 – 2 bedrooms"><div class="pl"><div class="in"><img src="assets/h777-corner-dusk.jpg" srcset="assets/m/h777-corner-dusk.jpg 1400w, assets/h777-corner-dusk.jpg 1800w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Heights 777" decoding="async" ></div><span class="k">01</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
+<div class="nm">Heights 777<small>Wuse II</small></div><div class="pr"><span>Seven storeys of apartments, Wuse II.</span><b>₦300m – ₦360m</b></div></a><a class="card" href="#d02" data-ql="d02" data-units="8 homes · 7 available · 2 – 4 bedrooms"><div class="pl"><div class="in"><img src="assets/cova-corner.jpg" srcset="assets/m/cova-corner.jpg 1400w, assets/cova-corner.jpg 2000w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Cova Manor" decoding="async" ></div><span class="k">02</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
+<div class="nm">Cova Manor<small>Victoria Island, Lagos</small></div><div class="pr"><span>Eight residences, Victoria Island.</span><b>₦470m – ₦960m</b></div></a><a class="card" href="#d03" data-ql="d03" data-units="9 homes · 7 available · 4 – 5 bedrooms"><div class="pl"><div class="in"><img src="assets/lc-hero.jpg" srcset="assets/m/lc-hero.jpg 1400w, assets/lc-hero.jpg 2400w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Maitama View" decoding="async" ></div><span class="k">03</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
+<div class="nm">Maitama View<small>Maitama</small></div><div class="pr"><span>Nine homes, one gate, Maitama.</span><b>₦1.45bn – ₦1.85bn</b></div></a><a class="card" href="#d04" data-ql="d04" data-units="Standalone mansion, not part of an estate · 1 available · 5 bedrooms"><div class="pl"><div class="in"><img src="assets/agulu-render.jpg" srcset="assets/m/agulu-render.jpg 1400w, assets/agulu-render.jpg 2400w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Agulu Lake" decoding="async" loading="lazy"></div><span class="k">04</span><span class="chip" data-s="Selling"><i></i>Selling</span></div>
+<div class="nm">Agulu Lake<small>Maitama</small></div><div class="pr"><span>A standalone five-bedroom mansion, the largest ticket.</span><b>₦6.6bn</b></div></a><a class="card" href="#d05" data-ql="d05" data-units="6 homes · 4 available · 5 bedrooms"><div class="pl"><div class="in"><img src="assets/linda-c1.jpg" srcset="assets/m/linda-c1.jpg 1400w, assets/linda-c1.jpg 2264w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Linda Chalker" decoding="async" loading="lazy"></div><span class="k">05</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
+<div class="nm">Linda Chalker<small>Asokoro</small></div><div class="pr"><span>Six villas, three living rooms each, Asokoro.</span><b>₦900m</b></div></a><a class="card" href="#d07" data-ql="d07" data-units="36 homes in the scheme · 8 villas available · apartments by request · 2 – 6 bedrooms"><div class="pl"><div class="in"><img src="assets/kat-c1.jpg" srcset="assets/m/kat-c1.jpg 1400w, assets/kat-c1.jpg 2340w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Katampe" decoding="async" loading="lazy"></div><span class="k">06</span><span class="chip" data-s="Off-plan"><i></i>Off-plan</span></div>
+<div class="nm">Katampe<small>Katampe Ext.</small></div><div class="pr"><span>Thirty-six homes, carcass pricing.</span><b>₦600m – ₦800m</b></div></a><a class="card" href="#d08" data-ql="d08" data-units="7 villas available · apartments by request · 3 – 5 bedrooms"><div class="pl"><div class="in"><img src="assets/utako-s9.jpg" srcset="assets/m/utako-s9.jpg 1400w, assets/utako-s9.jpg 2400w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Utako" decoding="async" loading="lazy"></div><span class="k">07</span><span class="chip" data-s="Selling"><i></i>Selling</span></div>
+<div class="nm">Utako<small>Mabushi District</small></div><div class="pr"><span>Five-bedroom villas, Mabushi.</span><b>₦650m – ₦875m</b></div></a><a class="card" href="#d09" data-ql="d09" data-units="30 homes · availability on request · 3 bedrooms"><div class="pl"><div class="in"><img src="assets/gana-c1.jpg" srcset="assets/m/gana-c1.jpg 1400w, assets/gana-c1.jpg 2340w" sizes="(max-width:767px) 78vw, (max-width:1023px) 32vw, 24vw" alt="Gana Street" decoding="async" loading="lazy"></div><span class="k">08</span><span class="chip" data-s="Selling"><i></i>Selling</span></div>
 <div class="nm">Gana Street<small>Maitama</small></div><div class="pr"><span>Thirty homes, the Maitama entry price.</span><b>₦350m – ₦700m</b></div></a></div>
  </div>
 </section>
@@ -1064,18 +1106,20 @@ else{
 /* ---------- navigation ---------- */
 function go(id,instant){
   const el=document.getElementById(id); if(!el) return;
-  const fromIndex=document.getElementById('index').classList.contains('open'); closeIndex();
+  const fromOverlay=['index','ql'].some(o=>document.getElementById(o).classList.contains('open')); closeIndex(); closeQL();
   // unlockScroll() puts the page back over the next frames (last jump at ~60ms); scroll once it has settled
   setTimeout(()=>{
     if(id==='welcome') window.scrollTo({top:0,behavior:(instant||rm)?'auto':'smooth'});
     else el.scrollIntoView({behavior:(instant||rm)?'auto':'smooth',block:'start'});
-  },fromIndex?100:0);
+  },fromOverlay?100:0);
   if(history.replaceState) history.replaceState(null,'','#'+id);
 }
 let shelfDragged=false;
 document.addEventListener('click',e=>{
   const st=e.target.closest('.star'); if(st){ e.preventDefault(); e.stopPropagation(); toggleReq(st.dataset.id, st); return; }
   const rmv=e.target.closest('[data-rm]'); if(rmv){ toggleReq(rmv.dataset.rm); return; }
+  const qc=e.target.closest('[data-ql]'); if(qc){ e.preventDefault(); if(!shelfDragged) openQL(qc); return; }
+  if(e.target.closest('[data-qlx]')){ closeQL(); return; }
   const t=e.target.closest('[data-go]'); if(!t) return;
   if(shelfDragged){ e.preventDefault(); return; }
   e.preventDefault(); go(t.dataset.go);
@@ -1225,6 +1269,26 @@ $$('.gal-h .groups').forEach(g=>{
   }));
 });
 
+/* ---------- quick look: a tap on a collection card opens a sheet, so the map and ledger are not skipped ---------- */
+const ql=$('#ql'); let qlFocus=null;
+function openQL(card){
+  const id=card.dataset.ql, im=$('.pl img',card), name=$('.nm',card).firstChild.textContent;
+  $('#qlph').innerHTML=im?'<img alt="" src="'+(im.currentSrc||im.src)+'">':$('.pl .dg',card).outerHTML;
+  $('#qln').textContent=$('.pl .k',card).textContent; $('#qlst').innerHTML=$('.pl .chip',card).outerHTML;
+  $('#qlnm').textContent=name; $('#qlds').textContent=$('.nm small',card).textContent;
+  $('#qlpr').textContent=$('.pr b',card).textContent; $('#qlun').textContent=card.dataset.units; $('#qlln').textContent=$('.pr span',card).textContent;
+  const st=$('#qlstar'); st.dataset.id=id; st.setAttribute('aria-label','Add '+name+' to your requests');
+  const g=$('#qlgo'); g.dataset.go=id; g.href='#'+id;
+  renderReq();
+  if(!ql.classList.contains('open')){ qlFocus=document.activeElement; ql.classList.add('open'); ql.setAttribute('aria-hidden','false'); lockScroll(); }
+  $('.sh',ql).scrollTop=0; setTimeout(()=>{ try{ $('.x',ql).focus({preventScroll:true}); }catch(e){} },60);
+}
+function closeQL(){
+  if(!ql.classList.contains('open')) return;
+  ql.classList.remove('open'); ql.setAttribute('aria-hidden','true'); unlockScroll();
+  if(qlFocus&&qlFocus.focus){ try{ qlFocus.focus({preventScroll:true}); }catch(e){} }
+}
+
 /* ---------- requests (kept on this device) ---------- */
 const KEY="baloni"+'.requests';
 const META={};
@@ -1294,7 +1358,7 @@ document.addEventListener('click',e=>{ const t=e.target.closest('.gi, .plate'); 
 $('#lbclose').addEventListener('click',closeLb); $('#lbprev').addEventListener('click',()=>show(lbI-1)); $('#lbnext').addEventListener('click',()=>show(lbI+1));
 $('#lbzoom').addEventListener('click',()=>{ if(z.s>1) resetZoom(); else { z.s=2.2; applyZoom(); } });
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(lbOpen) closeLb(); else closeIndex(); }
+  if(e.key==='Escape'){ if(lbOpen) closeLb(); else if(ql.classList.contains('open')) closeQL(); else closeIndex(); }
   if(!lbOpen) return;
   if(e.key==='ArrowRight') show(lbI+1); if(e.key==='ArrowLeft') show(lbI-1);
 });

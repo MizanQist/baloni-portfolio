@@ -55,18 +55,20 @@ else{
 /* ---------- navigation ---------- */
 function go(id,instant){
   const el=document.getElementById(id); if(!el) return;
-  const fromIndex=document.getElementById('index').classList.contains('open'); closeIndex();
+  const fromOverlay=['index','ql'].some(o=>document.getElementById(o).classList.contains('open')); closeIndex(); closeQL();
   // unlockScroll() puts the page back over the next frames (last jump at ~60ms); scroll once it has settled
   setTimeout(()=>{
     if(id==='welcome') window.scrollTo({top:0,behavior:(instant||rm)?'auto':'smooth'});
     else el.scrollIntoView({behavior:(instant||rm)?'auto':'smooth',block:'start'});
-  },fromIndex?100:0);
+  },fromOverlay?100:0);
   if(history.replaceState) history.replaceState(null,'','#'+id);
 }
 let shelfDragged=false;
 document.addEventListener('click',e=>{
   const st=e.target.closest('.star'); if(st){ e.preventDefault(); e.stopPropagation(); toggleReq(st.dataset.id, st); return; }
   const rmv=e.target.closest('[data-rm]'); if(rmv){ toggleReq(rmv.dataset.rm); return; }
+  const qc=e.target.closest('[data-ql]'); if(qc){ e.preventDefault(); if(!shelfDragged) openQL(qc); return; }
+  if(e.target.closest('[data-qlx]')){ closeQL(); return; }
   const t=e.target.closest('[data-go]'); if(!t) return;
   if(shelfDragged){ e.preventDefault(); return; }
   e.preventDefault(); go(t.dataset.go);
@@ -216,6 +218,26 @@ $$('.gal-h .groups').forEach(g=>{
   }));
 });
 
+/* ---------- quick look: a tap on a collection card opens a sheet, so the map and ledger are not skipped ---------- */
+const ql=$('#ql'); let qlFocus=null;
+function openQL(card){
+  const id=card.dataset.ql, im=$('.pl img',card), name=$('.nm',card).firstChild.textContent;
+  $('#qlph').innerHTML=im?'<img alt="" src="'+(im.currentSrc||im.src)+'">':$('.pl .dg',card).outerHTML;
+  $('#qln').textContent=$('.pl .k',card).textContent; $('#qlst').innerHTML=$('.pl .chip',card).outerHTML;
+  $('#qlnm').textContent=name; $('#qlds').textContent=$('.nm small',card).textContent;
+  $('#qlpr').textContent=$('.pr b',card).textContent; $('#qlun').textContent=card.dataset.units; $('#qlln').textContent=$('.pr span',card).textContent;
+  const st=$('#qlstar'); st.dataset.id=id; st.setAttribute('aria-label','Add '+name+' to your requests');
+  const g=$('#qlgo'); g.dataset.go=id; g.href='#'+id;
+  renderReq();
+  if(!ql.classList.contains('open')){ qlFocus=document.activeElement; ql.classList.add('open'); ql.setAttribute('aria-hidden','false'); lockScroll(); }
+  $('.sh',ql).scrollTop=0; setTimeout(()=>{ try{ $('.x',ql).focus({preventScroll:true}); }catch(e){} },60);
+}
+function closeQL(){
+  if(!ql.classList.contains('open')) return;
+  ql.classList.remove('open'); ql.setAttribute('aria-hidden','true'); unlockScroll();
+  if(qlFocus&&qlFocus.focus){ try{ qlFocus.focus({preventScroll:true}); }catch(e){} }
+}
+
 /* ---------- requests (kept on this device) ---------- */
 const KEY=__SLUG__+'.requests';
 const META={};
@@ -285,7 +307,7 @@ document.addEventListener('click',e=>{ const t=e.target.closest('.gi, .plate'); 
 $('#lbclose').addEventListener('click',closeLb); $('#lbprev').addEventListener('click',()=>show(lbI-1)); $('#lbnext').addEventListener('click',()=>show(lbI+1));
 $('#lbzoom').addEventListener('click',()=>{ if(z.s>1) resetZoom(); else { z.s=2.2; applyZoom(); } });
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(lbOpen) closeLb(); else closeIndex(); }
+  if(e.key==='Escape'){ if(lbOpen) closeLb(); else if(ql.classList.contains('open')) closeQL(); else closeIndex(); }
   if(!lbOpen) return;
   if(e.key==='ArrowRight') show(lbI+1); if(e.key==='ArrowLeft') show(lbI-1);
 });
