@@ -224,7 +224,7 @@ def glance():
   <div class="map-h rv" style="margin-top:0"><div><div class="eyebrow">The map</div><h3 class="t-3">Every address, and the drive to the centre, <em class="t-i">on one map.</em></h3></div>
    <div class="map-ctl"><div class="seg" role="group" aria-label="Map layer"><button type="button" data-layer="streets" aria-pressed="true">Streets</button><button type="button" data-layer="aerial" aria-pressed="false">Aerial</button></div><div class="seg" role="group" aria-label="View"><button type="button" data-city="Maitama" aria-pressed="false">Maitama</button><button type="button" data-city="Abuja" aria-pressed="true">Abuja</button><button type="button" data-city="Lagos" aria-pressed="false">Lagos</button></div></div></div>
   <div class="map-g">
-   <div class="lmap-wrap night rv" id="lmapwrap"><div id="lmap" aria-label="Interactive map of the {N_RES} addresses"></div><div class="lm-hint" id="lmhint">Click the map, then scroll to zoom</div>
+   <div class="lmap-wrap rv" id="lmapwrap"><div id="lmap" aria-label="Interactive map of the {N_RES} addresses"></div><div class="lm-hint" id="lmhint">Click the map, then scroll to zoom</div>
     <div class="map-fb" id="mapfb" hidden><div class="eyebrow plain">Map</div><p>The map could not load here. Each address opens in Google Maps:</p><div class="fbrows">{fallback}</div></div></div>
    <div class="lm-panel rv" id="mrows">{panel}<div class="lm-note">Distances are by road to the Central Business District (the Central Bank of Nigeria on Tafawa Balewa Way), routed on OpenStreetMap; Cova Manor is measured to the Eko Hotel. Drive times are approximate and off-peak. Choose a row to fly to the address and draw its route.</div></div>
   </div>

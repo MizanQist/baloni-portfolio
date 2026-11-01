@@ -329,9 +329,10 @@ body.ready .card-stage{opacity:1;transform:none}
 .seg button[aria-pressed="true"]{background:var(--platinum);color:var(--void)}
 .map-g{display:grid;gap:16px;margin-top:22px}
 .lmap-wrap{position:relative;height:clamp(320px,58svh,520px);border:1px solid var(--rule);border-radius:22px;padding:6px;background:var(--graphite);isolation:isolate}
-#lmap{width:100%;height:100%;background:var(--carbon);border-radius:16px;overflow:hidden;opacity:0;transition:opacity 1.2s ease}
+#lmap{width:100%;height:100%;background:#dedcd6;border-radius:16px;overflow:hidden;opacity:0;transition:opacity 1.2s ease}
 .lmap-wrap.ready #lmap{opacity:1}
-.lmap-wrap.night:not(.aerial) .leaflet-tile-pane .leaflet-tile{filter:invert(1) hue-rotate(180deg) grayscale(.96) brightness(.82) contrast(1.06);-webkit-filter:invert(1) hue-rotate(180deg) grayscale(.96) brightness(.82) contrast(1.06)}
+/* the street map is the light OSM style, softened as on the Cova Manor brochure; aerial stays as photographed */
+.lmap-wrap:not(.aerial) .leaflet-tile-pane{filter:grayscale(.82) saturate(.9) brightness(1.04) contrast(.9)}
 .lmap-wrap .leaflet-container{font-family:var(--fs);font-size:12px}
 .lmap-wrap .leaflet-container a{color:inherit}
 .lmap-wrap .leaflet-control-zoom{border:1px solid var(--rule);border-radius:999px;overflow:hidden;margin:16px;box-shadow:none}
@@ -343,8 +344,8 @@ body.ready .card-stage{opacity:1;transform:none}
 .lmap-wrap .leaflet-control-scale-line{border:1px solid rgba(233,231,225,.5);border-top:0;background:rgba(8,8,10,.6);color:var(--platinum);font:500 9.5px/1.7 var(--fs);letter-spacing:.1em;padding:1px 6px}
 .lmap-wrap .lm-pin{width:0!important;height:0!important;margin:0!important;border:0;background:none}
 .lmap-wrap .lm-pin i{position:absolute;left:-13px;top:-13px;width:26px;height:26px;border-radius:50%;background:var(--champ);color:var(--void);border:1.5px solid var(--void);box-shadow:0 0 0 4px rgba(205,176,122,.22),0 2px 10px rgba(0,0,0,.5);font:400 11px/23px var(--fd);letter-spacing:.06em;text-align:center;font-style:normal;transition:.3s}
-.lmap-wrap .lm-pin b{position:absolute;left:18px;top:-9px;white-space:nowrap;font:600 9.5px/18px var(--fs);letter-spacing:.16em;text-transform:uppercase;color:var(--platinum);text-shadow:0 0 4px #08080a,0 0 8px #08080a,0 1px 2px #08080a;transition:opacity .3s}
-.lmap-wrap.aerial .lm-pin b{text-shadow:0 0 4px #000,0 0 8px #000}
+.lmap-wrap .lm-pin b{position:absolute;left:18px;top:-9px;white-space:nowrap;font:600 9.5px/18px var(--fs);letter-spacing:.16em;text-transform:uppercase;color:#141416;text-shadow:0 0 3px #fff,0 0 6px #fff,0 0 10px #fff;transition:opacity .3s}
+.lmap-wrap.aerial .lm-pin b{color:var(--platinum);text-shadow:0 0 4px #000,0 0 8px #000}
 .lmap-wrap.far .lm-pin:not(.on):not(:hover) b{opacity:0}
 .lmap-wrap .lm-pin.on i,.lmap-wrap .lm-pin:hover i{background:var(--champ-hi);transform:scale(1.15)}
 .lmap-wrap .lm-pin.ap i{background:var(--graphite);color:var(--champ-hi);border-color:var(--champ)}
@@ -360,7 +361,8 @@ body.ready .card-stage{opacity:1;transform:none}
 .lmap-wrap .lm-ref{width:0!important;height:0!important;margin:0!important;border:0;background:none}
 .lmap-wrap .lm-ref i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--void);border:1.5px solid var(--platinum);opacity:.85}
 .lmap-wrap .lm-ref.dest i{background:var(--platinum);border-color:var(--void);width:12px;height:12px;left:-6px;top:-6px}
-.lmap-wrap .lm-ref b{position:absolute;left:11px;top:-8px;white-space:nowrap;font:600 9px/16px var(--fs);letter-spacing:.14em;text-transform:uppercase;color:rgba(233,231,225,.8);text-shadow:0 0 4px #08080a,0 0 8px #08080a}
+.lmap-wrap .lm-ref b{position:absolute;left:11px;top:-8px;white-space:nowrap;font:600 9px/16px var(--fs);letter-spacing:.14em;text-transform:uppercase;color:#3a3b40;text-shadow:0 0 3px #fff,0 0 6px #fff}
+.lmap-wrap.aerial .lm-ref b{color:rgba(233,231,225,.85);text-shadow:0 0 4px #000,0 0 8px #000}
 .lmap-wrap.far .lm-ref:not(.dest) b{opacity:0}
 .lmap-wrap .leaflet-tooltip{background:var(--graphite);color:var(--platinum);border:1px solid var(--rule);border-radius:8px;font:400 11px/1.4 var(--fs);letter-spacing:.06em;box-shadow:none}
 .lmap-wrap .leaflet-tooltip::before{display:none}
@@ -376,7 +378,7 @@ body.ready .card-stage{opacity:1;transform:none}
 .lm-panel .mrow .dist b{font-family:var(--fd);font-weight:400;font-size:15px;color:var(--platinum);letter-spacing:0}
 .lm-note{padding:14px 20px 18px;font-size:12px;line-height:1.55;color:var(--steel);margin-top:auto}
 .lm-hint{position:absolute;left:50%;top:16px;transform:translateX(-50%);z-index:500;font:600 10px/1 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--platinum);background:rgba(8,8,10,.72);border:1px solid var(--rule);border-radius:999px;padding:10px 16px;pointer-events:none;transition:opacity .5s;white-space:nowrap}
-.lmap-wrap.wheel .lm-hint,.lmap-wrap.failed .lm-hint{opacity:0}
+.lmap-wrap.wheel .lm-hint,.lmap-wrap.failed .lm-hint,.lmap-wrap.pop .lm-hint{opacity:0}
 .map-fb{position:absolute;inset:6px;border-radius:16px;background:var(--carbon);padding:clamp(20px,3vw,36px);overflow:auto}
 .map-fb p{margin:14px 0 18px;color:var(--silver);font-size:14px}
 .fbrows{display:grid;gap:0}

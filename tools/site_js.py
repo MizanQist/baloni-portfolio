@@ -361,6 +361,7 @@ lbst.addEventListener('wheel',e=>{ if(!lbOpen) return; e.preventDefault(); const
     map.on('click',()=>{ map.scrollWheelZoom.enable(); if(coarse) map.dragging.enable(); wrap.classList.add('wheel'); });
     new IntersectionObserver(es=>{ if(!es[0].isIntersecting){ map.scrollWheelZoom.disable(); if(coarse) map.dragging.disable(); wrap.classList.remove('wheel'); } }).observe(wrap);
     map.on('zoomend',()=>wrap.classList.toggle('far',map.getZoom()<13.5)); wrap.classList.add('far');
+    map.on('popupopen',()=>wrap.classList.add('pop')); map.on('popupclose',()=>wrap.classList.remove('pop'));
     LM.forEach(l=>{
       L.marker(l.ll,{icon:L.divIcon({className:'lm-ref'+(l.dest?' dest':''),html:'<i></i><b>'+l.n+'</b>',iconSize:[0,0]}),interactive:true,keyboard:false,zIndexOffset:-100}).addTo(map).bindTooltip(l.n+' · '+l.s,{direction:'top',offset:[0,-8]});
     });
