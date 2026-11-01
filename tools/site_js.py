@@ -370,7 +370,7 @@ lbst.addEventListener('wheel',e=>{ if(!lbOpen) return; e.preventDefault(); const
       const ap=x.approx?' ap':'';
       const m=L.marker(x.ll,{icon:L.divIcon({className:'lm-pin'+ap,html:'<i>'+x.n+'</i><b>'+x.name+'</b>',iconSize:[0,0]}),alt:x.name,riseOnHover:true,zIndexOffset:1000}).addTo(map);
       const note=x.approx==='nearest'?'Nearest pin available':x.approx==='street'?'Street-level pin':x.approx==='district'?'District only · exact pin to follow':'';
-      const dist=x.route?'<div class="a">'+x.route.km+' km · '+x.route.min+' min to '+(x.city==='Lagos'?'the Eko Hotel':'the Central Business District')+'</div>':'';
+      const dist=x.route?'<div class="a">'+x.route.km+' km · '+x.route.min+' min '+(x.city==='Lagos'?'to the Eko Hotel':'from Lantees Cafe')+'</div>':'';
       m.bindPopup('<div class="lm-pop"><div class="k">'+x.n+' · '+x.status+'</div><div class="n">'+x.name+'</div><div class="a">'+x.addr+(note?' · '+note:'')+'</div>'+dist+'<div class="p">'+x.price+'</div><div class="x"><a href="#'+x.id+'" data-go="'+x.id+'">Dossier</a><a href="'+x.gmaps+'" target="_blank" rel="noopener">Google Maps</a></div></div>',{maxWidth:300,closeButton:true,offset:[0,-6]});
       m.on('click',()=>select(x.id,false)); markers[x.id]=m;
     });

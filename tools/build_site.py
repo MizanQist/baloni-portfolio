@@ -192,7 +192,8 @@ def residences():
 </section>'''
 
 LANDMARKS = [
- dict(id="cbd", n="Central Business District", s="Central Bank of Nigeria, Tafawa Balewa Way", ll=[9.0508926, 7.4929880], city="Abuja", dest=True),
+ dict(id="lantees", n="Lantees Cafe", s="3259 Ibrahim Babangida Boulevard, Maitama", ll=[9.1017855, 7.4887182], city="Abuja", dest=True),
+ dict(id="cbd", n="Central Business District", s="Central Bank of Nigeria, Tafawa Balewa Way", ll=[9.0508926, 7.4929880], city="Abuja"),
  dict(id="hilton", n="Transcorp Hilton", s="Zambezi Crescent, Maitama", ll=[9.074966, 7.494881], city="Abuja"),
  dict(id="assembly", n="National Assembly", s="Three Arms Zone", ll=[9.068124, 7.511193], city="Abuja"),
  dict(id="wuse", n="Wuse Market", s="Wuse Market Road", ll=[9.068555, 7.465938], city="Abuja"),
@@ -221,12 +222,12 @@ def glance():
     return f'''
 <section class="pg" id="glance" data-shade="carbon" data-tab="residences" aria-label="Map and ledger">
  <div class="wrap">
-  <div class="map-h rv" style="margin-top:0"><div><div class="eyebrow">The map</div><h3 class="t-3">Every address, and the drive to the centre, <em class="t-i">on one map.</em></h3></div>
+  <div class="map-h rv" style="margin-top:0"><div><div class="eyebrow">The map</div><h3 class="t-3">Every address, and the drive from Lantees, <em class="t-i">on one map.</em></h3></div>
    <div class="map-ctl"><div class="seg" role="group" aria-label="Map layer"><button type="button" data-layer="streets" aria-pressed="true">Streets</button><button type="button" data-layer="aerial" aria-pressed="false">Aerial</button></div><div class="seg" role="group" aria-label="View"><button type="button" data-city="Maitama" aria-pressed="false">Maitama</button><button type="button" data-city="Abuja" aria-pressed="true">Abuja</button><button type="button" data-city="Lagos" aria-pressed="false">Lagos</button></div></div></div>
   <div class="map-g">
    <div class="lmap-wrap rv" id="lmapwrap"><div id="lmap" aria-label="Interactive map of the {N_RES} addresses"></div><div class="lm-hint" id="lmhint">Click the map, then scroll to zoom</div>
     <div class="map-fb" id="mapfb" hidden><div class="eyebrow plain">Map</div><p>The map could not load here. Each address opens in Google Maps:</p><div class="fbrows">{fallback}</div></div></div>
-   <div class="lm-panel rv" id="mrows">{panel}<div class="lm-note">Distances are by road to the Central Business District (the Central Bank of Nigeria on Tafawa Balewa Way), routed on OpenStreetMap; Cova Manor is measured to the Eko Hotel. Drive times are approximate and off-peak. Choose a row to fly to the address and draw its route.</div></div>
+   <div class="lm-panel rv" id="mrows">{panel}<div class="lm-note">Distances are by road from Lantees Cafe, 3259 Ibrahim Babangida Boulevard, Maitama, routed on OpenStreetMap; Cova Manor in Lagos is measured to the Eko Hotel. Drive times are approximate and off-peak. Choose a row to fly to the address and draw its route.</div></div>
   </div>
   {ledger()}
  </div>
