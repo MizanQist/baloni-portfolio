@@ -409,6 +409,7 @@ body.ready .card-stage{opacity:1;transform:none}
 /* ------- ledger: a card per address until 64rem, then the full table ------- */
 .ledger-h{display:grid;gap:20px;margin-top:72px}
 .ledger-h .t-2{margin-top:14px}
+.ledger-h .asat{margin-top:12px;font:500 10px/1.5 var(--fs);letter-spacing:.2em;text-transform:uppercase;color:var(--steel)}
 .sorts{display:flex;border:1px solid var(--rule);border-radius:999px;padding:3px}
 .sorts button{flex:1;min-height:40px;font:600 10px/1 var(--fs);letter-spacing:.14em;text-transform:uppercase;padding:0 10px;border-radius:999px;color:var(--steel);transition:.4s var(--ease);white-space:nowrap}
 .sorts button.on{background:var(--platinum);color:var(--void)}
@@ -681,6 +682,10 @@ body.ready .card-stage{opacity:1;transform:none}
 #ql.open .sh{transform:none}
 #ql .hd{position:sticky;top:0;z-index:2;display:flex;justify-content:center;align-items:center;height:60px;margin-inline:calc(-1 * var(--gut));background:var(--carbon)}
 #ql .grip{width:40px;height:4px;border-radius:2px;background:var(--steel-2)}
+#ql .nv{position:absolute;left:12px;top:8px;display:flex;align-items:center;gap:2px;font:400 13px/1 var(--fd);letter-spacing:.14em;color:var(--silver)}
+#ql .nv button{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:var(--platinum);transition:.3s}
+#ql .nv button svg{width:16px;height:16px}
+#ql .nv span{min-width:58px;text-align:center}
 #ql .x{position:absolute;right:12px;top:8px;width:44px;height:44px;border-radius:50%;border:1px solid var(--rule);display:grid;place-items:center;transition:.3s}
 #ql .x svg{width:16px;height:16px}
 #ql .ph{aspect-ratio:16/10;border-radius:16px;overflow:hidden;background:var(--graphite);border:1px solid var(--rule-2)}
@@ -697,7 +702,7 @@ body.ready .card-stage{opacity:1;transform:none}
 #ql .acts{position:sticky;bottom:0;z-index:2;display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center;margin:20px calc(-1 * var(--gut)) 0;padding:14px var(--gut) calc(14px + env(safe-area-inset-bottom));background:var(--carbon);border-top:1px solid var(--rule-2)}
 #ql .acts .star{width:52px;height:52px}
 #ql .acts .btn{justify-content:space-between;min-height:52px}
-@media (hover:hover){#ql .x:hover{border-color:var(--champ);color:var(--champ-hi)}}
+@media (hover:hover){#ql .x:hover{border-color:var(--champ);color:var(--champ-hi)}#ql .nv button:hover{color:var(--champ-hi)}}
 @media (min-width:48rem){
   #ql .sh{left:auto;top:0;width:min(460px,92vw);max-height:none;border:0;border-left:1px solid var(--rule);border-radius:0;transform:translateX(100%)}
   #ql .ph{aspect-ratio:4/3}
@@ -705,6 +710,7 @@ body.ready .card-stage{opacity:1;transform:none}
   #ql .hd{height:72px}
   #ql .grip{display:none}
   #ql .x{top:14px;right:var(--gut)}
+  #ql .nv{top:14px;left:calc(var(--gut) - 12px)}
 }
 
 /* ------- lightbox ------- */

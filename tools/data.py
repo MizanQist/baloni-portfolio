@@ -8,6 +8,7 @@ AGENT_FIRST = "Mamman"
 AGENT_INITIALS = "MA"
 AGENT_ROLE = "Your personal agent · Mizan Qist Limited"
 DATE = "October 2026"
+PRICES_AS_AT = "1 November 2026"  # update with every price or availability change
 
 SITES = [
  dict(id="d01", n="01", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=9.079976%2C7.467343", ll=(9.079976, 7.467343), addr="Plot 777, Parakou Street, Wuse II", name="Heights 777", scheme="", street="Plot 777, Parakou Street", plot="",
@@ -39,7 +40,7 @@ SITES = [
       view="Nine homes behind one gate in the diplomatic quarter, with the working drawings complete, so the specification is settled before a block is laid. The two homes already sold are semi-detached, the pair on one block. Our advice is to do the same and take the remaining semi-detached block whole, or to buy one of the five detached villas along the eastern boundary. Property in Maitama rises in price year after year, so buying now, at off-plan pricing, is a sound investment as well as a home.",
       hero=("lc-hero", "wide", "Visualisation · the row of detached duplexes along the private avenue"),
       gallery=[("Concept", "lc-dusk", "The semi-detached pair at dusk"), ("Concept", "lc-row", "The row of five detached duplexes"), ("Concept", "lc-corner", "The cantilever, from the corner"),
-               ("Concept", "lc-avenue", "Along the avenue"), ("Concept", "lc-avenue-corner", "From the avenue, towards the pair"), ("Concept", "lc-front", "The pair by day"), ("Site plan", "lc-aerial", "The enclave from above · nine plots"), ("Site gate", "lc-gate-1", "The entrance gate at dusk · concept, September 2026"), ("Site gate", "lc-gate-2", "The entrance gate by night · concept, September 2026")],
+               ("Concept", "lc-avenue", "Along the avenue"), ("Concept", "lc-avenue-corner", "From the avenue, towards the pair"), ("Concept", "lc-front", "The pair by day"), ("Site plan", "lc-aerial", "The enclave from above · nine plots"), ("Site gate", "lc-gate-1", "The entrance gate at dusk"), ("Site gate", "lc-gate-2", "The entrance gate by night")],
       short="Nine homes, one gate, Maitama."),
 
  dict(id="d04", n="04", approx="", gmaps="https://www.google.com/maps/search/?api=1&query=9.097122%2C7.503678", ll=(9.097122, 7.503678), addr="Agulu Lake Street, Maitama", name="Agulu Lake", scheme="", street="Agulu Lake Street", plot="",
@@ -66,16 +67,16 @@ SITES = [
  dict(id="d07", n="06", approx="", gmaps="https://maps.app.goo.gl/sQGwriPyuBXGDKJU9", ll=(9.100146, 7.452277), addr="Yemi Obasanjo Boulevard, Katampe Extension", name="Katampe", scheme="Opposite Deda", street="Yemi Obasanjo Boulevard", plot="",
       district="Katampe Ext.", city="Abuja", status="Off-plan", dev="Wrace & Cova", arch="",
       price="₦600m – ₦800m", pmin=600, pmax=800, units="36", avail="8", beds="2 – 6",
-      types=[("Detached villa", "6 bedrooms · 1 BQ", "", "3", "₦800m carcass"), ("Semi-detached", "6 bedrooms · 1 BQ", "", "5", "₦600m carcass"),
+      types=[("Detached villa", "6 bedrooms · 1 BQ", "", "3", "₦800m"), ("Semi-detached", "6 bedrooms · 1 BQ", "", "5", "₦600m"),
              ("Terrace", "3 bedrooms", "230 m²", "12", "Sold out"), ("Apartment", "2 bedrooms", "150 m²", "8", "By request")],
       units_line='<b>36</b> homes in the scheme · <b>8</b> villas available · apartments by request', homes_cell='36<span class="small"> · 8 villas avail. · apts by request</span>',
-      facts=[("Homes", "36", ""), ("House types", "4", ""), ("Detached & semi", "8", "available, sold as carcass"), ("Apartments", "8", "by request, ahead of release")],
-      view="Thirty-six homes in four types on Katampe Extension, opposite Deda, by Wrace and Cova, with the foundations in the ground. The six-bedroom detached and semi-detached houses are available; the terraces are sold out and the apartments not yet released. The value is in the carcass pricing and in buying before the frames go up. The apartments are not yet on the market; Mizan Qist can facilitate a request for them ahead of release, so that you would be buying what no one else has access to.",
+      facts=[("Homes", "36", ""), ("House types", "4", ""), ("Detached & semi", "8", "available"), ("Apartments", "8", "by request, ahead of release")],
+      view="Thirty-six homes in four types on Katampe Extension, opposite Deda, by Wrace and Cova, with the foundations in the ground. The six-bedroom detached and semi-detached houses are available; the terraces are sold out and the apartments not yet released. The value is in buying before the frames go up. The apartments are not yet on the market; Mizan Qist can facilitate a request for them ahead of release, so that you would be buying what no one else has access to.",
       hero=("kat-c1", "split", "Concept render · the terraces and the detached row"),
       gallery=[("Concept", "kat-c1", "The estate"), ("Concept", "kat-c2", "A detached villa"), ("Concept", "kat-c3", "The detached row"), ("Concept", "kat-c4", "A semi-detached pair"), ("Concept", "kat-c5", "The terraces"), ("Concept", "kat-c6", "Along the terraces"), ("Concept", "kat-c7", "The terraces, corner"),
                ("Site plan", "kat-plan1", "Masterplan render"), ("Site plan", "kat-plan2", "Site layout drawing"),
                ("Current state", "kat-s1", "Foundations from above"), ("Current state", "kat-s2", "The footprint"), ("Current state", "kat-s3", "Ground works"), ("Current state", "kat-s4", "The terraces' foundations"), ("Current state", "kat-s5", "Across the site"), ("Current state", "kat-s6", "Close over the works")],
-      short="Thirty-six homes, carcass pricing."),
+      short="Thirty-six homes, Katampe Extension."),
 
  dict(id="d08", n="07", approx="", gmaps="https://maps.app.goo.gl/WTHXSnMhSyHkj4yg9", ll=(9.076586, 7.446958), addr="Utako, Mabushi District", name="Utako", scheme="", street="Utako", plot="",
       district="Mabushi District", city="Abuja", status="Selling", dev="Wrace", arch="",

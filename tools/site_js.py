@@ -20,6 +20,7 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 (function(){
   const h=new Date().getHours(), l1=$('#wgreet');
   if(l1) l1.textContent=h<5?'Good evening,':h<12?'Good morning,':h<17?'Good afternoon,':'Good evening,';
+  const w=$('#wwhen'); if(w) w.textContent=h<5?'Tonight':h<12?'This morning':h<17?'This afternoon':'Tonight';
   const ck=$('#clock'); if(!ck) return;
   const fmt=new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Africa/Lagos'});
   const tick=()=>{ ck.innerHTML='Abuja <b>'+fmt.format(new Date())+'</b>'; };
@@ -69,6 +70,7 @@ document.addEventListener('click',e=>{
   const rmv=e.target.closest('[data-rm]'); if(rmv){ toggleReq(rmv.dataset.rm); return; }
   const qc=e.target.closest('[data-ql]'); if(qc){ e.preventDefault(); if(!shelfDragged) openQL(qc); return; }
   if(e.target.closest('[data-qlx]')){ closeQL(); return; }
+  const qs=e.target.closest('[data-qlstep]'); if(qs){ stepQL(+qs.dataset.qlstep); return; }
   const t=e.target.closest('[data-go]'); if(!t) return;
   if(shelfDragged){ e.preventDefault(); return; }
   e.preventDefault(); go(t.dataset.go);
@@ -219,8 +221,10 @@ $$('.gal-h .groups').forEach(g=>{
 });
 
 /* ---------- quick look: a tap on a collection card opens a sheet, so the map and ledger are not skipped ---------- */
-const ql=$('#ql'); let qlFocus=null;
-function openQL(card){
+const ql=$('#ql'), qlCards=$$('.card[data-ql]'); let qlFocus=null, qlI=0;
+function openQL(card,dir){
+  qlI=qlCards.indexOf(card); const pad=n=>String(n).padStart(2,'0'); $('#qlct').textContent=pad(qlI+1)+' / '+pad(qlCards.length);
+  if(dir&&!rm) $('#qlbd').animate([{opacity:0,transform:'translateX('+(dir*24)+'px)'},{opacity:1,transform:'none'}],{duration:380,easing:'cubic-bezier(.16,1,.3,1)'});
   const id=card.dataset.ql, im=$('.pl img',card), name=$('.nm',card).firstChild.textContent;
   $('#qlph').innerHTML=im?'<img alt="" src="'+(im.currentSrc||im.src)+'">':$('.pl .dg',card).outerHTML;
   $('#qln').textContent=$('.pl .k',card).textContent; $('#qlst').innerHTML=$('.pl .chip',card).outerHTML;
@@ -232,6 +236,15 @@ function openQL(card){
   if(!ql.classList.contains('open')){ qlFocus=document.activeElement; ql.classList.add('open'); ql.setAttribute('aria-hidden','false'); lockScroll(); }
   $('.sh',ql).scrollTop=0; setTimeout(()=>{ try{ $('.x',ql).focus({preventScroll:true}); }catch(e){} },60);
 }
+// step through the collection inside the sheet; the shelf behind follows, so closing leaves it on the last home seen
+function stepQL(d){
+  const c=qlCards[(qlI+d+qlCards.length)%qlCards.length]; openQL(c,d);
+  shelf.scrollTo({left:c.offsetLeft-shelf.offsetLeft-parseFloat(getComputedStyle(shelf).paddingLeft),behavior:'auto'});
+}
+let qx=0, qy=0;
+$('.sh',ql).addEventListener('touchstart',e=>{ const t=e.touches[0]; qx=t.clientX; qy=t.clientY; },{passive:true});
+$('.sh',ql).addEventListener('touchend',e=>{ if(e.target.closest('button,a')) return; const t=e.changedTouches[0], dx=t.clientX-qx, dy=t.clientY-qy; if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5) stepQL(dx<0?1:-1); },{passive:true});
+document.addEventListener('keydown',e=>{ if(!ql.classList.contains('open')) return; if(e.key==='ArrowRight') stepQL(1); else if(e.key==='ArrowLeft') stepQL(-1); });
 function closeQL(){
   if(!ql.classList.contains('open')) return;
   ql.classList.remove('open'); ql.setAttribute('aria-hidden','true'); unlockScroll();

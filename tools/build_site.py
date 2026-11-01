@@ -2,11 +2,12 @@
 # Design: site_css.py · behaviour: site_js.py
 import os, re, sys, json, html as H, urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from data import SITES, AGENT, AGENT_FIRST, AGENT_INITIALS, AGENT_ROLE, DATE, CLIENT, CLIENT_SHORT, CLIENT_FIRST, CLIENT_SURNAME, CLIENT_CARD, CLIENT_SALUTATION, CLIENT_SIGNOFF, MEMBER_SINCE, SLUG
+from data import SITES, PRICES_AS_AT, AGENT, AGENT_FIRST, AGENT_INITIALS, AGENT_ROLE, DATE, CLIENT, CLIENT_SHORT, CLIENT_FIRST, CLIENT_SURNAME, CLIENT_CARD, CLIENT_SALUTATION, CLIENT_SIGNOFF, MEMBER_SINCE, SLUG
 from site_css import CSS
 from site_js import JS
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TITLE = f"The {CLIENT_SURNAME} Private Office"
+SITE_URL = "https://mizanqist.github.io/baloni-portfolio/"  # the live address; link previews need it absolute. Change it on the move to Vercel.
 FONTS = "https://api.fontshare.com/v2/css?f[]=gambetta@300,400,500,600,300i,400i,500i&f[]=switzer@300,400,500,600&display=swap"
 
 # ---------------------------------------------------------------- markup helpers
@@ -85,10 +86,10 @@ def chrome():
   <div class="cols"><div><h3>Wing I · {N_RES.capitalize()} residences</h3><div class="rows">{dz_rows}</div></div></div>
 </div></div>
 <div id="ql" role="dialog" aria-modal="true" aria-labelledby="qlnm" aria-hidden="true"><div class="dim" data-qlx></div><div class="sh">
-  <div class="hd"><span class="grip" aria-hidden="true"></span><button type="button" class="x" data-qlx aria-label="Close">{CLOSE}</button></div>
-  <div class="ph" id="qlph"></div>
+  <div class="hd"><div class="nv"><button type="button" data-qlstep="-1" aria-label="Previous home">{CHEV_L}</button><span id="qlct" aria-live="polite"></span><button type="button" data-qlstep="1" aria-label="Next home">{CHEV_R}</button></div><span class="grip" aria-hidden="true"></span><button type="button" class="x" data-qlx aria-label="Close">{CLOSE}</button></div>
+  <div class="bd" id="qlbd"><div class="ph" id="qlph"></div>
   <div class="k"><span id="qln"></span><span id="qlst"></span></div><h3 id="qlnm"></h3><p class="ds" id="qlds"></p>
-  <div class="pr" id="qlpr"></div><p class="un" id="qlun"></p><p class="ln" id="qlln"></p>
+  <div class="pr" id="qlpr"></div><p class="un" id="qlun"></p><p class="ln" id="qlln"></p></div>
   <div class="acts"><button class="star" type="button" id="qlstar" data-id="" aria-pressed="false" title="Add to your requests">{STAR}</button>{btn("Open the dossier", "#", "solid", 'id="qlgo"')}</div>
 </div></div>
 <div id="lb" role="dialog" aria-modal="true" aria-label="Plate viewer"><div class="bar"><span><b id="lbsite"></b> · <span id="lbgroup"></span></span><div class="x"><button type="button" id="lbzoom" aria-label="Zoom">{ZOOM}</button><button type="button" id="lbclose" aria-label="Close">{CLOSE}</button></div></div>
@@ -105,7 +106,7 @@ def welcome():
   <div class="w-copy">
    <div class="eyebrow">Mizan Qist Private Office<span class="w-inv"> · By invitation</span></div>
    <h1 class="w-name" id="wname"><span class="l1" id="wgreet">Welcome back,</span><span class="l2 t-1">{name_markup(CLIENT_SHORT + ".")}<span class="sr">{esc(CLIENT_SHORT)}.</span></span></h1>
-   <p class="w-sub lede">Your office is open. Tonight it holds {N_RES} residences in Abuja and Lagos, each with its price, its drawings and our honest view.</p>
+   <p class="w-sub lede">Your office is open. <span id="wwhen">Today</span> it holds {N_RES} residences in Abuja and Lagos, each with its price, its drawings and our honest view.</p>
    <div class="w-cta">{btn("The residences", "#residences", "solid", 'data-go="residences"')}{btn("The map", "#glance", "", 'data-go="glance"')}</div>
    <div class="w-meta">
     <div><b>{len(SITES)}</b>Residences</div><div><b>{len({(x["district"], x["city"]) for x in SITES})}</b>Districts</div><div><b>2</b>Cities</div><div><b>{esc(AGENT_INITIALS)}<small>at any hour</small></b>{esc(AGENT)}</div>
@@ -243,7 +244,7 @@ def ledger():
 <td class="k">{s["n"]}</td><td class="nm">{esc(s["name"])}<small>{esc(s["addr"])}</small></td>
 <td class="ty" data-l="House types">{esc(types)}</td><td class="num bd" data-l="Beds">{esc(s["beds"])}</td><td class="num hm" data-l="Homes">{s.get("homes_cell") or (esc(s["units"]) + availcell)}</td><td class="pr">{esc(s["price"])}</td><td class="ss">{chip(s["status"])}</td><td class="vw">{esc(s["short"])}</td><td class="st">{star(s, s["name"])}</td></tr>'''
     return f'''
-  <div class="ledger-h rv"><div><div class="eyebrow">The ledger</div><h2 class="t-2">Every address on one page.</h2></div>
+  <div class="ledger-h rv"><div><div class="eyebrow">The ledger</div><h2 class="t-2">Every address on one page.</h2><p class="asat">Prices and availability as at {esc(PRICES_AS_AT)}</p></div>
    <div class="sorts" role="group" aria-label="Sort the ledger"><button type="button" class="on" data-sort="n">In order</button><button type="button" data-sort="price">By price</button><button type="button" data-sort="status">By status</button></div></div>
   <div class="ledger-w rv"><table class="ledger" id="ledger"><thead><tr><th>No.</th><th>Address</th><th>House types</th><th>Beds</th><th>Homes</th><th>Price</th><th>Status</th><th>In a line</th><th class="st">Request</th></tr></thead><tbody>{rows}</tbody></table></div>'''
 
@@ -290,7 +291,7 @@ def credits_html(s):
     if s["dev"]: lines.append(f'<span><b>Developer</b> · {esc(s["dev"])}</span>')
     if s["arch"]: lines.append(f'<span><b>Architect</b> · {esc(s["arch"])}</span>')
     src = "Mizan Qist residential portfolio, August 2026"
-    if s["name"] == "Maitama View": src += "; Maitama View brochure and working drawings; gate design drawings, September 2026"
+    if s["name"] == "Maitama View": src += "; Maitama View brochure and working drawings; gate design drawings"
     if s["name"] == "Cova Manor": src += "; Cova Manor brochure and construction documentation"
     if s["name"] == "Heights 777": src += "; Heights 777 brochure and drawings"
     lines.append(f'<span><b>Source</b> · {esc(src)}</span>')
@@ -413,6 +414,16 @@ def build():
 <meta name="description" content="The private office of {esc(CLIENT)}: {N_RES} residences in Abuja and Lagos, prepared by Mizan Qist Limited.">
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#08080a">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mizan Qist · Private Office">
+<meta property="og:title" content="{esc(TITLE)}">
+<meta property="og:description" content="Prepared for {esc(CLIENT)}: {N_RES} residences in Abuja and Lagos, each with its price, its drawings and our honest view.">
+<meta property="og:url" content="{SITE_URL}">
+<meta property="og:image" content="{SITE_URL}assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The membership card of {esc(CLIENT)}, Mizan Qist Private Office">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
